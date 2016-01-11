@@ -1,0 +1,4 @@
+X	create login page
+x create seed for user "Tenant"
+_	change after_sign_in path for tenants only so far
+_	

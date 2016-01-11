@@ -26,6 +26,6 @@ end
 group :development, :test do
   gem 'dotenv-rails'
   gem 'pry'
-  gem 'pry-nav'
+  # gem 'pry-nav'
   gem 'rspec-rails', '~> 3.0'
 end

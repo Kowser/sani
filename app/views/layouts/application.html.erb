@@ -7,8 +7,13 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<%= render 'layouts/sidebar.html' if user_signed_in? %>
 
-<%= yield %>
+	<div class='content-body'>
+		<%= render 'layouts/header.html' if user_signed_in? %>
+	  <%= bootstrap_flash %>
+	  <%= yield %>
+	</div>
 
 </body>
 </html>
