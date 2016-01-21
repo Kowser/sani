@@ -1,3 +1,16 @@
-<header class="navbar navbar-fixed-top">
-  <div class='pull-right'><%= link_to "Log Out", logout_path %><div>
-</header>
+<div class='navbar'>
+  <div class="navbar-inverse" role="navigation">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation-toggle">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
+
+  Welcome <span class='user-name'>Michal Kaszubowski<%#= @tenant.name %></span>
+  
+  <div id='navigation-toggle' class='navbar-collapse collapse'>
+    <div class='hidden-lg-media'><%= render 'layouts/menu' %></div>
+  </div>
+</div>

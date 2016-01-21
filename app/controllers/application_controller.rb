@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(user)
     if user.is_tenant?
-      tenants_home_path
+      residents_dashboard_path
     else
     	root_path
     end

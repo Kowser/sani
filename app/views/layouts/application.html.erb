@@ -7,13 +7,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<%= render 'layouts/sidebar.html' if user_signed_in? %>
-
-	<div class='content-body'>
-		<%= render 'layouts/header.html' if user_signed_in? %>
-	  <%= bootstrap_flash %>
-	  <%= yield %>
-	</div>
-
+  <div class='container'>
+    <% if user_signed_in? %>
+      <%= render 'layouts/header.html' %>
+    	<%= render 'layouts/sidebar.html' %>
+      <div class='content'>
+        <%= bootstrap_flash %>
+        <%= yield %>
+      </div>
+    <% else %>
+      <%= yield %>
+    <% end %>
+  </div>
 </body>
 </html>

@@ -6,8 +6,11 @@ Rails.application.routes.draw do
     get 'login', to: 'devise/sessions#new'
   end
 
-  namespace :tenants do
-    get 'home'
+  namespace :residents do
+    get 'dashboard'
+    get 'contact_us'
+
+    post 'contact_form'
   end
 end
 

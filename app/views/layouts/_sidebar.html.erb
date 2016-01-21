@@ -1,25 +1,3 @@
 <div class='sidebar'>
-  <div class='navbar'>
-    <div class="navbar-inverse" role="navigation">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidenav-toggle">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-  </div>
-
- <div class='menu-list'>Hello Scott Brown</div>
-
-  <div id='sidenav-toggle' class='navbar-collapse collapse'>
-    <div class="menu">
-      <div class='menu-list'>
-        <%= link_to 'Home', '#' %>
-        <%= link_to 'Payments', '#' %>
-        <%= link_to 'Contact Us', '#' %>
-        <%= link_to 'Account Settings', '#' %>
-      </div>
-    </div>
-  </div>
+  <%= render 'layouts/menu' %> 
 </div>

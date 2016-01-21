@@ -1,0 +1,50 @@
+<div class='row'>
+	<div class='col-sm-6'>
+		<div class="panel panel-default">
+		  <div class="panel-body">
+		  	<h4 class='bold'>Account Balance</h4>
+		   	<h3>$0.00</h3>
+		   	<h6>No Payment Required</h6>
+		   	<hr>
+		   	<h6>Your next payment of:</h6>
+		   	<h3>$1200.00</h3>
+		   	<h6>is due on Feb. 02, 2016.</h6>
+		   	<div class='btn btn-primary'>Pay Now</div>
+		   </div>
+		</div>
+		<div class="panel panel-default">
+		  <div class="panel-body">
+		  	<h4 class='bold'>Recent Payments:</h4>
+		   	<p>Paid On: Jan. 02, 2016.<br>Confirmation #: AK8J6U</p>
+		   	<p>Paid On: Feb. 02, 2016.<br>Confirmation #: AK8J6E</p>
+		   	<p>Paid On: Mar. 02, 2016.<br>Confirmation #: AK8J6K</p>
+		   	<p class='text-center'><%= link_to 'View all payments', '#' %></p>
+		  </div>
+		</div>
+	</div>
+
+	<div class='col-sm-6'>
+		<div class="panel panel-default">
+		  <div class="panel-body">
+		  	<h4 class='bold'>Property Info:</h4>
+		  	<div class='col-xs-7 col-offset-xs-5'>
+			   	<p>
+			   		<br>
+			   		<%#= @tenant.facility.name %>
+			   		<br>
+			   		<%#= @tenant.facility.street %>
+			   		<%#= @tenant.facility.city %><%#= @tenant.facility.state %><%#= @tenant.facility.zip %>
+			   	</p>
+			  </div>
+		  </div>
+		</div>
+
+		<div class="panel panel-default">
+		  <div class="panel-body">
+		  	<h4 class='bold'>Requests:</h4>
+			  <p>You do not have any open requests at this time:</p>
+		  </div>
+		</div>
+	</div>
+
+</div>

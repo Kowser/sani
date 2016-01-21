@@ -1,0 +1,30 @@
+.hidden-sm-media { @media(max-width: 767px) { display: none; } }
+.hidden-lg-media { @media(min-width: 768px) { display: none; } }
+
+/* GENERAL MENU - APPLIES TO ALL MEDIA */
+.menu {
+  font-size: 16px;
+  text-indent: 7px;
+  height: 100%;
+
+	@media(max-width: 767px) {
+		margin-top: 15px;
+		text-indent: 5px;
+		width: 100%;
+	}
+	a {
+	  color: #999;
+	  display: block;
+	  text-decoration: none;
+	  text-indent: 9px;
+	  @media(min-width: 768px) { padding: 15px 0 15px 0; }
+	  @media(max-width: 767px) { padding: 10px 0 10px 0; }
+	  &:hover {
+	    color: #fff;
+	    background: #191919;
+	    border-left: #2EB8E6 solid 3px;
+	    text-indent: 6px;
+	  }
+	}
+}
+
