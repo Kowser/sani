@@ -8,6 +8,6 @@ class ResidentsController < ApplicationController
 private
 	def find_tenant
 		# replace with current_user later in views
-		@resident = User.first
+		@resident = current_user
 	end
 end

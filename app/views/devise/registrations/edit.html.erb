@@ -1,39 +1,73 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<%= semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+  <div class='row'>
+    <div class='col-sm-6'>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title bold">Login Information</h4>
+        </div>
+        <div class="panel-body">
+          <%= f.input :email, hint: 'Please enter a valid email address.' %>
+          <h4>Change Password <i>(leave blank to keep current)</i></h4>
+          <div class='row'>
+            <div class='col-sm-6'>
+              <%= f.input :password, :autocomplete => "off", label: 'New Password' %>
+            </div>
+            <div class='col-sm-6'>
+              <%= f.input :password_confirmation, label: "Confirm New Password" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <div class='col-sm-6'>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title bold">Contact Information</h4>
+        </div>
+        <div class="panel-body">
+          <div class='row'>
+            <div class='col-sm-6'>
+              <%= f.input :first_name %>
+            </div>
+            <div class='col-sm-6'>
+              <%= f.input :last_name %>
+            </div>
+            <div class='col-sm-6'>
+              <%= f.input :phone %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+  <div class='row'>
+    <div class='col-sm-6'>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title bold">Notification Settings</h4>
+        </div>
+        <div class="panel-body">
+          <%= check_box_tag :preferences, value ='1', checked=true %> Email a payment reminder each month.<br>
+          <%= check_box_tag :preferences, value ='1', checked=false %> Email a payment confirmation each month.<br>
+          <%= check_box_tag :preferences, value ='1', checked=true %> Text a payment reminder each month.<br>
+          <%= check_box_tag :preferences, value ='1', checked=false %> Text a payment confirmation each month.
+        </div>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
+    <div class='col-sm-6'>
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h4 class="panel-title">Save Settings</h4>
+        </div>
+        <div class="panel-body">
+          <%= f.input :current_password, label: 'Enter current password to confirm changes' %><%= f.submit "Update", class: 'btn btn-primary'%>
+        </div>
+      </div>
+    </div>
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
