@@ -1,4 +1,34 @@
-X	create login page
-x create seed for user "Tenant"
-_	change after_sign_in path for tenants only so far
-_	
+MINIMUM VIABLE PRODUCT
+_	Admin / Owner should be able to
+	_ PAYMENTS
+		_	see total payments upcoming
+		_	see total payments past due
+		_	mark a payment as received
+		_	mark a payment as deposited
+		_	have payment reminders sent to resident POAs/Reps on a monthly basis
+		_	have payment confirmations sent to resident POAs/Reps on a monthly basis
+	_ RESIDENTS
+		_ create new residents
+		_	archive old residents
+		_	basic contact information
+		_	basic notes about residents, follow ups, etc... if necessary
+
+_	Admin / Owner / Maintenance should be able to
+	_	see all maintenance requests ordered by facility
+	_	see only their respective facility maintenance issues
+	_	mark maintenance request as Low / High priority, or Emergency w/ a text notification to the maintenance person
+	_	mark maintenance request as finished
+
+_	Users should have varying levels of access (Owner / Admin / Maintenance Staff (Read or Write))
+
+THOUGHTS
+_	I don't see a lot of use for the resident side of things, so it may be best to have a RESIDENTS table set up, and only use the USERS table for actual people who need to login (owners & staff). Keeps the tables more clean.
+_ change USER to LOGIN? I think we're going to have a lot of profiles rather than users containing all of the information, perhaps even and ADMINISTRATOR profile
+
+
+
+
+FUTURE CONSIDERATIONS
+_ Residents w/ Logins should
+	_ be able to change their login/password
+	_	change their notification preferenes (same prefs that Admins can access)

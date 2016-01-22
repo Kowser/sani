@@ -6,12 +6,14 @@ Rails.application.routes.draw do
     get 'login', to: 'devise/sessions#new'
   end
 
-  namespace :residents do
-    get 'dashboard'
-    get 'contact_us'
-
-    post 'contact_form'
-  end
+  resources :residents
+  
+  # STAFF Controller
+    get 'dashboard',            to: 'management#dashboard'
+    get 'payments',           to: 'management#payments'
+    get 'maintenance',            to: 'management#maintenance'
+    get 'applications',           to: 'management#applications'
+    get 'settings',           to: 'management#settings'
 end
 
   # The priority is based upon order of creation: first created -> highest priority.

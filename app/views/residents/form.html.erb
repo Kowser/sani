@@ -1,0 +1,61 @@
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="#profile-panel"><i class="fa fa-plus">&nbsp;</i>Add New Resident</a>
+    </h4>
+  </div>
+  <div id="profile-panel" class="panel-collapse collapse">
+    <div class='panel-body'>
+      <%= semantic_form_for @resident ||= Resident.new, url: residents_contact_form_path, remote: true do |f| %>
+	      <div class='row'>
+	      	<h4 class='text-center'>Resident's Information</h4>
+	  			<div class='col-md-2 col-xs-6'>
+    	  		<%= f.input :move_in, as: :string, label: 'Move In Date', input_html: { class: 'datepicker' } %>
+	  			</div>
+	  			<div class='col-md-2 col-xs-6'>
+    	  		<%= f.input :rent, placeholder: '1234.56' %>
+	  			</div>
+	        <div class='col-md-4 col-xs-12'>
+    	  		<%= f.input :first_name %>
+    	  	</div>
+    	  	<div class='col-md-4 col-xs-12'>
+    	  		<%= f.input :last_name %>
+	  			</div>
+	  		</div>
+	      <div class='row'>
+	      	<h4 class='text-center'>Representative's Information</h4>
+	        <div class='col-md-6'>
+    	  		<%= f.input :contact_first_name %>
+    	  	</div>
+	        <div class='col-md-6'>
+    	  		<%= f.input :contact_last_name %>
+    	  	</div>
+    	  </div>
+	      <div class='row'>
+	        <div class='col-md-6'>
+    	  		<%= f.input :phone %>
+    	  	</div>
+	        <div class='col-md-6'>
+    	  		<%= f.input :email %>
+    	  	</div>
+    	  </div>
+    	  
+    	  <div class='row'>
+    	  	<div class='col-md-5'>
+    	      <%= f.input :address %>
+    	    </div>
+    	    <div class='col-md-3'>
+    	      <%= f.input :city %>
+    	    </div>
+    	    <div class='col-md-2'>
+    	      <%= f.input :state, as: :select, collection: Collections::STATE %>
+    	    </div>
+    	    <div class='col-md-2'>
+    	      <%= f.input :zip %>
+    	    </div>
+    	  </div>
+        <%= f.submit 'Save Resident', class: 'btn btn-success' %>
+      <% end %>
+    </div>
+  </div>
+</div>

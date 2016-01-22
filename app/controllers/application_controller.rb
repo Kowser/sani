@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(user)
     if user.is_resident?
       residents_dashboard_path
+    elsif user.is_administrator?
+      administrators_dashboard_path
     else
     	root_path
     end
