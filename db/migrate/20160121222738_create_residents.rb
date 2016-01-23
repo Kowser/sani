@@ -14,7 +14,9 @@ class CreateResidents < ActiveRecord::Migration
         t.date :move_in
         t.date :move_out
         t.decimal :rent, precision: 7, scale: 2
-        t.string :room
+        t.string :unit
+
+        t.timestamps
     end
   end
 end

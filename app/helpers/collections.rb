@@ -8,7 +8,7 @@ module Collections
 	  'DC'
 	]
 
-	BG_STYLES = {
+	PAYMENT_STATUS = {
 	  'Past Due' => 'danger',
 	  'Paid' => 'success'
 	}

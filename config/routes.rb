@@ -6,14 +6,18 @@ Rails.application.routes.draw do
     get 'login', to: 'devise/sessions#new'
   end
 
+  # DASHBOARD Controller
+    get 'dashboard',              to: 'dashboard#home'
+    get 'billing',                to: 'dashboard#billing'
+    get 'maintenance',            to: 'dashboard#maintenance'
+    get 'applications',           to: 'dashboard#applications'
+    get 'settings',               to: 'dashboard#settings'
+    
   resources :residents
+  resources :invoices
+  resources :maintenance_requests
+  resources :payments
   
-  # STAFF Controller
-    get 'dashboard',            to: 'management#dashboard'
-    get 'payments',           to: 'management#payments'
-    get 'maintenance',            to: 'management#maintenance'
-    get 'applications',           to: 'management#applications'
-    get 'settings',           to: 'management#settings'
 end
 
   # The priority is based upon order of creation: first created -> highest priority.

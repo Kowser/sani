@@ -11,26 +11,71 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160121222738) do
+ActiveRecord::Schema.define(version: 20160123001054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "facilities", force: :cascade do |t|
+    t.string   "name"
+    t.string   "street"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "zip"
+    t.string   "phone"
+    t.string   "fax"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "invoices", force: :cascade do |t|
+    t.integer  "resident_id"
+    t.decimal  "amount_due"
+    t.string   "status"
+    t.string   "invoice_number"
+    t.date     "invoice_date"
+    t.date     "invoice_due_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "maintenance_requests", force: :cascade do |t|
+    t.integer  "facility_id"
+    t.string   "location"
+    t.string   "description"
+    t.string   "priority"
+    t.boolean  "completed"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.integer  "invoice_id"
+    t.decimal  "amount"
+    t.date     "date"
+    t.string   "check_number"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "residents", force: :cascade do |t|
-    t.string  "first_name"
-    t.string  "last_name"
-    t.string  "contact_first_name"
-    t.string  "contact_last_name"
-    t.string  "phone"
-    t.string  "email"
-    t.string  "address"
-    t.string  "city"
-    t.string  "state"
-    t.string  "zip"
-    t.date    "move_in"
-    t.date    "move_out"
-    t.decimal "rent",               precision: 7, scale: 2
-    t.string  "room"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "contact_first_name"
+    t.string   "contact_last_name"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.date     "move_in"
+    t.date     "move_out"
+    t.decimal  "rent",               precision: 7, scale: 2
+    t.string   "unit"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "facility_id"
   end
 
   create_table "users", force: :cascade do |t|

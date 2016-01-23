@@ -9,9 +9,20 @@ User.create!(
 	password_confirmation: 'password'
 )
 
+facility = Facility.create!(
+	name: 'All Comfort Residential Care',
+	street: '9347 SW 35th Ave',
+	city: 'Portland',
+	state: 'OR',
+	zip: '97225',
+	phone: '503-987-1234',
+	fax: '503-123-7890'
+)
+
 # RESIDENTs (no User login)
 16.times do |i|
-	Resident.create!(
+	resident = Resident.create!(
+		facility_id: facility.id,
 		first_name: Faker::Name.first_name,
 		last_name: Faker::Name.last_name,
 		contact_first_name: Faker::Name.first_name,
@@ -24,6 +35,22 @@ User.create!(
 		zip: Faker::Address.zip_code,
 		move_in: Faker::Date.between(365.days.ago, Date.today),
 		rent: Faker::Number.between(35, 60) * 100,
-		room: i + 101
+		unit: i + 101
 	)
+
+	invoice = Invoice.create!(
+		resident_id: resident.id,
+		amount_due: resident.rent,
+		status: 'Unpaid',
+		invoice_number: 'ACC-100#{i}',
+		invoice_date: Date.today,
+		invoice_due_date: '01/01/2016'
+	)
+
+	Payment.create!(
+		invoice_id: invoice.id,
+		amount: invoice.amount_due,
+		date: Faker::Date.between(7.days.ago, Date.today),
+		check_number: rand(1000..2000)
+	) if [true, true, false].sample
 end

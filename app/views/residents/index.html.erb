@@ -1,6 +1,9 @@
-<div class="panel panel-default">
+<div class="panel panel-success">
 	<div class="panel-heading">
-	  <span class="panel-title">Current Resident Roster</span>
+	  <div class="panel-title">
+	  	Current Resident Roster
+	  	<span class='pull-right'><%= link_to 'New Resident', new_resident_path %></span>
+	  </div>
 	</div>
 	<table class="table table-condensed table-striped table-hover table-responsive">
 		<thead>
@@ -10,17 +13,22 @@
 				<th>Contact Name</th>
 				<th>Contact Phone</th>
 				<th>Contact Email</th>
-				<th>View</th>
+				<th>Edit</th>
 			</tr>
 		</thead>
 	  <tbody>
-	  	<% Resident.all.each do |resident| %>
+	  	<% @residents.each do |resident| %>
 	   	<tr>
-	   		<td><%= resident.room %></td>
+	   		<td><%= resident.unit %></td>
 	   		<td><%= resident.name %></td>
 	   		<td><%= resident.contact_name %></td>
 	   		<td><%= resident.phone %></td>
 	   		<td><%= link_to resident.email %></td>
+	   		<td class='text-center'>
+	      	<%= link_to edit_resident_path(resident) do %>
+	          <i class="fa fa-pencil"></i>
+	        <% end %> 
+	      </td>
 	   	<tr>
 	   	<% end %>
 	  </tbody>

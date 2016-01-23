@@ -1,13 +1,42 @@
 class ResidentsController < ApplicationController
-	before_action :find_tenant, only: [:dashboard, :contact_us]
+	def index
+		@residents = Resident.all
+	end
 
-	def dashboard; end
-	def contact_us; end
-	def settings; end
+	def new
+		@resident = Resident.new
+		render 'form'
+	end
 
+	def create
+		@resident = Resident.new(resident_params)
+		if @resident.save
+			flash.now[:success] = 'Resident successfully added to roster.'
+			redirect_to action: 'index'
+		else
+			flash.now[:alert] = 'Please fix the following errors.'
+			render 'form'
+		end
+	end
+
+	def edit
+		@resident = Resident.find(params[:id])
+		render 'form'
+	end
+
+	def update
+		@resident = Resident.find(params[:id])
+		if @resident.update(resident_params)
+			flash.now[:success] = 'Resident successfully added to roster.'
+			redirect_to action: 'index'
+		else
+			flash.now[:alert] = 'Please fix the following errors.'
+			render 'form'
+		end
+	end
 private
-	def find_tenant
-		# replace with current_user later in views
-		@resident = current_user
+	
+	def resident_params
+	  params.require(:resident).permit(Parameters::RESIDENT_PARAMS)
 	end
 end
