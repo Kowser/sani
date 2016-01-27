@@ -31,10 +31,15 @@ facility = Facility.create!(
 	fax: '503-123-7890'
 )
 
-# RESIDENTs (no User login)
 16.times do |i|
+	unit = Unit.create!(
+		number: i + 1,
+	  occupancy: ['Shared', 'Private'].sample,
+	  active: true
+	)
+
 	resident = Resident.create!(
-		facility_id: facility.id,
+		unit_id: unit.id,
 		first_name: Faker::Name.first_name,
 		last_name: Faker::Name.last_name,
 		contact_first_name: Faker::Name.first_name,
@@ -46,8 +51,7 @@ facility = Facility.create!(
 		state: Faker::Address.state_abbr,
 		zip: Faker::Address.zip_code,
 		move_in: Faker::Date.between(365.days.ago, Date.today),
-		rent: Faker::Number.between(35, 60) * 100,
-		unit: i + 101
+		rent: Faker::Number.between(35, 60) * 100
 	)
 
 	invoice = Invoice.create!(
@@ -64,5 +68,5 @@ facility = Facility.create!(
 		amount: invoice.amount_due,
 		date: Faker::Date.between(7.days.ago, Date.today),
 		check_number: rand(1000..2000)
-	) if [true, true, false].sample
+	) if (1..10).to_a.sample < 9 # about 80% paid rate
 end

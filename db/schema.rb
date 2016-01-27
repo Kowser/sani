@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160123001054) do
+ActiveRecord::Schema.define(version: 20160127191206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20160123001054) do
   end
 
   create_table "residents", force: :cascade do |t|
+    t.integer  "unit_id"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "contact_first_name"
@@ -72,10 +73,17 @@ ActiveRecord::Schema.define(version: 20160123001054) do
     t.date     "move_in"
     t.date     "move_out"
     t.decimal  "rent",               precision: 7, scale: 2
-    t.string   "unit"
     t.datetime "created_at",                                 null: false
     t.datetime "updated_at",                                 null: false
+  end
+
+  create_table "units", force: :cascade do |t|
     t.integer  "facility_id"
+    t.string   "number"
+    t.string   "occupancy",   default: "Undeclared"
+    t.boolean  "active",      default: true
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   create_table "users", force: :cascade do |t|

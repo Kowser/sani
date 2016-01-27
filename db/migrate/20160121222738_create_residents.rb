@@ -1,6 +1,7 @@
 class CreateResidents < ActiveRecord::Migration
   def change
     create_table :residents do |t|
+        t.references :unit
     	t.string :first_name
     	t.string :last_name
     	t.string :contact_first_name
@@ -14,7 +15,6 @@ class CreateResidents < ActiveRecord::Migration
         t.date :move_in
         t.date :move_out
         t.decimal :rent, precision: 7, scale: 2
-        t.string :unit
 
         t.timestamps null: false
     end
