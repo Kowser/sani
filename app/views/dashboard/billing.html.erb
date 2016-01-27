@@ -48,7 +48,7 @@
 	  <tbody>
 	  	<% @residents.each do |resident| %>
 	  		<tr>
-		  	  <td><%= resident.unit %></td>
+		  	  <td><%= resident.unit.number %></td>
 		   		<td><%= resident.name %></td>
 		   		<td><%= resident.rent %></td>
 		   		<td><%#= invoice.amount_due %></td>

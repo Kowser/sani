@@ -43,7 +43,7 @@
           <%= f.semantic_fields_for :units do |u| %>
             <%= render "units", u: u %>
           <% end %>
-          <tr><td colspan='3'><%= link_to_add_unit(f) %></td></tr>
+          <tr id='new-unit-link'><td colspan='3'><%= link_to_add_unit(f) %></td></tr>
         </tbody>
       </table>
 

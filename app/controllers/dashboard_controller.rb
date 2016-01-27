@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
 	def home; end
 	def billing
-		@residents = Resident.all.order('unit ASC')
+		@residents = Resident.all
   end
 end
