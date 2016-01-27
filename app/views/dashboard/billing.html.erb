@@ -51,10 +51,17 @@
 		  	  <td><%= resident.unit.number %></td>
 		   		<td><%= resident.name %></td>
 		   		<td><%= resident.rent %></td>
-		   		<td><%#= invoice.amount_due %></td>
-		   		<td><%#= invoice.status %></td>
-		   		<td></td>
-		   		<td></td>
+		   		<td colspan='4'>
+		   	</tr>
+		    </tr>
+		    	<% resident.invoices.each do |invoice| %>
+		    		<td colspan='2'>
+	    			<td><%= invoice.number %></td>
+			   		<td><%= invoice.amount_due %></td>
+			   		<td><%= invoice.status %></td>
+			   		<td></td>
+			   		<td></td>
+			   	<% end %>
 		  	</tr>
 	  	<% end %>
 	  </tbody>

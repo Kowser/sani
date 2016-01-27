@@ -15,8 +15,8 @@
 				<th>Zip</th>
 				<th>Phone</th>
 				<th>Fax</th>
-				<th>Edit</th>
 				<th>Rooms</th>
+				<th>Edit</th>
 			</tr>
 		</thead>
 	  <tbody>
@@ -29,12 +29,12 @@
 	   		<td><%= facility.zip %></td>
 	   		<td><%= facility.phone %></td>
 	   		<td><%= facility.fax %></td>
+	   		<td class='text-center'><%= facility.units.count %></td>
 	   		<td class='text-center'>
 	      	<%= link_to edit_facility_path(facility) do %>
 	          <i class="fa fa-pencil"></i>
 	        <% end %> 
-	      <td><%= facility.units.count %></td>
-	      <td>
+	      </td>
 	   	<tr>
 	   	<% end %>
 	  </tbody>

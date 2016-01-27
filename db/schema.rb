@@ -32,11 +32,10 @@ ActiveRecord::Schema.define(version: 20160127191206) do
     t.integer  "resident_id"
     t.decimal  "amount_due"
     t.string   "status"
-    t.string   "invoice_number"
-    t.date     "invoice_date"
-    t.date     "invoice_due_date"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.string   "number"
+    t.date     "due_date"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "maintenance_requests", force: :cascade do |t|
@@ -80,10 +79,10 @@ ActiveRecord::Schema.define(version: 20160127191206) do
   create_table "units", force: :cascade do |t|
     t.integer  "facility_id"
     t.string   "number"
-    t.string   "occupancy",   default: "Undeclared"
+    t.string   "occupancy",   default: "Private"
     t.boolean  "active",      default: true
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "users", force: :cascade do |t|

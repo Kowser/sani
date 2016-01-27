@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
   # , :lockable
 
-  def is_resident?
-  	role == 'resident'
+  def is_executive?
+  	role == 'executive'
   end
 
   def is_administrator?

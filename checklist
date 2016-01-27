@@ -1,8 +1,8 @@
 MINIMUM VIABLE PRODUCT
 _	Owner should be able to...
-	_ FACILITY
+	x FACILITY
 		x create / edit
-		_ add/delete rooms
+		x add rooms or make them inactive
 _	Owner / Admin should be able to...
 	_ PAYMENTS
 		_	see total payments upcoming

@@ -21,6 +21,18 @@ User.create!(
 	password_confirmation: 'password'
 )
 
+# MAINTENANCE USER
+User.create!(
+	email: 								 'maintenance@example.com',
+	first_name: 					 'Brian',
+	last_name:  					 'Maintenance',
+	phone: 								 '503-123-4567',
+	role: 								 'staff',
+	password:              'password',
+	password_confirmation: 'password'
+)
+
+
 facility = Facility.create!(
 	name: 'All Comfort Residential Care',
 	address: '9347 SW 35th Ave',
@@ -59,9 +71,8 @@ facility = Facility.create!(
 		resident_id: resident.id,
 		amount_due: resident.rent,
 		status: 'Unpaid',
-		invoice_number: 'ACC-100#{i}',
-		invoice_date: Date.today,
-		invoice_due_date: '01/01/2016'
+		number: "ACC-100#{i}",
+		due_date: '01/01/2016'
 	)
 
 	Payment.create!(
