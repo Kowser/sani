@@ -1,9 +1,9 @@
-<div class="panel panel-default">
+<div class="panel panel-info">
   <div class="panel-heading">
     <div class="panel-title"><%= @facility.new_record? ? 'New' : 'Edit' %> Facility Form</div>
   </div>
-  <div class='panel-body'>
-    <%= semantic_form_for @facility do |f| %>
+  <%= semantic_form_for @facility do |f| %>
+    <div class='panel-body'>
       <div class='row'>
         <h4 class='text-center'>Facility Information</h4>
         <div class='col-md-12'>
@@ -30,6 +30,23 @@
           <%= f.input :fax %>
         </div>
       </div>
+
+      <table class="table table-condensed table-responsive">
+        <thead>
+          <tr>
+            <th>Room Number</th>
+            <th>Occupancy Type</th>
+            <th>Active</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= f.semantic_fields_for :units do |u| %>
+            <%= render "units", u: u %>
+          <% end %>
+          <tr><td colspan='3'><%= link_to_add_unit(f) %></td></tr>
+        </tbody>
+      </table>
+
       <%= f.submit 'Save Facility', class: 'btn btn-success' %>
     <% end %>
   </div>

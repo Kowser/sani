@@ -40,24 +40,4 @@
 	  </tbody>
 	</table>
 
-	<table class="table table-condensed table-striped table-hover table-responsive">
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th>Address</th>
-				<th>City</th>
-			</tr>
-		</thead>
-	  <tbody>
-	   	<tr>
-	   		<%= f.semantic_fields_for :units do |u| %>
-	   		  <%= render "question", u: u %>
-	   		<% end %>
-	   	<tr>
-	   	<% end %>
-	  </tbody>
-	</table>
-
 </div>
-
-

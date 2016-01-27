@@ -1,0 +1,5 @@
+<tr id='unit-<%= u.options[:child_index] %>'>
+	<td><%= u.input :number, label: false %></td>
+	<td><%= u.input :occupancy, label: false, as: :select, collection: ['Shared', 'Private'], include_blank: false %></td>
+	<td><%= u.input :active, label: false, as: :select %></td>
+</tr>
