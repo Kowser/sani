@@ -35,7 +35,7 @@ class ResidentsController < ApplicationController
 		end
 	end
 private
-	
+
 	def resident_params
 	  params.require(:resident).permit(Parameters::RESIDENT_PARAMS)
 	end
