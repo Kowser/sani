@@ -10,9 +10,9 @@
 			<tr>
 				<th>Room</th>
 				<th>Name</th>
-				<th>Contact Name</th>
+				<th class="hidden-xs">Contact Name</th>
 				<th>Contact Phone</th>
-				<th>Contact Email</th>
+				<th class="hidden-xs hidden-sm">Contact Email</th>
 				<th>Edit</th>
 			</tr>
 		</thead>
@@ -21,13 +21,13 @@
 	   	<tr>
 	   		<td><%= resident.unit.number %></td>
 	   		<td><%= resident.name %></td>
-	   		<td><%= resident.contact_name %></td>
+	   		<td class="hidden-xs"><%= resident.contact_name %></td>
 	   		<td><%= resident.phone %></td>
-	   		<td><%= link_to resident.email %></td>
+	   		<td class="hidden-xs hidden-sm"><%= link_to resident.email %></td>
 	   		<td class='text-center'>
 	      	<%= link_to edit_resident_path(resident) do %>
 	          <i class="fa fa-pencil"></i>
-	        <% end %> 
+	        <% end %>
 	      </td>
 	   	<tr>
 	   	<% end %>

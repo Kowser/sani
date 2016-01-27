@@ -20,6 +20,7 @@ gem 'font-awesome-rails'
 
 group :development do
   gem 'spring'
+  gem 'xray-rails'
 end
 
 group :development, :test do

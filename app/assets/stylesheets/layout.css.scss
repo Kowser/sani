@@ -8,22 +8,25 @@
   margin: 0;
   border: 0;
   border-radius: 0;
+  width: 100%;
   background-color: #333;
   color: #999;
+  font-size: 24px;
+  span { line-height: 50px; }
   span.user-name { color: white; }
 
   @media(min-width: 768px) {
-    font-size: 24px;
+    position: fixed;
+    top: 0;
+    left: 0;
     padding: 7px;
-    span.user-name {
-      text-indent: 0;
-      position: fixed;
-      left: 150px;
+    span.welcome {
+      display: inline-block;
+      width: 143px;
     }
   }
 
   @media(max-width: 767px) {
-    font-size: 16px;
     padding-left: 3px;
     span.user-name {
       height: 50px;
@@ -31,11 +34,17 @@
   }
 }
 
+.navbar-collapse {
+  padding-right: 0;
+  padding-left: 0;
+}
+
 /* SIDE BAR NAVIGATION - ONLY SHOWN DESKTOP VIEWS */
 .sidebar {
   @media(max-width: 767px) { display: none; }
   @media(min-width: 768px) {
     position: fixed;
+    top: 50px;
     background-color: #333;
     width: 150px;
     height: 100%;
@@ -45,7 +54,7 @@
 .content {
   width: 100%;
   @media(min-width: 768px) {
-    padding: 10px 10px 10px 160px;
+    padding: 60px 10px 10px 160px;
 
   }
 
