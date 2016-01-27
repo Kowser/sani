@@ -16,6 +16,7 @@
 				<th>Phone</th>
 				<th>Fax</th>
 				<th>Edit</th>
+				<th>Rooms</th>
 			</tr>
 		</thead>
 	  <tbody>
@@ -32,11 +33,31 @@
 	      	<%= link_to edit_facility_path(facility) do %>
 	          <i class="fa fa-pencil"></i>
 	        <% end %> 
-	      </td>
+	      <td><%= facility.units.count %></td>
+	      <td>
 	   	<tr>
 	   	<% end %>
 	  </tbody>
 	</table>
+
+	<table class="table table-condensed table-striped table-hover table-responsive">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Address</th>
+				<th>City</th>
+			</tr>
+		</thead>
+	  <tbody>
+	   	<tr>
+	   		<%= f.semantic_fields_for :units do |u| %>
+	   		  <%= render "question", u: u %>
+	   		<% end %>
+	   	<tr>
+	   	<% end %>
+	  </tbody>
+	</table>
+
 </div>
 
 

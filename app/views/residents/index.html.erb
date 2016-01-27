@@ -19,7 +19,7 @@
 	  <tbody>
 	  	<% @residents.each do |resident| %>
 	   	<tr>
-	   		<td><%= resident.unit %></td>
+	   		<td><%= resident.unit.number %></td>
 	   		<td><%= resident.name %></td>
 	   		<td><%= resident.contact_name %></td>
 	   		<td><%= resident.phone %></td>

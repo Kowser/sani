@@ -33,6 +33,7 @@ facility = Facility.create!(
 
 16.times do |i|
 	unit = Unit.create!(
+		facility_id: facility.id,
 		number: i + 1,
 	  occupancy: ['Shared', 'Private'].sample,
 	  active: true
