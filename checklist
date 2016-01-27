@@ -1,5 +1,9 @@
 MINIMUM VIABLE PRODUCT
-_	Admin / Owner should be able to
+_	Owner should be able to...
+	_ FACILITY
+		x create / edit
+		_ add/delete rooms
+_	Owner / Admin should be able to...
 	_ PAYMENTS
 		_	see total payments upcoming
 		_	see total payments past due
@@ -19,11 +23,7 @@ _	Admin / Owner / Maintenance should be able to
 	_	mark maintenance request as Low / High priority, or Emergency w/ a text notification to the maintenance person
 	_	mark maintenance request as finished
 
-_	Users should have varying levels of access (Owner / Admin / Staff (Read or Write))
-
-THOUGHTS
-_	I don't see a lot of use for the resident side of things, so it may be best to have a RESIDENTS table set up, and only use the USERS table for actual people who need to login (owners & staff). Keeps the tables more clean.
-_ change USER to LOGIN? I think we're going to have a lot of profiles rather than users containing all of the information, perhaps even and ADMINISTRATOR profile
+_	Users should have varying levels of access (Owner / Admin / Staff (Read or Write?))
 
 CONTROLLERS
 x Dashboard - navigation

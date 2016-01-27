@@ -1,4 +1,16 @@
-# ADMINISTRATOR USER
+# EXECUTIVE USER (Owner)
+User.create!(
+	email: 								 'owner@example.com',
+	first_name: 					 'Michal',
+	last_name:  					 'Kaszubowski',
+	phone: 								 '503-560-0700',
+	role: 								 'executive',
+	password:              'password',
+	password_confirmation: 'password'
+)
+
+
+# ADMINISTRATOR USER (not a sys admin)
 User.create!(
 	email: 								 'admin@example.com',
 	first_name: 					 'Breanna',
@@ -11,7 +23,7 @@ User.create!(
 
 facility = Facility.create!(
 	name: 'All Comfort Residential Care',
-	street: '9347 SW 35th Ave',
+	address: '9347 SW 35th Ave',
 	city: 'Portland',
 	state: 'OR',
 	zip: '97225',

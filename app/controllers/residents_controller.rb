@@ -27,7 +27,7 @@ class ResidentsController < ApplicationController
 	def update
 		@resident = Resident.find(params[:id])
 		if @resident.update(resident_params)
-			flash.now[:success] = 'Resident successfully added to roster.'
+			flash.now[:success] = 'Resident successfully updated.'
 			redirect_to action: 'index'
 		else
 			flash.now[:alert] = 'Please fix the following errors.'

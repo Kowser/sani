@@ -1,0 +1,42 @@
+<div class="panel panel-success">
+	<div class="panel-heading">
+	  <div class="panel-title">
+	  	Current Facility Roster
+	  	<span class='pull-right'><%= link_to 'Add Facility', new_facility_path %></span>
+	  </div>
+	</div>
+	<table class="table table-condensed table-striped table-hover table-responsive">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Address</th>
+				<th>City</th>
+				<th>State</th>
+				<th>Zip</th>
+				<th>Phone</th>
+				<th>Fax</th>
+				<th>Edit</th>
+			</tr>
+		</thead>
+	  <tbody>
+	  	<% @facilities.each do |facility| %>
+	   	<tr>
+	   		<td><%= facility.name %></td>
+	   		<td><%= facility.address %></td>
+	   		<td><%= facility.city %></td>
+	   		<td><%= facility.state %></td>
+	   		<td><%= facility.zip %></td>
+	   		<td><%= facility.phone %></td>
+	   		<td><%= facility.fax %></td>
+	   		<td class='text-center'>
+	      	<%= link_to edit_facility_path(facility) do %>
+	          <i class="fa fa-pencil"></i>
+	        <% end %> 
+	      </td>
+	   	<tr>
+	   	<% end %>
+	  </tbody>
+	</table>
+</div>
+
+

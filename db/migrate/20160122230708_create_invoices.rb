@@ -8,7 +8,7 @@ class CreateInvoices < ActiveRecord::Migration
     	t.date :invoice_date # usually on the 1st of each month
     	t.date :invoice_due_date
 
-    	t.timestamps
+    	t.timestamps null: false
     end
   end
 end

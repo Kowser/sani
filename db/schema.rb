@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20160123001054) do
 
   create_table "facilities", force: :cascade do |t|
     t.string   "name"
-    t.string   "street"
+    t.string   "address"
     t.string   "city"
     t.string   "state"
     t.integer  "zip"
@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 20160123001054) do
     t.string   "invoice_number"
     t.date     "invoice_date"
     t.date     "invoice_due_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "maintenance_requests", force: :cascade do |t|
@@ -73,8 +73,8 @@ ActiveRecord::Schema.define(version: 20160123001054) do
     t.date     "move_out"
     t.decimal  "rent",               precision: 7, scale: 2
     t.string   "unit"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
     t.integer  "facility_id"
   end
 

@@ -16,7 +16,7 @@ class CreateResidents < ActiveRecord::Migration
         t.decimal :rent, precision: 7, scale: 2
         t.string :unit
 
-        t.timestamps
+        t.timestamps null: false
     end
   end
 end

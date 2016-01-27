@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get 'applications',           to: 'dashboard#applications'
     get 'settings',               to: 'dashboard#settings'
     
+  resources :facilities
   resources :residents
   resources :invoices
   resources :maintenance_requests
