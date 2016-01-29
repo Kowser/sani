@@ -2,7 +2,7 @@
 	<div class="panel-heading">
 	  <span class="panel-title">Outstanding Invoices</span>
 	</div>
-	<%= semantic_form_for :invoices, url: invoice_payments_path, method: :post do |i| %>
+	<%= form_for :invoices, url: invoice_payments_path, method: :post do |f| %>
 		<table class="table table-condensed table-striped table-hover table-responsive">
 			<thead>
 	  		<tr>
@@ -25,21 +25,20 @@
 	    			<td><%= invoice.due_date.strftime('%m/%d/%Y')  %></td>
 	    			<td><%= '%.2f' % invoice.total_due %></td>
 			   		<td><%= '%.2f' % invoice.balance_due %></td>
-		   			<%= i.semantic_fields_for :payments do |p| %>
-				   		<td>
-			   			  <%= p.input :invoice_id, as: :hidden, input_html: { value: invoice.id } %>
-			   				<%= p.input :amount, label: false %>
-				   		</td>
-				   		<td>
-				   			<%= p.input :date, label: false, input_html: { class: 'datepicker'} %>
-				   		</td>
-		   			<% end %>
+						<%= f.fields_for "#{invoice.id}" do |pf| %>
+			   		<td>
+		   				<%= pf.text_field :amount, class: 'input' %>
+			   		</td>
+			   		<td>
+			   			<%= pf.text_field :date, class: 'datepicker' %>
+			   		</td>
+						<% end %>
 			  	</tr>
 		  	<% end %>
 		  </tbody>
 		</table>
 		<div class='panel-body'>
-			<%= i.submit 'Submit Payments', class: 'btn btn-success pull-right' %>
+			<%= f.submit 'Submit Payments', class: 'btn btn-success pull-right' %>
 		</div>
 	<% end %>
 </div>

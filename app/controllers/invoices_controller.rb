@@ -1,6 +1,10 @@
 class InvoicesController < ApplicationController
 	def index
-		@invoices = Invoice.all.includes(:resident => :unit).order('residents.first_name ASC')
+		if request.post?
+
+		else
+			@invoices = Invoice.where("balance_due > 0").includes(:resident => :unit).order('residents.first_name ASC')
+		end
 	end
 
 	def payments
