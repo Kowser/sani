@@ -5,6 +5,5 @@ module Parameters
 	FACILITY_PARAMS = :name, :address, :city, :state, :zip, :phone, :fax,
 		 { :units_attributes => [:id, :number, :occupancy, :active] }
 
-	PAYMENT_PARAMS = :invoice_id, :amount, :date
+	PAYMENT_PARAMS = :amount, :date, :invoice_id
 end
-
