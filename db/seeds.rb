@@ -1,37 +1,44 @@
+def create_user(params)
+	User.create!(params.merge(password: 'password', password_confirmation: 'password'))
+end
+
 # EXECUTIVE USER (Owner)
-User.create!(
-	email: 								 'owner@example.com',
-	first_name: 					 'Michal',
-	last_name:  					 'Kaszubowski',
-	phone: 								 '503-560-0700',
-	role: 								 'executive',
-	password:              'password',
-	password_confirmation: 'password'
+create_user(
+	email: 'owner@example.com',
+	first_name: 'Adam',
+	last_name: 'Reinke',
+	phone: '360-333-6789',
+	role: 'executive'
 )
 
-
 # ADMINISTRATOR USER (not a sys admin)
-User.create!(
-	email: 								 'admin@example.com',
-	first_name: 					 'Breanna',
-	last_name:  					 'Matson',
-	phone: 								 '503-345-6789',
-	role: 								 'administrator',
-	password:              'password',
-	password_confirmation: 'password'
+create_user(
+	email: 'admin@example.com',
+	first_name: 'Breanna',
+	last_name: 'Matson',
+	phone: '503-345-6789',
+	role: 'administrator'
 )
 
 # MAINTENANCE USER
-User.create!(
-	email: 								 'maintenance@example.com',
-	first_name: 					 'Brian',
-	last_name:  					 'Maintenance',
-	phone: 								 '503-123-4567',
-	role: 								 'staff',
-	password:              'password',
-	password_confirmation: 'password'
+create_user(
+	email: 'maintenance@example.com',
+	first_name: 'Brian',
+	last_name: 'Maintenance',
+	phone: '503-123-4567',
+	role: 'staff'
 )
 
+# GENERAL STAFF USER
+create_user(
+	email: 'staff@example.com',
+	first_name: 'Shelly',
+	last_name: 'Staffington',
+	phone: '503-123-4567',
+	role: 'staff'
+)
+
+# =================
 
 facility = Facility.create!(
 	name: 'All Comfort Residential Care',
@@ -69,15 +76,24 @@ facility = Facility.create!(
 
 	invoice = Invoice.create!(
 		resident_id: resident.id,
-		amount_due: resident.rent,
-		status: 'Unpaid',
-		number: "ACC-100#{i}",
-		due_date: '01/01/2016'
+		total_due: resident.rent,
+		balance_due: resident.rent,
+		number: "ACC-#{rand(1000..1999)}",
+		due_date: '01/02/2016'
 	)
+
+	Invoice.create!(
+		resident_id: resident.id,
+		total_due: resident.rent,
+		balance_due: resident.rent,
+		number: "ACC-#{rand(1000..1999)}",
+		due_date: '01/01/2016'
+	) if [true, false].sample
 
 	Payment.create!(
 		invoice_id: invoice.id,
-		amount: invoice.amount_due,
+		resident_id: resident.id,
+		amount: invoice.balance_due,
 		date: Faker::Date.between(7.days.ago, Date.today),
 		check_number: rand(1000..2000)
 	) if (1..10).to_a.sample < 9 # about 80% paid rate

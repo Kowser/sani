@@ -33,38 +33,30 @@
 	<div class="panel-heading">
 	  <span class="panel-title">All Comfort Residential Care - Resident Billings</span>
 	</div>
-	<table class="table table-condensed table-striped table-hover table-responsive">
-		<thead>
-			<tr>
-				<th>Room</th>
-				<th>Name</th>
-				<th>Rent</th>
-				<th>Amount Due</th>
-				<th>Status</th>
-				<th>Received</th>
-				<th>Deposited</th>
-			</tr>
-		</thead>
-	  <tbody>
-	  	<% @residents.each do |resident| %>
+
+	<% @residents.each do |resident| %>
+		<table class="table table-condensed table-hover table-responsive">
+			<thead>
 	  		<tr>
-		  	  <td><%= resident.unit.number %></td>
-		   		<td><%= resident.name %></td>
-		   		<td><%= resident.rent %></td>
-		   		<td colspan='4'>
+		   		<th colspan='2'><%= resident.name %> (Room <%= resident.unit.number %>)</th>
+		   		<th>Invoices | Payments</th>
 		   	</tr>
-		    </tr>
-		    	<% resident.invoices.each do |invoice| %>
-		    		<td colspan='2'>
+		   </thead>
+		   <tbody>
+	    	<% resident.invoices.each do |invoice| %>
+			    <tr>
 	    			<td><%= invoice.number %></td>
 			   		<td><%= invoice.amount_due %></td>
 			   		<td><%= invoice.status %></td>
-			   		<td></td>
-			   		<td></td>
-			   	<% end %>
-		  	</tr>
-	  	<% end %>
-	  </tbody>
-	</table>
+			  	</tr>
+		  	<% end %>
+		  	<tr>
+		  		<td>Total Due</td>
+		  		<td><%= resident.invoices.pluck(:amount_due).inject(:+) %></td>
+		  		<td></td>
+	  		</tr>
+		  </tbody>
+		</table>
+	<% end %>
 </div>
 

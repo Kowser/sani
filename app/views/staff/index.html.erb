@@ -1,0 +1,34 @@
+<div class="panel panel-success">
+	<div class="panel-heading">
+	  <div class="panel-title">
+	  	Current Staff
+	  	<span class='pull-right'><%= link_to 'Add Staff', new_staff_path %></span>
+	  </div>
+	</div>
+	<table class="table table-condensed table-striped table-hover table-responsive">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Contact Phone</th>
+				<th>Permissions</th>
+				<th>Last Login</th>
+			</tr>
+		</thead>
+	  <tbody>
+	  	<% @staff.each do |staff| %>
+	   	<tr>
+	   		<td><%= staff.name %></td>
+	   		<td class="hidden-xs"><%= staff.contact_name %></td>
+	   		<td><%= staff.phone %></td>
+	   		<td class="hidden-xs hidden-sm"><%= link_to staff.email %></td>
+	   		<td class='text-center'>
+	      	<%= link_to edit_staff_path(staff) do %>
+	          <i class="fa fa-pencil"></i>
+	        <% end %>
+	      </td>
+	   	<tr>
+	   	<% end %>
+	  </tbody>
+	</table>
+</div>

@@ -30,12 +30,14 @@ ActiveRecord::Schema.define(version: 20160127191206) do
 
   create_table "invoices", force: :cascade do |t|
     t.integer  "resident_id"
-    t.decimal  "amount_due"
-    t.string   "status"
+    t.decimal  "total_due"
+    t.decimal  "balance_due"
+    t.boolean  "paid",        default: false
     t.string   "number"
     t.date     "due_date"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.text     "notes"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "maintenance_requests", force: :cascade do |t|
@@ -50,6 +52,7 @@ ActiveRecord::Schema.define(version: 20160127191206) do
 
   create_table "payments", force: :cascade do |t|
     t.integer  "invoice_id"
+    t.integer  "resident_id"
     t.decimal  "amount"
     t.date     "date"
     t.string   "check_number"

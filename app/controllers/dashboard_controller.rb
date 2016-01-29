@@ -3,4 +3,6 @@ class DashboardController < ApplicationController
 	def billing
 		@residents = Resident.all
   end
+
+  def preferences; end
 end
