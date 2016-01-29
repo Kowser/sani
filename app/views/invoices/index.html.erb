@@ -6,8 +6,8 @@
 		<table class="table table-condensed table-striped table-hover table-responsive">
 			<thead>
 	  		<tr>
-		   		<th>Unit</th>
 		   		<th>Resident</th>
+		   		<th>Unit</th>
 		   		<th>Invoice #</th>
 		   		<th>Due Date</th>
 		   		<th>Total Invoice</th>
@@ -19,8 +19,8 @@
 		   <tbody>
 				<% @invoices.each do |invoice| %>
 			    <tr>
-	    			<td><%= invoice.resident.unit.number %></td>
 	    			<td><%= invoice.resident.name %></td>
+	    			<td><%= invoice.resident.unit.number %></td>
 	    			<td><%= invoice.number %></td>
 	    			<td><%= invoice.due_date.strftime('%m/%d/%Y')  %></td>
 	    			<td><%= '%.2f' % invoice.total_due %></td>
@@ -31,7 +31,7 @@
 			   				<%= p.input :amount, label: false %>
 				   		</td>
 				   		<td>
-				   			<%= p.input :date, label: false, input_html: { class: 'datepicker', value: Date.today } %>
+				   			<%= p.input :date, label: false, input_html: { class: 'datepicker'} %>
 				   		</td>
 		   			<% end %>
 			  	</tr>

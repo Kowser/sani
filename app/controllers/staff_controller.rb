@@ -1,6 +1,10 @@
 class StaffController < ApplicationController
 	def index
-		@staff = User.all
+		@staff = User.all.order('first_name ASC')
+	end
+
+	def new
+		@staff = User.new
 	end
 
 	def create
@@ -16,4 +20,10 @@ class StaffController < ApplicationController
 	    render 'new_staff_form'
 	  end
 	end
+
+	def edit
+		@staff = User.find(params[:id])
+	end
+
+	
 end

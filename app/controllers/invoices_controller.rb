@@ -4,7 +4,6 @@ class InvoicesController < ApplicationController
 	end
 
 	def payments
-		binding.pry
 		redirect_to action: 'index'
 	end
 private

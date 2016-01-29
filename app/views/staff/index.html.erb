@@ -1,7 +1,7 @@
 <div class="panel panel-success">
 	<div class="panel-heading">
 	  <div class="panel-title">
-	  	Current Staff
+	  	Staff Directory
 	  	<span class='pull-right'><%= link_to 'Add Staff', new_staff_path %></span>
 	  </div>
 	</div>
@@ -19,9 +19,10 @@
 	  	<% @staff.each do |staff| %>
 	   	<tr>
 	   		<td><%= staff.name %></td>
-	   		<td class="hidden-xs"><%= staff.contact_name %></td>
+	   		<td><%= staff.email %></td>
 	   		<td><%= staff.phone %></td>
-	   		<td class="hidden-xs hidden-sm"><%= link_to staff.email %></td>
+	   		<td><%= staff.role.capitalize %></td>
+	   		<td><%= staff.last_sign_in_at.try(:strftime, "%m/%e/%Y") %></td>
 	   		<td class='text-center'>
 	      	<%= link_to edit_staff_path(staff) do %>
 	          <i class="fa fa-pencil"></i>

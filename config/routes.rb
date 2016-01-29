@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   resources :facilities
   resources :residents
   resources :staff
+    post 'add_staff', to: 'staff#add_staff'
 end
 
   # The priority is based upon order of creation: first created -> highest priority.

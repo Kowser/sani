@@ -1,0 +1,35 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title"><%= @staff.new_record? ? 'Create' : 'Edit' %> User</div>
+  </div>
+  <div class='panel-body'>
+    <%= semantic_form_for @staff, url: new_staff_path do |f| %>
+      <div class='row'>
+        <div class='col-md-6'>
+          <%= f.input :first_name %>
+        </div>
+        <div class='col-md-6'>
+          <%= f.input :last_name %>
+        </div>
+        <div class='col-md-6'>
+          <%= f.input :email %>
+        </div>
+        <div class='col-md-6'>
+          <%= f.input :phone %>
+        </div>
+        <div class='col-md-12'>
+          <%= f.input :role, label: 'Permissions', as: :select, collection: ['Executive', 'Administrator', 'Staff'] %>
+        </div>
+        <% if @staff.new_record? %>
+          <div class='col-md-6'>
+            <%= f.input :password %>
+          </div>
+          <div class='col-md-6'>
+            <%= f.input :password_confirmation %>
+          </div>
+        <% end %>
+      </div>
+      <%= f.submit 'Save Staff', class: 'btn btn-success' %>
+    <% end %>
+  </div>
+</div>
