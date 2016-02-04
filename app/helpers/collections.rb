@@ -8,12 +8,9 @@ module Collections
 	  'DC'
 	]
 
-	PAYMENT_STATUS = {
-	  'Past Due' => 'danger',
-	  'Paid' => 'success'
-	}
+	PAYMENT_METHOD = ['Check', 'Cash', 'Money Order', 'Cashier\'s Check', 'Other']
 	
-	INQUIRY_OPTIONS = [
+	INQUIRY_OPTION = [
 		'Maintenance Request',
 		'Resident Request',
 		'Question',

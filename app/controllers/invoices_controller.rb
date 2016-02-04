@@ -1,10 +1,12 @@
 class InvoicesController < ApplicationController
 	def index
-		@invoices = Invoice.where("balance_due > 0").includes(:resident => :unit).order('residents.first_name ASC')
+		@invoices = @current_facility.invoices.where("balance_due > 0")
+			.order('residents.first_name ASC', 'invoices.due_date ASC')
+			.includes(:resident => :unit)
 	end
 
 	def payments
-		payments = params[:invoices].delete_if { |k, v| v["amount"].to_f.zero? }
+		payments = params[:invoices].delete_if { |k, v| v["amount"].to_f.zero? } # .blank?
 		puts payments.keys
 		payments.keys.each do |invoice_id|
 			i = Invoice.find(invoice_id)
@@ -13,6 +15,7 @@ class InvoicesController < ApplicationController
 			i.payments.create!(payments[invoice_id])
 			puts "\n\nHERE4: i.pmts.count:#{i.payments.count}\n"
 		end
+
 		redirect_to action: 'index'
 	end
 private

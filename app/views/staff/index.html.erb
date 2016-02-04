@@ -2,7 +2,7 @@
 	<div class="panel-heading">
 	  <div class="panel-title">
 	  	Staff Directory
-	  	<span class='pull-right'><%= link_to 'Add Staff', new_staff_path %></span>
+	  	<span class='pull-right'><%= link_to 'Add Staff', new_facility_staff_path %></span>
 	  </div>
 	</div>
 	<table class="table table-condensed table-striped table-hover table-responsive">
@@ -13,6 +13,7 @@
 				<th>Contact Phone</th>
 				<th>Permissions</th>
 				<th>Last Login</th>
+				<th class='text-center'><i class="fa fa-pencil"></i></th>
 			</tr>
 		</thead>
 	  <tbody>
@@ -24,7 +25,7 @@
 	   		<td><%= staff.role.capitalize %></td>
 	   		<td><%= staff.last_sign_in_at.try(:strftime, "%m/%e/%Y") %></td>
 	   		<td class='text-center'>
-	      	<%= link_to edit_staff_path(staff) do %>
+	      	<%= link_to edit_facility_staff_path(@current_facility, staff) do %>
 	          <i class="fa fa-pencil"></i>
 	        <% end %>
 	      </td>

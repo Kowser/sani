@@ -1,9 +1,9 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <div class="panel-title"><%= @staff.new_record? ? 'Create' : 'Edit' %> User</div>
+    <div class="panel-title"><%= @staff.new_record? ? 'Create New' : 'Edit' %> User</div>
   </div>
   <div class='panel-body'>
-    <%= semantic_form_for @staff, url: new_staff_path do |f| %>
+    <%= semantic_form_for @staff, url: facility_staff_path do |f| %>
       <div class='row'>
         <div class='col-md-6'>
           <%= f.input :first_name %>

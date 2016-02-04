@@ -3,7 +3,7 @@ class CreateUnits < ActiveRecord::Migration
     create_table :units do |t|
     	t.references :facility
     	t.string :number
-    	t.string :occupancy, default: 'Private'
+    	t.string :occupancy, default: ''
     	t.boolean :active, default: true
 
     	t.timestamps null: false

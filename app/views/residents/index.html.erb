@@ -2,7 +2,7 @@
 	<div class="panel-heading">
 	  <div class="panel-title">
 	  	Current Resident Roster
-	  	<span class='pull-right'><%= link_to 'New Resident', new_resident_path %></span>
+	  	<span class='pull-right'><%= link_to 'New Resident', new_facility_resident_path %></span>
 	  </div>
 	</div>
 	<table class="table table-condensed table-striped table-hover table-responsive">
@@ -25,7 +25,7 @@
 	   		<td><%= resident.phone %></td>
 	   		<td class="hidden-xs hidden-sm"><%= link_to resident.email %></td>
 	   		<td class='text-center'>
-	      	<%= link_to edit_resident_path(resident) do %>
+	      	<%= link_to edit_facility_resident_path(@current_facility, resident) do %>
 	          <i class="fa fa-pencil"></i>
 	        <% end %>
 	      </td>

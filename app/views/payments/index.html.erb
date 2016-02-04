@@ -5,35 +5,29 @@
 		<table class="table table-condensed table-striped table-hover table-responsive">
 			<thead>
 	  		<tr>
-		   		<th>Unit</th>
 		   		<th>Resident</th>
-		   		<th>Invoice #</th>
-		   		<th>Due Date</th>
-		   		<th>Total Invoice</th>
-		   		<th>Balance Due</th>
-		   		<th class='text-center'>Payment Amount</th>
 		   		<th class='text-center'>Received on</th>
+		   		<th class='text-center'>Received By</th>
+		   		<th>Paid with</th>
+		   		<th class='text-center'>Amount</th>
+		   		<th class='text-center'>Deposited</th>
 		   	</tr>
 		   </thead>
 		   <tbody>
-				<% @invoices.each do |invoice| %>
-			    <tr>
-	    			<td><%= invoice.resident.unit.number %></td>
-	    			<td><%= invoice.resident.name %></td>
-	    			<td><%= invoice.number %></td>
-	    			<td><%= invoice.due_date.strftime('%m/%d/%Y')  %></td>
-	    			<td><%= '%.2f' % invoice.total_due %></td>
-			   		<td><%= '%.2f' % invoice.balance_due %></td>
-		   			<%= i.semantic_fields_for :payments do |p| %>
-				   		<td>
-			   			  <%= p.input :invoice_id, as: :hidden, input_html: { value: invoice.id } %>
-			   				<%= p.input :amount, label: false %>
-				   		</td>
-				   		<td>
-				   			<%= p.input :date, label: false, input_html: { class: 'datepicker', value: Date.today } %>
-				   		</td>
-		   			<% end %>
-			  	</tr>
+		   	<%= form_for :deposits, url: facility_invoice_payments_path, method: :post do |pay| %>
+					<% @payments.each do |payment| %>
+				    <tr>
+		    			<td><%= payment.resident.name %></td>
+		    			<td class='text-center'><%= payment.receive_date %></td>
+		    			<td class='text-center'><%= payment.received_by %></td>
+		    			<td><%= payment.method %></td>
+		    			<td class='text-center'><%= payment.amount %></td>
+		    			<td class='text-center'><%= pay.check_box :deposited %></td>
+				  	</tr>
+			  	<% end %>
+			  	<tr>
+			  		<td colspan='5' class='text-right'>Deposited On</td>
+			  		<td class='text-center'><%= text_field_tag :date, Date.today, class: 'datepicker' %></td>
 		  	<% end %>
 		  </tbody>
 		</table>

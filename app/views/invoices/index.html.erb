@@ -2,7 +2,7 @@
 	<div class="panel-heading">
 	  <span class="panel-title">Outstanding Invoices</span>
 	</div>
-	<%= form_for :invoices, url: invoice_payments_path, method: :post do |f| %>
+	<%= form_for :invoices, url: facility_invoice_payments_path, method: :post do |inv| %>
 		<table class="table table-condensed table-striped table-hover table-responsive">
 			<thead>
 	  		<tr>
@@ -12,8 +12,10 @@
 		   		<th>Due Date</th>
 		   		<th>Total Invoice</th>
 		   		<th>Balance Due</th>
+		   		<th>Status</th>
 		   		<th class='text-center'>Payment Amount</th>
 		   		<th class='text-center'>Received on</th>
+		   		<th class='text-center'>Paid with</th>
 		   	</tr>
 		   </thead>
 		   <tbody>
@@ -25,20 +27,18 @@
 	    			<td><%= invoice.due_date.strftime('%m/%d/%Y')  %></td>
 	    			<td><%= '%.2f' % invoice.total_due %></td>
 			   		<td><%= '%.2f' % invoice.balance_due %></td>
-						<%= f.fields_for "#{invoice.id}" do |pf| %>
-			   		<td>
-		   				<%= pf.text_field :amount, class: 'input' %>
-			   		</td>
-			   		<td>
-			   			<%= pf.text_field :date, class: 'datepicker' %>
-			   		</td>
+			   		<td><%= (days = (Date.today - invoice.due_date).to_i) > 0 ? "Past Due (#{days})" : 'Current' %></td>
+						<%= inv.fields_for "#{invoice.id}" do |pay| %>
+				   		<td><%= pay.text_field :amount, class: 'input' %></td>
+				   		<td><%= pay.text_field :date, class: 'datepicker' %></td>
+				   		<td><%= pay.select :method, Collections::PAYMENT_METHOD %></td>
 						<% end %>
 			  	</tr>
 		  	<% end %>
 		  </tbody>
 		</table>
 		<div class='panel-body'>
-			<%= f.submit 'Submit Payments', class: 'btn btn-success pull-right' %>
+			<%= inv.submit 'Submit Payments', class: 'btn btn-success pull-right' %>
 		</div>
 	<% end %>
 </div>

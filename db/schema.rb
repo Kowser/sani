@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160127191206) do
+ActiveRecord::Schema.define(version: 20160130020233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,9 +24,21 @@ ActiveRecord::Schema.define(version: 20160127191206) do
     t.integer  "zip"
     t.string   "phone"
     t.string   "fax"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "created_by_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
+
+  create_table "facilities_users", id: false, force: :cascade do |t|
+    t.integer  "facility_id",   null: false
+    t.integer  "user_id",       null: false
+    t.integer  "created_by_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "facilities_users", ["facility_id", "user_id"], name: "index_facilities_users_on_facility_id_and_user_id", using: :btree
+  add_index "facilities_users", ["user_id", "facility_id"], name: "index_facilities_users_on_user_id_and_facility_id", using: :btree
 
   create_table "invoices", force: :cascade do |t|
     t.integer  "resident_id"
@@ -40,6 +52,16 @@ ActiveRecord::Schema.define(version: 20160127191206) do
     t.datetime "updated_at",                  null: false
   end
 
+  create_table "invoices_payments", id: false, force: :cascade do |t|
+    t.integer  "invoice_id", null: false
+    t.integer  "payment_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "invoices_payments", ["invoice_id", "payment_id"], name: "index_invoices_payments_on_invoice_id_and_payment_id", using: :btree
+  add_index "invoices_payments", ["payment_id", "invoice_id"], name: "index_invoices_payments_on_payment_id_and_invoice_id", using: :btree
+
   create_table "maintenance_requests", force: :cascade do |t|
     t.integer  "facility_id"
     t.string   "location"
@@ -51,13 +73,17 @@ ActiveRecord::Schema.define(version: 20160127191206) do
   end
 
   create_table "payments", force: :cascade do |t|
-    t.integer  "invoice_id"
     t.integer  "resident_id"
     t.decimal  "amount"
-    t.date     "date"
-    t.string   "check_number"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.date     "receive_date"
+    t.date     "deposit_date"
+    t.boolean  "deposited"
+    t.string   "ref_number"
+    t.string   "method"
+    t.integer  "received_by_id"
+    t.integer  "deposited_by_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "residents", force: :cascade do |t|
@@ -82,10 +108,10 @@ ActiveRecord::Schema.define(version: 20160127191206) do
   create_table "units", force: :cascade do |t|
     t.integer  "facility_id"
     t.string   "number"
-    t.string   "occupancy",   default: "Private"
+    t.string   "occupancy",   default: ""
     t.boolean  "active",      default: true
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "users", force: :cascade do |t|

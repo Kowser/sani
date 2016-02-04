@@ -1,0 +1,16 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title">Found Existing User</div>
+  </div>
+  <div class='panel-body'>
+    <%= semantic_form_for :staff, url: add_staff_path, method: :post do |f| %>
+      <%= f.input :id, as: :hidden, input_html: { value: @staff.id } %>
+      <table class="table table-condensed table-responsive">
+        <tr>
+          <td><%= @staff.first_name %></td><td><%= @staff.last_name %></td><td><%= @staff.email %></td>
+        </tr>
+      </table>
+      <%= f.submit 'Add User', class: 'btn btn-success' %>
+    <% end %>
+  </div>
+</div>

@@ -1,21 +1,26 @@
 <div class='row'>
   <div class='col-sm-6'>
+
     <div class="panel panel-default">
       <div class="panel-heading">
         <div class="panel-title">Add Existing User</div>
       </div>
       <div class='panel-body'>
-        <%= semantic_form_for @staff_email || :email, url: add_staff_path do |f| %>
+        <%= semantic_form_for :email, url: facility_find_staff_path, remote: true do |f| %>
           <div class='row'>
             <div class='col-md-6'>
               <%= f.input :email, hint: 'Enter full email of existing user.' %>
             </div>
           </div>
           <%= f.submit 'Find User', class: 'btn btn-success' %>
+          <%= f.submit 'Reset', type: :reset, class: 'btn btn-danger' %>
         <% end %>
       </div>
-    </div>  
+    </div>
+
+    <div id='insert-found-user'></div>
   </div>
+
 
   <div class='col-sm-6'>
     <%= render 'form' %>

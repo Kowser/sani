@@ -3,12 +3,39 @@ def create_user(params)
 end
 
 # EXECUTIVE USER (Owner)
-create_user(
+user = create_user(
 	email: 'owner@example.com',
 	first_name: 'Adam',
 	last_name: 'Reinke',
 	phone: '360-333-6789',
-	role: 'executive'
+	role: 'Executive'
+)
+
+facility = Facility.new(
+	name: 'All Comfort Residential Care',
+	address: '9347 SW 35th Ave',
+	city: 'Portland',
+	state: 'OR',
+	zip: '97225',
+	phone: '503-987-1234',
+	fax: '503-123-7890',
+	created_by_id: user.id
+)
+
+facility.units.build(
+# UNOCCUPIED ROOM
+	number: 1,
+  occupancy: ['Shared', 'Private'].sample,
+  active: true
+).save
+
+# EXECUTIVE USER (Owner) - Unassigned to any facility
+create_user(
+	email: 'owner2@example.com',
+	first_name: 'Steve',
+	last_name: 'Martini',
+	phone: '503-123-4567',
+	role: 'Executive'
 )
 
 # ADMINISTRATOR USER (not a sys admin)
@@ -17,43 +44,43 @@ create_user(
 	first_name: 'Breanna',
 	last_name: 'Matson',
 	phone: '503-345-6789',
-	role: 'administrator'
+	role: 'Administrator'
 )
 
 # MAINTENANCE USER
 create_user(
 	email: 'maintenance@example.com',
 	first_name: 'Brian',
-	last_name: 'Maintenance',
+	last_name: 'Carlson',
 	phone: '503-123-4567',
-	role: 'staff'
+	role: 'Staff'
 )
 
 # GENERAL STAFF USER
 create_user(
 	email: 'staff@example.com',
-	first_name: 'Shelly',
-	last_name: 'Staffington',
+	first_name: Faker::Name.first_name,
+	last_name: Faker::Name.last_name,
 	phone: '503-123-4567',
-	role: 'staff'
+	role: 'Staff'
 )
+
+create_user(
+	email: 'findme@example.com',
+	first_name: Faker::Name.first_name,
+	last_name: Faker::Name.last_name,
+	phone: '503-123-4567',
+	role: 'Staff'
+)
+
+facility.users << User.find(1,3,4,5)
 
 # =================
 
-facility = Facility.create!(
-	name: 'All Comfort Residential Care',
-	address: '9347 SW 35th Ave',
-	city: 'Portland',
-	state: 'OR',
-	zip: '97225',
-	phone: '503-987-1234',
-	fax: '503-123-7890'
-)
-
-16.times do |i|
+15.times do |i|
 	unit = Unit.create!(
 		facility_id: facility.id,
-		number: i + 1,
+		number: i + 2, # +2 because empty room is already 1
 	  occupancy: ['Shared', 'Private'].sample,
 	  active: true
 	)
@@ -71,7 +98,7 @@ facility = Facility.create!(
 		state: Faker::Address.state_abbr,
 		zip: Faker::Address.zip_code,
 		move_in: Faker::Date.between(365.days.ago, Date.today),
-		rent: Faker::Number.between(35, 60) * 100
+		rent: Faker::Number.between(35, 65) * 100
 	)
 
 	invoice = Invoice.create!(
@@ -79,7 +106,7 @@ facility = Facility.create!(
 		total_due: resident.rent,
 		balance_due: resident.rent,
 		number: "ACC-#{rand(1000..1999)}",
-		due_date: '01/02/2016'
+		due_date: Date.today.at_beginning_of_month
 	)
 
 	Invoice.create!(
@@ -87,14 +114,14 @@ facility = Facility.create!(
 		total_due: resident.rent,
 		balance_due: resident.rent,
 		number: "ACC-#{rand(1000..1999)}",
-		due_date: '01/01/2016'
+		due_date: (Date.today + 1.month).at_beginning_of_month
 	) if [true, false].sample
 
-	Payment.create!(
-		invoice_id: invoice.id,
+	invoice.payments << Payment.create!(
 		resident_id: resident.id,
 		amount: invoice.balance_due,
-		date: Faker::Date.between(7.days.ago, Date.today),
-		check_number: rand(1000..2000)
-	) if (1..10).to_a.sample < 9 # about 80% paid rate
+		receive_date: Faker::Date.between(7.days.ago, Date.today),
+		ref_number: rand(1000..2000),
+		method: Collections::PAYMENT_METHOD.sample
+	) if (1..10).to_a.sample < 9 # seeds 80% paid rate
 end

@@ -1,16 +1,16 @@
 <div class='menu'>
-	<%= link_to 'Dashboard', dashboard_path %>
-	<%#= link_to 'Billing', billing_path %>
-	<%= link_to 'Invoices', invoices_path %>
-	<%= link_to 'Payments', payments_path %>
-	<%= link_to 'Maintenance', maintenance_requests_path %>
-	<%#= link_to 'Applications', applications_path %>
-	<%#= link_to 'Preferences', preferences_path %>
-	<%#= link_to 'Settings', settings_path %>
+	<%= link_to 'Dashboard', facility_dashboard_path(@current_facility) %>
+	<%#= link_to 'Billing', facility_billing_path(@current_facility) %>
+	<%= link_to 'Invoices', facility_invoices_path(@current_facility) %>
+	<%= link_to 'Payments', facility_payments_path(@current_facility) %>
+	<%= link_to 'Maintenance', facility_maintenance_requests_path(@current_facility) %>
+	<%#= link_to 'Applications', facility_applications_path(@current_facility) %>
+	<%#= link_to 'Preferences', facility_preferences_path(@current_facility) %>
+	<%#= link_to 'Settings', facility_settings_path(@current_facility) %>
 	<hr class='divider'>
-	<%= link_to 'Facilities', facilities_path if current_user.is_executive? %>
-	<%= link_to 'Residents', residents_path %>
-	<%= link_to 'Staff', staff_index_path %>
+	<%= link_to 'Facilities', facilities_path(facility_id: @current_facility.id) if current_user.is_executive? %>
+	<%= link_to 'Residents', facility_residents_path(@current_facility) %>
+	<%= link_to 'Staff', facility_staff_index_path(@current_facility) %>
 	<hr class='divider'>
   <%= link_to 'Sign Out', logout_path %>
 </div>

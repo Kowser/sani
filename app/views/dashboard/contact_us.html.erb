@@ -5,7 +5,7 @@
 			  <h4 class="panel-title bold">Contact Us</h4>
 			</div>
 			<div class='panel-body'>
-			  <%= semantic_form_for :contact, url: residents_contact_form_path, remote: true do |f| %>
+			  <%= semantic_form_for :contact, url: facility_residents_contact_form_path, remote: true do |f| %>
 			    <p>
 			    	Phone: <%#= @resident.facility.phone %><br>
 			    	Fax: <%#= @resident.facility.phone %><br>
@@ -15,7 +15,7 @@
 			  	  <%= f.input :name, required: false, label: 'What is your name?', input_html: { value: @resident.name }  %>
 			  	  <%= f.input :email, required: false, label: 'What is your email address?', input_html: { value: @resident.email } %>
 			  	  <%= f.input :email, required: false, label: 'What is your phone number?', input_html: { value: @resident.phone } %>
-			  	  <%= f.input :inquiry, as: :select, required: false, label: 'What is the nature of your inquiry?', collection: Collections::INQUIRY_OPTIONS %>
+			  	  <%= f.input :inquiry, as: :select, required: false, label: 'What is the nature of your inquiry?', collection: Collections::INQUIRY_OPTION %>
 			  	  <%= f.input :content, as: :text, required: false, label: 'How can we help you?', input_html: { rows: 6 } %>
 			    <%= f.submit 'Send', class: 'btn btn-success' %>
 			  <% end %>

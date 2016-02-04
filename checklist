@@ -4,7 +4,7 @@ _	Owner should be able to...
 		x create / edit
 		x add rooms or make them inactive
 	_ STAFF
-		x add users with staff/admin roles
+		_ add users with staff/admin roles
 		_	assign users to facilities
 		_ archive users & disable priveleges
 =======================================================

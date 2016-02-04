@@ -15,6 +15,8 @@ class CreateResidents < ActiveRecord::Migration
         t.date :move_in
         t.date :move_out
         t.decimal :rent, precision: 7, scale: 2
+        t.text :notes, default: ''
+        t.boolean :active, default: true
 
         t.timestamps null: false
     end
