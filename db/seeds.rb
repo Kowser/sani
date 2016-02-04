@@ -29,6 +29,25 @@ facility.units.build(
   active: true
 ).save
 
+# SECOND FACILITY - no residents
+facility_2 = Facility.new(
+	name: 'Hill House',
+	address: '1325 SW Gibbs St.',
+	city: 'Portland',
+	state: 'OR',
+	zip: '97239',
+	phone: '503.274.0000',
+	fax: '503.243.3427',
+	created_by_id: user.id
+)
+
+facility_2.units.build(
+# UNOCCUPIED ROOM
+	number: 1,
+  occupancy: ['Shared', 'Private'].sample,
+  active: true
+).save
+
 # EXECUTIVE USER (Owner) - Unassigned to any facility
 create_user(
 	email: 'owner2@example.com',
@@ -65,6 +84,22 @@ create_user(
 	role: 'Staff'
 )
 
+
+facility.users << User.all
+
+# ADMINISTRATOR USER (not a sys admin)
+create_user(
+	email: 'admin_2@example.com',
+	first_name: 'Sharleen',
+	last_name: 'Moschella',
+	phone: '503-345-6789',
+	role: 'Administrator'
+)
+
+facility_2.users << User.first #adds ADAM
+facility_2.users << User.last
+
+# USER to be found and added to a facility
 create_user(
 	email: 'findme@example.com',
 	first_name: Faker::Name.first_name,
@@ -72,8 +107,6 @@ create_user(
 	phone: '503-123-4567',
 	role: 'Staff'
 )
-
-facility.users << User.find(1,3,4,5)
 
 # =================
 
@@ -109,6 +142,16 @@ facility.users << User.find(1,3,4,5)
 		due_date: Date.today.at_beginning_of_month
 	)
 
+	# PAST DUE invoice
+	Invoice.create!(
+		resident_id: resident.id,
+		total_due: resident.rent,
+		balance_due: resident.rent,
+		number: "ACC-#{rand(1000..1999)}",
+		due_date: (Date.today - 1.month).at_beginning_of_month
+	) if (1..10).to_a.sample < 3 # seeds 20% past due rate
+
+	# NEXT MONTH's invoice
 	Invoice.create!(
 		resident_id: resident.id,
 		total_due: resident.rent,

@@ -1,13 +1,20 @@
-<div class="panel panel-default">
+<div class="panel panel-info">
   <div class="panel-heading">
     <div class="panel-title">Found Existing User</div>
   </div>
   <div class='panel-body'>
-    <%= semantic_form_for :staff, url: add_staff_path, method: :post do |f| %>
+    <%= semantic_form_for :staff, url: facility_add_staff_path(@current_facility), method: :post do |f| %>
       <%= f.input :id, as: :hidden, input_html: { value: @staff.id } %>
       <table class="table table-condensed table-responsive">
         <tr>
-          <td><%= @staff.first_name %></td><td><%= @staff.last_name %></td><td><%= @staff.email %></td>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Permissions</th>
+        </tr>
+        <tr>
+          <td><%= @staff.name %></td>
+          <td><%= @staff.email %></td>
+          <td><%= @staff.role %></td>
         </tr>
       </table>
       <%= f.submit 'Add User', class: 'btn btn-success' %>

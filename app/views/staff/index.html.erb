@@ -23,7 +23,7 @@
 	   		<td><%= staff.email %></td>
 	   		<td><%= staff.phone %></td>
 	   		<td><%= staff.role.capitalize %></td>
-	   		<td><%= staff.last_sign_in_at.try(:strftime, "%m/%e/%Y") %></td>
+	   		<td><%= staff.last_sign_in_at.try(:strftime, "%m/%d/%Y") %></td>
 	   		<td class='text-center'>
 	      	<%= link_to edit_facility_staff_path(@current_facility, staff) do %>
 	          <i class="fa fa-pencil"></i>

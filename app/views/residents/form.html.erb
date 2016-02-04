@@ -3,7 +3,7 @@
     <div class="panel-title"><%= @resident.new_record? ? 'New' : 'Edit' %> Resident Form</div>
   </div>
   <div class='panel-body'>
-    <%= semantic_form_for @resident do |f| %>
+    <%= semantic_form_for [@current_facility, @resident] do |f| %>
       <div class='row'>
         <h4 class='text-center'>Resident's Information</h4>
         <div class='col-md-4 col-xs-12'>
@@ -19,7 +19,7 @@
           <%= f.input :rent, placeholder: '1234.56' %>
         </div>
         <div class='col-md-2 col-xs-6'>
-          <%= f.input :unit, placeholder: '6' %>
+          <%= f.input :unit, placeholder: '6', collection: @current_facility.units.map(&:number) %>
         </div>
       </div>
       <div class='row'>

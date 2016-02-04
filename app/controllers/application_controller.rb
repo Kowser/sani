@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :select_facility, if: :user_signed_in?
-  before_action :facility_selector, unless: :devise_controller?
+  before_action :show_facility_selector, only: [:index], unless: :devise_controller?
 
   def after_sign_in_path_for(user)
   	select_facility
@@ -9,14 +9,11 @@ class ApplicationController < ActionController::Base
   end
 
   def select_facility
-    # @facility = if id = params[:facility_id] || params[:id]
   	@current_facility = current_user.facilities.find_by(id: params[:facility_id]) || current_user.facilities.first
-  	# else
-  	# 	current_user.facilities.first
-  	# end
   end
 
-  def facility_selector
-    @facility_selector = true
+  def show_facility_selector
+    # only show if user has multiple facilities
+    @show_facility_selector = true if current_user.facilities.count > 1
   end
 end

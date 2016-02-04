@@ -3,10 +3,13 @@ _	Owner should be able to...
 	x FACILITY
 		x create / edit
 		x add rooms or make them inactive
+		_ unassociate themselves from a facility
 	_ STAFF
 		_ add users with staff/admin roles
 		_	assign users to facilities
 		_ archive users & disable priveleges
+		_ promote / demote users (except other Execs)
+		_	remove users from facilities (except other Execs)
 =======================================================
 _	Owner / Admin should be able to...
 	_ PAYMENTS
@@ -29,14 +32,10 @@ _	Admin / Owner / Maintenance should be able to
 	_	mark maintenance request as finished
 
 _	Users should have varying levels of access (Owner / Admin / Staff (Read or Write?))
+_	Users may need to have roles dependent on facility location
 
 CONTROLLERS
-x Dashboard - navigation
-x Residents
-Sessions
-_	Invoices
-x Payments
+Registrations overrides?
 MaintenanceRequests
-
 ResidentApplications
 

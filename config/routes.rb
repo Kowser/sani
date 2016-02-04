@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :facilities do
     controller 'dashboard' do
-      get 'dashboard', action: 'home'
+      get 'dashboard', action: 'index'
       get 'maintenance'
       # get 'applications'
       # get 'settings'

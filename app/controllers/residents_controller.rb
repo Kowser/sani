@@ -1,6 +1,7 @@
 class ResidentsController < ApplicationController
 	def index
-		@residents = Resident.all.includes(:unit)
+		@residents = @current_facility.residents.includes(:unit)
+		#this should only be active residents only. Should we set that as default, or create a scope?
 	end
 
 	def new

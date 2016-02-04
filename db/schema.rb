@@ -101,8 +101,10 @@ ActiveRecord::Schema.define(version: 20160130020233) do
     t.date     "move_in"
     t.date     "move_out"
     t.decimal  "rent",               precision: 7, scale: 2
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
+    t.text     "notes",                                      default: ""
+    t.boolean  "active",                                     default: true
+    t.datetime "created_at",                                                null: false
+    t.datetime "updated_at",                                                null: false
   end
 
   create_table "units", force: :cascade do |t|

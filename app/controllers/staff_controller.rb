@@ -18,10 +18,12 @@ class StaffController < ApplicationController
 	end
 
 	def add_staff
-		@staff = User.find(params[:staff][:id])
-		@facility = Facility.first
-		@facility.users << @staff
-		flash.now[:success] = "User #{@staff.name} has been added to #{@facility.name}."
+		facilities_users = FacilitiesUsers.new(facility: @current_facility, user_id: params[:staff][:id])
+		if facilities_users.save
+			flash[:success] = "#{@staff.name} has been added to #{@current_facility.name} staff."
+		else
+			flash[:alert] = "#{facilities_users.errors.full_messages.join(', ')}"
+		end
 
 		redirect_to action: :new
 	end

@@ -3,7 +3,7 @@
     <div class="panel-title"><%= @staff.new_record? ? 'Create New' : 'Edit' %> User</div>
   </div>
   <div class='panel-body'>
-    <%= semantic_form_for @staff, url: facility_staff_path do |f| %>
+    <%= semantic_form_for [@current_facility, @staff], url: new_facility_staff_path, method: :post do |f| %>
       <div class='row'>
         <div class='col-md-6'>
           <%= f.input :first_name %>
@@ -18,7 +18,7 @@
           <%= f.input :phone %>
         </div>
         <div class='col-md-12'>
-          <%= f.input :role, label: 'Permissions', as: :select, collection: ['Executive', 'Administrator', 'Staff'] %>
+          <%= f.input :role, label: 'Permissions', as: :select, collection: Collections::PERMISSION[current_user.role], include_blank: false %>
         </div>
         <% if @staff.new_record? %>
           <div class='col-md-6'>

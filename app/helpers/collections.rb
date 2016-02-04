@@ -17,6 +17,11 @@ module Collections
 		'Other'
 	]
 
+	PERMISSION = {
+		'Administrator' => ['Staff', 'Administrator'],
+		'Executive' => ['Staff', 'Administrator', 'Executive']
+	}
+
 	# converts true/false into Yes/No for human display
 	BOOLEAN_WORDS = { true => 'Yes',	false => 'No'	}
 end
