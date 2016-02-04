@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   end
 
   def show_facility_selector
-    # only show if user has multiple facilities
     @show_facility_selector = true if current_user.facilities.count > 1
+    # only show if user manages multiple facilities
   end
 end

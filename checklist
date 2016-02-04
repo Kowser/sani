@@ -19,11 +19,6 @@ _	Owner / Admin should be able to...
 		_	mark a payment as deposited
 		_	have payment reminders sent to resident POAs/Reps on a monthly basis
 		_	have payment confirmations sent to resident POAs/Reps on a monthly basis
-	_ RESIDENTS
-		_ create new residents
-		_	archive old residents
-		_	basic contact information
-		_	basic notes about residents, follow ups, etc... if necessary
 
 _	Admin / Owner / Maintenance should be able to
 	_	see all maintenance requests ordered by facility
