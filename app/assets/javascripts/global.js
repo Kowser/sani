@@ -1,6 +1,13 @@
 // DATEPICKERS FUNCTIONS
+var calendar_options = {
+  dateFormat : 'mm/dd/yy',
+  changeMonth : true,
+  changeYear : true
+}
+
 $(document).on('page:change', function() {
-	$('.datepicker').datepicker();
+
+	$('.datepicker').datepicker(calendar_options);
 
 	$('select#facility_id').change(function() {
 	  var org_id = window.location.toString().match(/facilities\/(\d+)/)[1]

@@ -8,4 +8,6 @@ module Parameters
 	PAYMENT_PARAMS = :invoice_id, :amount, :date
 
 	STAFF_PARAMS = :first_name, :last_name, :role, :email, :phone
+
+	MAINTENANCE_REQUEST_PARAMS =  :location, :description, :priority, :completed, :completed_date
 end

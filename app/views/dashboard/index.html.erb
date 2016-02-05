@@ -3,7 +3,7 @@
 
 		<div class="panel panel-success">
 			<div class="panel-heading">
-			  <span class="panel-title">Upcoming Payments</span>
+			  <div class="panel-title">Upcoming Payments</div>
 			</div>
 		  <div class="panel-body">
 		   	<h3><%= number_to_currency(@payments[:upcoming_payments]) %></h3>
@@ -19,16 +19,20 @@
 
 		<div class="panel panel-default">
 			<div class="panel-heading">
-			  <span class="panel-title">New Resident Applications (SAMPLE VIEW)</span>
+			  <div class="panel-title">New Resident Applications (SAMPLE VIEW)</div>
 			</div>
 			<table class="table table-condensed table-striped table-hover table-responsive">
 				<thead>
 					<tr><th>Name</th><th>Move-In Date</th><th>Phone</th></tr>
 				</thead>
 			  <tbody>
-			   	<tr><td>John Gresham</td><td>2/16/2016</td><td>503-456-7890</td></tr>
-			   	<tr><td>Jackie Wilson</td><td>2/16/2016</td><td>503-234-1235</td></tr>
-			   	<tr><td>Susan Jackson</td><td>2/16/2016</td><td>503-564-4362</td></tr>
+			  	<% (1..5).to_a.sample.times do |i| %>
+				   	<tr>
+				   		<td><%= Faker::Name.name%></td>
+				   		<td><%= (Date.today + (0..25).to_a.sample).strftime('%m/%d/%Y') %></td>
+				   		<td><%= Faker::PhoneNumber.cell_phone %></td>
+				   	</tr>
+				  <% end %>
 			  </tbody>
 			</table>
 		</div>
@@ -38,22 +42,13 @@
 
 <div class='row'>
 	<div class='col-xs-12'>
-		
-		<div class="panel panel-default">
+		<div class="panel panel-success">
 			<div class="panel-heading">
-			  <span class="panel-title">Maintenance Requests Completed (SAMPLE VIEW)</span>
+			  <div class="panel-title">Maintenance Requests Completed (Last 7 days)
+				  <span class='pull-right'><%= link_to 'New Request', new_facility_maintenance_request_path, class: 'btn btn-xs btn-success' %></span>
+				</div>
 			</div>
-			<table class="table table-condensed table-striped table-hover table-responsive">
-				<thead>
-					<tr><th>Location</th><th>Description</th></tr>
-				</thead>
-			  <tbody>
-			   	<tr><td>Unit 6</td><td>John Gresham's faucet is constantly leaking.</td></tr>
-			   	<tr><td>Upstairs Hallway</td><td>Some of the floor boards have gotten loose and are squeaking.</td></tr>
-			   	<tr><td>Boiler Room</td><td>There is a very loud noise coming from here, sounds like a cat may have crawled in...</td></tr>
-			  </tbody>
-			</table>
+			<%= render 'maintenance_requests/maintenance_requests_index', dashboard_view: true %>
 		</div>
-
 	</div>
 </div>

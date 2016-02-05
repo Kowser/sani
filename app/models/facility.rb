@@ -6,6 +6,7 @@ class Facility < ActiveRecord::Base
 	has_many :residents, through: :units
 	has_many :invoices, through: :residents
 	has_many :payments, through: :residents
+	has_many :maintenance_requests
 	has_and_belongs_to_many :users
 	
 	accepts_nested_attributes_for :units

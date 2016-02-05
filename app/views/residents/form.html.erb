@@ -1,6 +1,6 @@
 <div class="panel panel-info">
   <div class="panel-heading">
-    <div class="panel-title"><%= @resident.new_record? ? 'New' : 'Edit' %> Resident Form</div>
+    <div class="panel-title"><%= @resident.new_record? ? 'New' : 'Edit' %> Resident</div>
   </div>
   <div class='panel-body'>
     <%= semantic_form_for [@current_facility, @resident] do |f| %>

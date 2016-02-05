@@ -2,6 +2,9 @@ def create_user(params)
 	User.create!(params.merge(password: 'password', password_confirmation: 'password'))
 end
 
+# =====================================================================================
+# USERS & FACILITIES
+# =====================================================================================
 # EXECUTIVE USER (Owner)
 user = create_user(
 	email: 'owner@example.com',
@@ -11,6 +14,7 @@ user = create_user(
 	role: 'Executive'
 )
 
+# PRIMARY FACILITY - 15/16 residents
 facility = Facility.new(
 	name: 'All Comfort Residential Care',
 	address: '9347 SW 35th Ave',
@@ -84,7 +88,6 @@ create_user(
 	role: 'Staff'
 )
 
-
 facility.users << User.all
 
 # ADMINISTRATOR USER (not a sys admin)
@@ -96,8 +99,8 @@ create_user(
 	role: 'Administrator'
 )
 
-facility_2.users << User.first #adds ADAM
-facility_2.users << User.last
+facility_2.users << User.first #adds Adam Reinke
+facility_2.users << User.last #adds administrator
 
 # USER to be found and added to a facility
 create_user(
@@ -108,8 +111,26 @@ create_user(
 	role: 'Staff'
 )
 
-# =================
+# =====================================================================================
+# MAINTENANCE REQUESTS
+# =====================================================================================
+[facility, facility_2].each do |fac|
+	['Room 6', 'Boiler room, west corner', 'Upstairs hallway', 'Downstairs bathroom', 'Sliding door', 'Room 9 room window',
+		'downstairs stair well', 'elevator', 'office', 'Room 3', 'kitchen'].each do |location|
+		fac.maintenance_requests.create!(
+			location: location,
+			description: Faker::Lorem.sentences((2..6).to_a.sample).join(', '),
+			priority: ['High', 'Low', 'Low', 'Low', 'Medium', 'Medium'].sample,
+			created_by: fac.users.sample,
+			completed: completed = [true, false].sample,
+			completed_date: completed ? Faker::Date.between(7.days.ago, Date.today) : nil
+		)
+	end
+end
 
+# =====================================================================================
+# RESIDENTS, INVOICES, PAYMENTS
+# =====================================================================================
 15.times do |i|
 	unit = Unit.create!(
 		facility_id: facility.id,

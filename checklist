@@ -21,8 +21,8 @@ _	Owner / Admin should be able to...
 		_	have payment confirmations sent to resident POAs/Reps on a monthly basis
 
 _	Admin / Owner / Maintenance should be able to
-	_	see all maintenance requests ordered by facility
-	_	see only their respective facility maintenance issues
+	x	see all maintenance requests ordered by facility
+	x	see only their respective facility maintenance issues
 	_	mark maintenance request as Low / High priority, or Emergency w/ a text notification to the maintenance person
 	_	mark maintenance request as finished
 
