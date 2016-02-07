@@ -5,26 +5,26 @@
   <div class='panel-body'>
     <%= semantic_form_for [@current_facility, @staff], url: new_facility_staff_path, method: :post do |f| %>
       <div class='row'>
-        <div class='col-md-6'>
+        <div class='col-sm-6'>
           <%= f.input :first_name %>
         </div>
-        <div class='col-md-6'>
+        <div class='col-sm-6'>
           <%= f.input :last_name %>
         </div>
-        <div class='col-md-6'>
+        <div class='col-sm-6'>
           <%= f.input :email %>
         </div>
-        <div class='col-md-6'>
+        <div class='col-sm-6'>
           <%= f.input :phone %>
         </div>
-        <div class='col-md-12'>
+        <div class='col-sm-12'>
           <%= f.input :role, label: 'Permissions', as: :select, collection: Collections::PERMISSION[current_user.role], include_blank: false %>
         </div>
         <% if @staff.new_record? %>
-          <div class='col-md-6'>
+          <div class='col-sm-6'>
             <%= f.input :password %>
           </div>
-          <div class='col-md-6'>
+          <div class='col-sm-6'>
             <%= f.input :password_confirmation %>
           </div>
         <% end %>
