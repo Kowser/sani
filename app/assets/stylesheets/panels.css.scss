@@ -54,12 +54,3 @@
     background: linear-gradient(to bottom,  #07666A 0%, #2C8589 100%);
   }
 }
-
-table.maintenance {
-  table-layout: fixed;
-  width: 100%;
-  th.priority { width: 75px; }
-  th.location { width: 150px; }
-  th.completed { width: 100px; }
-  th.view { width: 75px; }
-}

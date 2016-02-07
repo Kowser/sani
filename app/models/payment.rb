@@ -1,6 +1,6 @@
 class Payment < ActiveRecord::Base
 	before_create :record_payment
-	validates_presence_of :amount, :receive_date, :resident
+	validates_presence_of :amount, :receive_date, :resident, :received_by
 
 	belongs_to :resident
 	belongs_to :created_by, class_name: User

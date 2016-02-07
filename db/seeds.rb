@@ -186,6 +186,7 @@ end
 		amount: invoice.balance_due,
 		receive_date: Faker::Date.between(7.days.ago, Date.today),
 		ref_number: rand(1000..2000),
+		received_by: facility.users[[0,1].sample],
 		method: Collections::PAYMENT_METHOD.sample
 	) if (1..10).to_a.sample < 9 # seeds 80% paid rate
 end

@@ -13,10 +13,10 @@ class MaintenanceRequest < ActiveRecord::Base
 
 private
 	def update_completed_date
-		if completed?
-		  completed_date = completed_date.blank? ? Date.today : completed_date
+		completed_date = if completed?
+		  completed_date.blank? ? Date.today : completed_date
 		else
-			completed_date = nil
+			''
 		end
 	end
 end

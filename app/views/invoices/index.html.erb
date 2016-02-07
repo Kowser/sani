@@ -6,16 +6,16 @@
 		<table class="table table-condensed table-striped table-hover table-responsive">
 			<thead>
 	  		<tr>
-		   		<th>Resident</th>
-		   		<th>Unit</th>
-		   		<th>Invoice #</th>
-		   		<th>Due Date</th>
-		   		<th>Total Invoice</th>
-		   		<th>Balance Due</th>
-		   		<th>Status</th>
+		   		<th class='resident'>Resident</th>
+		   		<th class='unit'>Unit</th>
+		   		<th class='invoice'>Invoice #</th>
+		   		<th class='date'>Due Date</th>
+		   		<th class='amount'>Total Invoice</th>
+		   		<th class='amount'>Balance Due</th>
+		   		<th class='status'>Status</th>
 		   		<th class='text-center'>Payment Amount</th>
 		   		<th class='text-center'>Received on</th>
-		   		<th class='text-center'>Paid with</th>
+		   		<th class='method text-center'>Paid with</th>
 		   	</tr>
 		   </thead>
 		   <tbody>
@@ -29,10 +29,11 @@
 			   		<td><%= '%.2f' % invoice.balance_due %></td>
 			   		<td><%= (days = (Date.today - invoice.due_date).to_i) > 0 ? "Past Due (#{days})" : 'Current' %></td>
 						<%= inv.fields_for "#{invoice.id}" do |pay| %>
-				   		<td><%= pay.text_field :amount, class: 'input' %></td>
-				   		<td><%= pay.text_field :date, class: 'datepicker' %></td>
-				   		<td><%= pay.select :method, Collections::PAYMENT_METHOD %></td>
+				   		<td class='text-center'><%= pay.text_field :amount, class: 'input payment-amount' %></td>
+				   		<td class='text-center'><%= pay.text_field :date, class: 'datepicker payment-date' %></td>
+				   		<td class='text-center'><%= pay.select :method, Collections::PAYMENT_METHOD, class: 'payment-method' %></td>
 						<% end %>
+						<td class='text-center'><%= link_to 'View', edit_facility_invoice_path(@current_facility, invoice), class: 'btn btn-xs btn-default' %></td>
 			  	</tr>
 		  	<% end %>
 		  </tbody>

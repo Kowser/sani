@@ -1,13 +1,13 @@
 <% dashboard_view ||= false %>
 
-<table class="table table-condensed table-striped table-hover table-responsive maintenance">
+<table class="table table-condensed table-striped table-hover table-responsive fixed">
 	<thead>
 		<tr>
 			<th class='priority'>Priority</th>
 			<th class='location'>Location</th>
 			<th class='description'>Description</th>
 			<% if dashboard_view %>
-				<th class='completed'>Completed</th>
+				<th class='date'>Completed</th>
 			<% else %>
 				<th class='view text-center'>View</th>
 			<% end %>
