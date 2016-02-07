@@ -1,6 +1,6 @@
 class MaintenanceRequestsController < ApplicationController
 	def index
-		@maintenance_requests = @current_facility.maintenance_requests
+		@maintenance_requests = @current_facility.maintenance_requests.incomplete
 	end
 
 	def new
@@ -9,11 +9,12 @@ class MaintenanceRequestsController < ApplicationController
 	end
 
 	def create
-		@maintenance_request = @current_facility.maintenance_requests.build(maintenance_request_params)
+		@maintenance_request = @current_facility.maintenance_requests.build(maintenance_request_params.merge(created_by: current_user))
 		if @maintenance_request.save
 			flash[:success] = 'Request successfully added to queue.'
 			redirect_to action: 'index'
 		else
+			binding.pry
 			flash.now[:alert] = 'Please fix the following errors.'
 			render 'form'
 		end

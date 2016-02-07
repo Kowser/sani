@@ -48,26 +48,7 @@
 				  <span class='pull-right'><%= link_to 'New Request', new_facility_maintenance_request_path, class: 'btn btn-xs btn-default' %></span>
 				</div>
 			</div>
-			<table class="table table-condensed table-striped table-hover table-responsive">
-				<thead>
-					<tr>
-						<th>Priority</th>
-						<th>Location</th>
-						<th>Description</th>
-						<th>Completed</th>
-					</tr>
-				</thead>
-			  <tbody>
-			  	<% @maintenance_requests.each do |request| %>
-				  	<tr>
-				   		<td><span class="label label-<%= Collections::PRIORITY[request.priority] %>"><%= request.priority %></span></td>
-				   		<td><%= request.location %></td>
-				   		<td><%= truncate(request.description, length: 90) %></td>
-			   			<td><%= request.completed_date.try(:strftime, '%m/%d/%Y') %></td>
-				   	</tr>
-				  <% end %>
-			  </tbody>
-			</table>
+			<%= render 'maintenance_requests/maintenance_requests_index', dashboard_view: true %>
 		</div>
 	</div>
 </div>
