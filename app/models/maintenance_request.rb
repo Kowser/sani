@@ -2,7 +2,7 @@ class MaintenanceRequest < ActiveRecord::Base
 	scope :completed, -> { where(completed: true).where('completed_date >  ?', Date.today - 7.days).order('completed_date DESC') }
 	scope :incomplete, -> { where(completed: false).order('created_at ASC') }
 
-	before_save :update_completed_date, if: -> { completed_changed? }
+	before_update :update_completed_date, if: -> { completed_changed? }
 
 	validates_presence_of :priority, :location, :facility, :description, :created_by
 	validates :completed, inclusion: [true, false]
@@ -12,8 +12,7 @@ class MaintenanceRequest < ActiveRecord::Base
 private
 	def update_completed_date
 		if completed?
-			binding.pry
-		  completed_date = completed_date.present? ? completed_date : Date.today
+		  completed_date = completed_date.blank? ? Date.today : completed_date
 		else
 			completed_date = nil
 		end

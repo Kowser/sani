@@ -22,6 +22,12 @@ module Collections
 		'Executive' => ['Staff', 'Administrator', 'Executive']
 	}
 
+	PRIORITY = {
+		'High' => 'danger',
+		'Medium' => 'warning',
+		'Low' => 'success'
+	}
+
 	# converts true/false into Yes/No for human display
 	BOOLEAN_WORDS = { true => 'Yes',	false => 'No'	}
 end

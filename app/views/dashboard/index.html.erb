@@ -1,7 +1,7 @@
 <div class='row'>
 	<div class='col-sm-6'>
 
-		<div class="panel panel-success">
+		<div class="panel panel-gradient-green">
 			<div class="panel-heading">
 			  <div class="panel-title">Upcoming Payments</div>
 			</div>
@@ -17,7 +17,7 @@
 	</div>
 	<div class='col-sm-6'>
 
-		<div class="panel panel-default">
+		<div class="panel panel-gradient-blue">
 			<div class="panel-heading">
 			  <div class="panel-title">New Resident Applications (SAMPLE VIEW)</div>
 			</div>
@@ -42,13 +42,32 @@
 
 <div class='row'>
 	<div class='col-xs-12'>
-		<div class="panel panel-success">
+		<div class="panel panel-gradient-brick">
 			<div class="panel-heading">
 			  <div class="panel-title">Maintenance Requests Completed (Last 7 days)
-				  <span class='pull-right'><%= link_to 'New Request', new_facility_maintenance_request_path, class: 'btn btn-xs btn-success' %></span>
+				  <span class='pull-right'><%= link_to 'New Request', new_facility_maintenance_request_path, class: 'btn btn-xs btn-default' %></span>
 				</div>
 			</div>
-			<%= render 'maintenance_requests/maintenance_requests_index', dashboard_view: true %>
+			<table class="table table-condensed table-striped table-hover table-responsive">
+				<thead>
+					<tr>
+						<th>Priority</th>
+						<th>Location</th>
+						<th>Description</th>
+						<th>Completed</th>
+					</tr>
+				</thead>
+			  <tbody>
+			  	<% @maintenance_requests.each do |request| %>
+				  	<tr>
+				   		<td><span class="label label-<%= Collections::PRIORITY[request.priority] %>"><%= request.priority %></span></td>
+				   		<td><%= request.location %></td>
+				   		<td><%= truncate(request.description, length: 90) %></td>
+			   			<td><%= request.completed_date.try(:strftime, '%m/%d/%Y') %></td>
+				   	</tr>
+				  <% end %>
+			  </tbody>
+			</table>
 		</div>
 	</div>
 </div>
