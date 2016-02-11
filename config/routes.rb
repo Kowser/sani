@@ -16,8 +16,9 @@ Rails.application.routes.draw do
     end
 
     resources :invoices
-    post 'invoice_payments', to: 'invoices#payments'
+      post 'receive_payments', to: 'invoices#receive_payments'
     resources :payments
+      post 'deposit_payments',to: 'payments#deposit_payments'
     resources :maintenance_requests
 
     resources :residents

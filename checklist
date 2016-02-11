@@ -15,7 +15,11 @@ _	Owner / Admin should be able to...
 	_ PAYMENTS
 		x	see total payments upcoming
 		x	see total payments past due
-		_	mark a payment as deposited
+		x	create new payment
+		x	edit existing payment
+		x	delete payment
+		x	mark one payment as deposited
+		_	mark several payments as deposited
 		_	have payment reminders sent to resident POAs/Reps on a monthly basis?
 		_	have payment confirmations sent to resident POAs/Reps on a monthly basis?
 	x	INVOICES
@@ -37,4 +41,8 @@ _	Users may need to have roles dependent on facility location
 CONTROLLERS
 Registrations overrides?
 ResidentApplications
+
+CURRENT PROBLEMS
+_	date pickers sucks
+_	look at mentorme to figure out how to display form dates to user correctly, and save in models correctly
 

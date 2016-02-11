@@ -15,38 +15,40 @@
         <div class='col-sm-3'>
           <%= f.input :city %>
         </div>
-        <div class='col-sm-2'>
+        <div class='col-sm-2 col-xs-6'>
           <%= f.input :state, as: :select, collection: Collections::STATE %>
         </div>
-        <div class='col-sm-2'>
+        <div class='col-sm-2 col-xs-6'>
           <%= f.input :zip %>
         </div>
       </div>
       <div class='row'>
-        <div class='col-sm-3'>
+        <div class='col-sm-3 col-xs-6'>
           <%= f.input :phone %>
         </div>
-        <div class='col-sm-3'>
+        <div class='col-sm-3 col-xs-6'>
           <%= f.input :fax %>
         </div>
       </div>
 
-      <table class="table table-condensed table-responsive">
+      <table class="table-bordered table-condensed">
         <thead>
           <tr>
-            <th>Room Number</th>
-            <th>Occupancy Type</th>
-            <th>Active</th>
+            <th class='col-tb-50 text-center'>Unit</th>
+            <th class='col-tb-100 text-center'>Type</th>
+            <th class='col-tb-75 text-center'>Active</th>
           </tr>
         </thead>
         <tbody>
           <%= f.semantic_fields_for :units do |u| %>
             <%= render "units", u: u %>
           <% end %>
-          <tr id='new-unit-link'><td colspan='3'><%= link_to_add_unit(f) %></td></tr>
+          <tr id='new-unit-link'>
+            <td colspan='3'><%= link_to_add_unit(f) %></td>
+          </tr>
         </tbody>
       </table>
-
+      <br>
       <%= f.submit 'Save Facility', class: 'btn btn-success' %>
     <% end %>
   </div>

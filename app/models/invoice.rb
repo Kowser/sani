@@ -1,7 +1,7 @@
 class Invoice < ActiveRecord::Base
 	scope :upcoming_payments_this_month, -> { where(paid: false).where('extract(month from due_date) = ?', Date.today.month) }
 	scope :past_due_payments, -> { where(paid: false).where('due_date < ?', Date.today.at_beginning_of_month) }
-	before_validation(on: :create) { set_balance_due }
+	before_validation :set_balance_due, on: :create
 
 	validates_presence_of :resident, :due_date, :total_due, :balance_due, :item
 	

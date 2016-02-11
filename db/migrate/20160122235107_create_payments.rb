@@ -5,7 +5,7 @@ class CreatePayments < ActiveRecord::Migration
     	t.decimal :amount, precision: 7, scale: 2
     	t.date :receive_date
     	t.date :deposit_date
-      t.boolean :deposited
+      t.boolean :deposited, default: false
     	t.string :ref_number
     	t.string :method
 

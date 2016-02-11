@@ -2,7 +2,7 @@ class DashboardController < ApplicationController
 	def index
 		@maintenance_requests = @current_facility.maintenance_requests.completed
 			
-		# MOVE THIS INTO A HELPER METHOD
+		# MOVE THIS INTO A HELPER METHOD?
 		@payments = {}
 		upcoming_payments = @current_facility.invoices.upcoming_payments_this_month.pluck(:balance_due)
 		@payments[:upcoming_payments] = upcoming_payments.inject(:+) || 0
