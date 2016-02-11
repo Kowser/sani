@@ -21,7 +21,7 @@
       <% unless @maintenance_request.new_record? %>
         <div class='row'>
           <div class='col-sm-4'>
-            <%= f.input :created_by, label: 'Requested By', input_html: { disabled: true } %>
+            <%= f.input :requester, label: 'Requested By', input_html: { disabled: true } %>
           </div>
           <div class='col-sm-2'>
             <%= f.input :completed, as: :select, include_blank: false %>

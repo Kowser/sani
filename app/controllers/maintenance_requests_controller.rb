@@ -9,7 +9,7 @@ class MaintenanceRequestsController < ApplicationController
 	end
 
 	def create
-		@maintenance_request = @current_facility.maintenance_requests.build(maintenance_request_params.merge(created_by: current_user))
+		@maintenance_request = @current_facility.maintenance_requests.build(maintenance_request_params.merge(requester: current_user))
 		if @maintenance_request.save
 			flash[:success] = 'Request successfully added to queue.'
 			redirect_to action: 'index'

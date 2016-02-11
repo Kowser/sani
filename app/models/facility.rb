@@ -1,7 +1,7 @@
 class Facility < ActiveRecord::Base
-	validates_presence_of :name, :address, :city, :state, :zip, :phone, :units, :created_by
+	validates_presence_of :name, :address, :city, :state, :zip, :phone, :units, :owner
 	
-	belongs_to :created_by, class_name: User
+	belongs_to :owner, class_name: User
 	has_many :units, inverse_of: :facility
 	has_many :residents, through: :units
 	has_many :invoices, through: :residents

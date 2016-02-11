@@ -9,7 +9,7 @@ class CreateFacilities < ActiveRecord::Migration
       t.string :phone
       t.string :fax
 
-      t.integer :created_by_id
+      t.integer :owner_id
       t.timestamps null: false
     end
   end

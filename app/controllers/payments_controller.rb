@@ -1,7 +1,7 @@
 class PaymentsController < ApplicationController
 	def index
-		@payments = @current_facility.payments.where(deposited: false).includes(:resident, :received_by)
-		# @payments = @current_facility.payments.includes(:resident, :received_by)
+		@payments = @current_facility.payments.where(deposited: false).includes(:resident)
+		# @payments = @current_facility.payments.includes(:resident)
 	end
 
 	def new
@@ -10,7 +10,7 @@ class PaymentsController < ApplicationController
 	end
 
 	def create
-		@payment = Payment.new(payment_params.merge(received_by: current_user))
+		@payment = Payment.new(payment_params)
 		binding.pry
 		# FIX: Security issue - a payment can be created for ANY resident at this point
 		if @payment.save

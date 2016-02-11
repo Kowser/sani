@@ -6,10 +6,10 @@ class MaintenanceRequest < ActiveRecord::Base
 
 	before_update :update_completed_date, if: -> { completed_changed? }
 
-	validates_presence_of :priority, :location, :facility, :description, :created_by
+	validates_presence_of :priority, :location, :facility, :description, :requester
 	validates :completed, inclusion: [true, false]
 	belongs_to :facility
-	belongs_to :created_by, class_name: User
+	belongs_to :requester, class_name: User
 
 private
 	def update_completed_date

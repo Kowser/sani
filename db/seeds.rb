@@ -23,7 +23,7 @@ facility = Facility.new(
 	zip: '97225',
 	phone: '503-987-1234',
 	fax: '503-123-7890',
-	created_by_id: user.id
+	owner_id: user.id
 )
 
 facility.units.build(
@@ -42,7 +42,7 @@ facility_2 = Facility.new(
 	zip: '97239',
 	phone: '503.274.0000',
 	fax: '503.243.3427',
-	created_by_id: user.id
+	owner_id: user.id
 )
 
 facility_2.units.build(
@@ -121,7 +121,7 @@ create_user(
 			location: location,
 			description: Faker::Lorem.sentences((2..6).to_a.sample).join(', '),
 			priority: ['High', 'Low', 'Low', 'Low', 'Medium', 'Medium'].sample,
-			created_by: fac.users.sample,
+			requester: fac.users.sample,
 			completed: completed = [true, false].sample,
 			completed_date: completed ? Faker::Date.between(7.days.ago, Date.today) : nil
 		)
@@ -192,7 +192,6 @@ end
 		amount: invoice.balance_due,
 		receive_date: Faker::Date.between(7.days.ago, Date.today),
 		ref_number: rand(1000..2000),
-		received_by: facility.users[[0,1].sample],
 		method: Collections::PAYMENT_METHOD.sample
 	) if (1..10).to_a.sample < 9 # seeds 80% paid rate
 end

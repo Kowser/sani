@@ -7,7 +7,7 @@ class CreateMaintenanceRequests < ActiveRecord::Migration
     	t.string :priority
     	t.boolean :completed, default: false
       t.date :completed_date
-      t.integer :created_by_id
+      t.integer :requester_id
 
       t.timestamps null: false
     end

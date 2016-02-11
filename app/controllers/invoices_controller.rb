@@ -50,9 +50,11 @@ class InvoicesController < ApplicationController
 
 	def receive_payments
 		binding.pry
-		payments = params[:invoices].reject { |k, v| !v["amount"].blank? }
-		@current_facility.payments.create(payments.keys, payments.values)
-
+		payments = params[:invoices].reject { |k, v| v["amount"].blank? }
+		invoices = @current_facility.invoices.where(id: payments.keys).includes(:residents)
+		invoices.each do |invoice|
+			Payment.create(payments[invoice.id].merge(resident_id: invoice.resident.id))
+		end
 		# puts payments.keys
 		# payments.keys.each do |invoice_id|
 		# 	i = Invoice.find(invoice_id)
@@ -60,7 +62,7 @@ class InvoicesController < ApplicationController
 		# 	puts payments[invoice_id]
 		# 	i.payments.create!(payments[invoice_id])
 		# 	puts "\n\nHERE4: i.pmts.count:#{i.payments.count}\n"
-		end
+		# end
 
 		redirect_to action: 'index'
 	end

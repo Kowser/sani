@@ -9,8 +9,6 @@ class CreatePayments < ActiveRecord::Migration
     	t.string :ref_number
     	t.string :method
 
-      t.integer :received_by_id
-      t.integer :deposited_by_id
       t.timestamps null: false
     end
   end

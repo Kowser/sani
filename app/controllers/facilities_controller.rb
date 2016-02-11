@@ -11,7 +11,7 @@ class FacilitiesController < ApplicationController
 	end
 
 	def create
-		@facility = current_user.facilities.build(facility_params.merge(created_by: current_user))
+		@facility = current_user.facilities.build(facility_params.merge(owner: current_user))
 		if @facility.save
 			@facility.users << current_user
 			flash.now[:success] = 'Facility successfully added.'

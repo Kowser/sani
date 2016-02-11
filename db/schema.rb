@@ -24,15 +24,15 @@ ActiveRecord::Schema.define(version: 20160130020233) do
     t.integer  "zip"
     t.string   "phone"
     t.string   "fax"
-    t.integer  "created_by_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "facilities_users", id: false, force: :cascade do |t|
-    t.integer  "facility_id",   null: false
-    t.integer  "user_id",       null: false
-    t.integer  "created_by_id"
+    t.integer  "facility_id", null: false
+    t.integer  "user_id",     null: false
+    t.integer  "grantor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -70,23 +70,21 @@ ActiveRecord::Schema.define(version: 20160130020233) do
     t.string   "priority"
     t.boolean  "completed",      default: false
     t.date     "completed_date"
-    t.integer  "created_by_id"
+    t.integer  "requester_id"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
   end
 
   create_table "payments", force: :cascade do |t|
     t.integer  "resident_id"
-    t.decimal  "amount",          precision: 7, scale: 2
+    t.decimal  "amount",       precision: 7, scale: 2
     t.date     "receive_date"
     t.date     "deposit_date"
-    t.boolean  "deposited"
+    t.boolean  "deposited",                            default: false
     t.string   "ref_number"
     t.string   "method"
-    t.integer  "received_by_id"
-    t.integer  "deposited_by_id"
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
   end
 
   create_table "residents", force: :cascade do |t|

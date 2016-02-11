@@ -4,7 +4,7 @@ class CreateJoinTableFacilitiesUsers < ActiveRecord::Migration
       t.index [:facility_id, :user_id]
       t.index [:user_id, :facility_id]
 
-      t.integer :created_by_id
+      t.integer :grantor_id
       t.timestamps
     end
   end
