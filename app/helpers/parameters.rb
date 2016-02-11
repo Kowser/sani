@@ -9,5 +9,7 @@ module Parameters
 
 	STAFF_PARAMS = :first_name, :last_name, :role, :email, :phone
 
-	MAINTENANCE_REQUEST_PARAMS =  :location, :description, :priority, :completed, :completed_date
+	MAINTENANCE_REQUEST_PARAMS = :location, :description, :priority, :completed, :completed_date
+
+	INVOICE_PARAMS = :number, :due_date, :item, :total_due, :notes, :resident_id
 end

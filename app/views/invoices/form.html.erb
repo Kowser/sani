@@ -1,0 +1,98 @@
+<div class="panel panel-gradient-babyblue">
+  <div class="panel-heading">
+    <div class="panel-title"><%= @invoice.new_record? ? 'New' : 'Edit' %> Invoice</div>
+  </div>
+  <div class='panel-body'>
+    <%= semantic_form_for [@current_facility, @invoice] do |f| %>
+      <h4 class='text-center'>Invoice Details</h4>
+      <div class='row'>
+        <div class='col-sm-3 col-xs-12'>
+          <%= f.input :number, as: :string %>
+        </div>
+        <div class='col-sm-3 col-sm-offset-6 col-xs-12'>
+          <%= f.input :due_date, as: :string, input_html: { class: 'datepicker' } %>
+        </div>
+      </div>
+
+      <% if @invoice.new_record? %>
+        <div class='row'>
+          <div class='col-sm-3 col-xs-12'>
+            <%= f.input :resident, collection: @current_facility.residents %>
+          </div>
+        </div>
+      <% else %>
+        <div class='row'>
+          <div class='col-sm-3 col-xs-12'>
+            <strong>Resident</strong><br>
+            <%= @invoice.resident.name %><br>
+            Unit: <%= @invoice.resident.unit.number %>
+          </div>
+          <div class='col-sm-3 col-xs-12'>
+            <strong>Bill to:</strong><br>
+            <%= @invoice.resident.contact_name %><br>
+            <%= @invoice.resident.address %><br>
+            <%= @invoice.resident.city %>, <%= @invoice.resident.state %> <%= @invoice.resident.zip %>
+          </div>
+        </div>
+      <% end %>
+
+      <div class='row'>
+        <div class='col-sm-9 col-xs-12'>
+        <%= f.input :item, input_html: { rows: 3 } %>
+        </div>
+
+        <div class='col-sm-3 col-xs-12'>
+          <%= f.input :total_due, label: 'Total Amount', input_html: { value: @invoice.new_record? ? '' : '%.2f' % f.object.total_due, class: '' } %>
+        </div>
+      </div>
+
+
+      <% if @invoice.payments.any? %>
+        <table class="table table-ultra-condensed table-striped table-hover table-responsive">
+          <thead>
+            <tr>
+              <th>Received Date</th>
+              <th class='text-right'>Amount</th>
+              <th class='text-right view'>View</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @invoice.payments.each do |payment| %>
+              <tr>
+                <td><%= payment.receive_date.strftime('%m/%d/%Y') %></td>
+                <td class='text-right'><%= '%.2f' % payment.amount %></td>
+                <td class='text-right'><%= link_to 'View', edit_facility_payment_path(@current_facility, payment), class: 'btn btn-xs btn-default' %></td>
+              </tr>
+            <% end %>
+            <tr>
+              <td colspan='2' class='text-right'><strong>Total Payments:&nbsp;&nbsp;&nbsp;<%= '%.2f' % @invoice.payments.pluck(:amount).inject(:+) %></strong></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      <% else %>
+        <hr />
+      <% end %>
+
+      <div class='row'>
+        <div class='col-sm-9 col-xs-12'>
+          <%= f.input :notes, input_html: { rows: 2 } %>
+        </div>
+        <% unless @invoice.new_record? %>
+          <div class='col-sm-3 col-xs-12'>
+            <strong>Balance Due: <span class='pull-right input-box'><%= number_to_currency @invoice.balance_due %></span></strong><br><br>
+          </div>
+        <% end %>
+      </div>
+      
+      <div class='row'>
+        <div class='col-sm-3 col-xs-6'>
+          <%= f.submit 'Save Invoice', class: 'btn btn-success' %>
+        </div>
+        <div class='col-sm-3 col-sm-offset-6 col-xs-6 text-right'>
+          <%= link_to 'Delete Invoice', facility_invoice_path(@current_facility, @invoice), method: :delete, data: {confirm: 'Delete this invoice?'}, class: 'btn btn-danger' unless @invoice.new_record? %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -21,18 +21,32 @@
 			<div class="panel-heading">
 			  <div class="panel-title">New Resident Applications (SAMPLE VIEW)</div>
 			</div>
+			
 			<table class="table table-condensed table-striped table-hover table-responsive">
 				<thead>
 					<tr><th>Name</th><th>Move-In Date</th><th>Phone</th></tr>
 				</thead>
 			  <tbody>
-			  	<% (1..5).to_a.sample.times do |i| %>
 				   	<tr>
-				   		<td><%= Faker::Name.name%></td>
-				   		<td><%= (Date.today + (2..25).to_a.sample).strftime('%m/%d/%Y') %></td>
-				   		<td><%= Faker::PhoneNumber.cell_phone %></td>
+				   		<td>Aurelie Terry PhD</td>
+				   		<td>03/06/2016</td>
+				   		<td>901-922-0182</td>
 				   	</tr>
-				  <% end %>
+				   	<tr>
+				   		<td>Kaleb Spencer</td>
+				   		<td>02/14/2016</td>
+				   		<td>405-021-2177</td>
+				   	</tr>
+				   	<tr>
+				   		<td>Clemmie Littel</td>
+				   		<td>02/20/2016</td>
+				   		<td>881.454.7194</td>
+				   	</tr>
+				   	<tr>
+				   		<td>Emmanuelle Schneider II</td>
+				   		<td>02/20/2016</td>
+				   		<td>(408) 655-1306</td>
+				   	</tr>
 			  </tbody>
 			</table>
 		</div>

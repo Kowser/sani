@@ -10,7 +10,7 @@ class ResidentsController < ApplicationController
 	end
 
 	def create
-		@resident = Resident.new(resident_params)
+		@resident = @current_facility.residents.new(resident_params)
 		if @resident.save
 			flash[:success] = 'Resident successfully added.'
 			redirect_to action: 'index'
@@ -21,12 +21,12 @@ class ResidentsController < ApplicationController
 	end
 
 	def edit
-		@resident = Resident.find(params[:id])
+		@resident = @current_facility.residents.find(params[:id])
 		render 'form'
 	end
 
 	def update
-		@resident = Resident.find(params[:id])
+		@resident = @current_facility.residents.find(params[:id])
 		if @resident.update(resident_params)
 			flash[:success] = 'Resident successfully updated.'
 			redirect_to action: 'index'

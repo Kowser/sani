@@ -4,17 +4,20 @@ table {
   	table-layout: fixed;
   }
 }
+.table-ultra-condensed thead>tr>th,.table-ultra-condensed tbody>tr>th,.table-ultra-condensed tfoot>tr>th,.table-ultra-condensed thead>tr>td,.table-ultra-condensed tbody>tr>td,.table-ultra-condensed tfoot>tr>td {
+  padding: 1px
+}
+
 th.view { width: 75px; }
 th.date { width: 100px; }
 
-/* MAINTENANCE TABLE */
+/* MAINTENANCE INDEX TABLE */
 th.priority { width: 75px; }
 th.location { width: 150px; }
 
-/* INVOICES TABLE */
+/* INVOICE INDEX TABLE */
 th.unit { width: 50px; }
 th.amount { width: 75px; }
 th.status { width: 100px; }
 input.payment-amount { width: 100px; }
 input.payment-date { width: 75px; }
-	

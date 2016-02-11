@@ -160,7 +160,9 @@ end
 		total_due: resident.rent,
 		balance_due: resident.rent,
 		number: "ACC-#{rand(1000..1999)}",
-		due_date: Date.today.at_beginning_of_month
+		due_date: Date.today.at_beginning_of_month,
+		item: 'Monthly Rent & Residential Care Services',
+		notes: 'Example of notes'
 	)
 
 	# PAST DUE invoice
@@ -169,7 +171,9 @@ end
 		total_due: resident.rent,
 		balance_due: resident.rent,
 		number: "ACC-#{rand(1000..1999)}",
-		due_date: (Date.today - 1.month).at_beginning_of_month
+		due_date: (Date.today - 1.month).at_beginning_of_month,
+		item: 'Monthly Rent & Residential Care Services',
+		notes: 'Example of notes'
 	) if (1..10).to_a.sample < 3 # seeds 20% past due rate
 
 	# NEXT MONTH's invoice
@@ -178,7 +182,9 @@ end
 		total_due: resident.rent,
 		balance_due: resident.rent,
 		number: "ACC-#{rand(1000..1999)}",
-		due_date: (Date.today + 1.month).at_beginning_of_month
+		due_date: (Date.today + 1.month).at_beginning_of_month,
+		item: 'Monthly Rent & Residential Care Services',
+		notes: 'Example of notes'
 	) if [true, false].sample
 
 	invoice.payments << Payment.create!(

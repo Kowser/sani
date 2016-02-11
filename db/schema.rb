@@ -42,14 +42,15 @@ ActiveRecord::Schema.define(version: 20160130020233) do
 
   create_table "invoices", force: :cascade do |t|
     t.integer  "resident_id"
-    t.decimal  "total_due"
-    t.decimal  "balance_due"
-    t.boolean  "paid",        default: false
+    t.decimal  "total_due",   precision: 7, scale: 2
+    t.decimal  "balance_due", precision: 7, scale: 2
+    t.boolean  "paid",                                default: false
     t.string   "number"
     t.date     "due_date"
     t.text     "notes"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.text     "item",                                default: ""
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
   end
 
   create_table "invoices_payments", id: false, force: :cascade do |t|
@@ -76,7 +77,7 @@ ActiveRecord::Schema.define(version: 20160130020233) do
 
   create_table "payments", force: :cascade do |t|
     t.integer  "resident_id"
-    t.decimal  "amount"
+    t.decimal  "amount",          precision: 7, scale: 2
     t.date     "receive_date"
     t.date     "deposit_date"
     t.boolean  "deposited"
@@ -84,8 +85,8 @@ ActiveRecord::Schema.define(version: 20160130020233) do
     t.string   "method"
     t.integer  "received_by_id"
     t.integer  "deposited_by_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
   end
 
   create_table "residents", force: :cascade do |t|

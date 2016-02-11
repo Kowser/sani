@@ -5,6 +5,49 @@ class InvoicesController < ApplicationController
 			.includes(:resident => :unit)
 	end
 
+	def new
+		@invoice = Invoice.new
+		render 'form'
+	end
+
+	def create
+		@invoice = Invoice.new(invoice_params)
+		# FIX: Security issue - an invoice can be created for ANY resident at this point
+		if @invoice.save
+			flash[:success] = 'Invoice successfully saved.'
+			redirect_to action: 'index'
+		else
+			flash[:alert] = 'Please fix the following errors.'
+			render 'form'
+		end
+	end
+
+	def edit
+		@invoice = @current_facility.invoices.find(params[:id])
+		render 'form'
+	end
+
+	def update
+		@invoice = @current_facility.invoices.find(params[:id])
+		if @invoice.update(invoice_params)
+			flash[:success] = 'Invoice successfully updated.'
+			redirect_to action: 'index'
+		else
+			flash[:alert] = 'Please fix the following errors.'
+			render 'form'
+		end
+	end
+
+	def destroy
+		if invoice = @current_facility.invoices.find_by(id: params[:id])
+			invoice.destroy
+			flash[:alert] = "Invoice deleted."
+		else
+			flash[:alert] = 'That invoice doesn\'t appear to exist.'
+		end
+		redirect_to action: 'index'
+	end
+
 	def payments
 		payments = params[:invoices].delete_if { |k, v| v["amount"].to_f.zero? } # .blank?
 		puts payments.keys
@@ -22,5 +65,9 @@ private
 
 	def payment_params
 	  params.require(:invoices).permit(payment: [Parameters::PAYMENT_PARAMS])
+	end
+
+	def invoice_params
+	  params.require(:invoice).permit(Parameters::INVOICE_PARAMS)
 	end
 end

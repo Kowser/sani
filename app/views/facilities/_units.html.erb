@@ -2,5 +2,5 @@
 	<%= u.input :id, as: :hidden %>
 	<td><%= u.input :number, label: false %></td>
 	<td><%= u.input :occupancy, label: false, as: :select, collection: ['Private', 'Shared'], include_blank: false %></td>
-	<td><%= u.input :active, label: false, as: :select %></td>
+	<td><%= u.input :active, label: false, as: :select, include_blank: false %></td>
 </tr>

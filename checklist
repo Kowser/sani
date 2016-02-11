@@ -6,31 +6,35 @@ _	Owner should be able to...
 		_ unassociate themselves from a facility
 	_ STAFF
 		_ add users with staff/admin roles
-		_	assign users to facilities
+		x	assign users to facilities
 		_ archive users & disable priveleges
 		_ promote / demote users (except other Execs)
-		_	remove users from facilities (except other Execs)
+		_	remove users from facilities (except other Execs, or only Facility creator can do this?)
 =======================================================
 _	Owner / Admin should be able to...
 	_ PAYMENTS
-		_	see total payments upcoming
-		_	see total payments past due
-		_	mark a payment as received
+		x	see total payments upcoming
+		x	see total payments past due
 		_	mark a payment as deposited
-		_	have payment reminders sent to resident POAs/Reps on a monthly basis
-		_	have payment confirmations sent to resident POAs/Reps on a monthly basis
+		_	have payment reminders sent to resident POAs/Reps on a monthly basis?
+		_	have payment confirmations sent to resident POAs/Reps on a monthly basis?
+	x	INVOICES
+		x Edit invoices w/ notes - single line item
+		x	Create new invoice
+		x	Delete invoice
 
-_	Admin / Owner / Maintenance should be able to
+_	Admin / Owner / Staff should be able to
 	x	see all maintenance requests ordered by facility
 	x	see only their respective facility maintenance issues
-	_	mark maintenance request as Low / High priority, or Emergency w/ a text notification to the maintenance person
-	_	mark maintenance request as finished
+	x	mark maintenance request as Low / High priority, or Emergency
+		_	w/ a text notification to the maintenance person
+	x	mark maintenance request as completed
 
+FUTURE
 _	Users should have varying levels of access (Owner / Admin / Staff (Read or Write?))
 _	Users may need to have roles dependent on facility location
 
 CONTROLLERS
 Registrations overrides?
-MaintenanceRequests
 ResidentApplications
 
