@@ -14,7 +14,6 @@ class MaintenanceRequestsController < ApplicationController
 			flash[:success] = 'Request successfully added to queue.'
 			redirect_to action: 'index'
 		else
-			binding.pry
 			flash.now[:alert] = 'Please fix the following errors.'
 			render 'form'
 		end
@@ -27,12 +26,21 @@ class MaintenanceRequestsController < ApplicationController
 
 	def update
 		@maintenance_request = @current_facility.maintenance_requests.find(params[:id])
-		if @maintenance_request.update(maintenance_request_params)
-			flash[:success] = 'Request successfully updated.'
-			redirect_to action: 'index'
-		else
-			flash.now[:alert] = 'Please fix the following errors.'
-			render 'form'
+		respond_to do |format|
+			format.html {
+				if @maintenance_request.update(maintenance_request_params)
+					flash[:success] = 'Request successfully updated.'
+					redirect_to action: 'index'
+				else
+					flash.now[:alert] = 'Please fix the following errors.'
+					render 'form'
+				end
+			}
+
+			format.js {
+				@maintenance_request.update(completed: true)
+				render 'update.js'
+			}
 		end
 	end
 

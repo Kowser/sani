@@ -4,27 +4,60 @@
 	<thead>
 		<tr>
 			<th class='col-tb-75'>Priority</th>
-			<th class='col-tb-150'>Location</th>
-			<th>Description</th>
+			<th class='col-tb-150 hidden-xs'>Location</th>
+			<th class='hidden-xs'>Description</th>
 			<% if dashboard_view %>
-				<th class='col-tb-100'>Completed</th>
+				<th class='col-tb-100 text-center'>Completed</th>
 			<% else %>
-				<th class='col-tb-75 text-center'>View</th>
+				<th></th>
 			<% end %>
+			<th class='col-tb-75 text-right'>View</th>
 		</tr>
 	</thead>
   <tbody>
   	<% @maintenance_requests.each do |request| %>
-	  	<tr>
-	   		<td><span class="label label-<%= Collections::PRIORITY[request.priority] %>"><%= request.priority %><span></td>
+  		<!-- Desktop view -->
+	  	<tr id="maintenance_request-<%= request.id %>" class='hidden-xs'>
+	   		<td>
+	   			<span class="label label-<%= Collections::PRIORITY[request.priority] %>"><%= request.priority %></span><br><br>
+	   			<% unless dashboard_view %>
+	   	 			<%= link_to facility_maintenance_request_path(@current_facility, request), method: :patch, remote: true, class: 'btn btn-xs btn-default pull-right', data: { disable_with: "<i class='fa fa-check-square-o'></i> Saving...".html_safe } do %>
+	   	 				<i class='fa fa-square-o'></i> Complete
+	 	 				<% end %>
+		 	 		<% end %>
+	   		</td>
 	   		<td><%= request.location %></td>
 	   		<td><%= request.description %></td>
-	   		<% if dashboard_view %>
-	   			<td><%= request.completed_date.try(:strftime, '%m/%d/%Y') %></td>
-	   		<% else %>
-	   			<td class='text-center'><%= link_to 'View', edit_facility_maintenance_request_path(@current_facility, request), class: 'btn btn-xs btn-default' %></td>
-	   		<% end %>
+	   		<td class='text-center'><%= request.completed_date.try(:strftime, '%m/%d/%Y') if dashboard_view %></td>
+	   		<td class='text-right'>
+	   			<%= link_to('View', edit_facility_maintenance_request_path(@current_facility, request), class: 'btn btn-xs btn-default') %>
+	   		</td>
 	   	</tr>
+	   	<!-- End Desktop View -->
+
+	   	<!-- Mobile view -->
+   		<tr id="maintenance_request-<%= request.id %>" class='visible-xs'>
+   	 		<td><span class="label label-<%= Collections::PRIORITY[request.priority] %>"><%= request.priority %></span></td>
+   	 		<td class='text-center'><%= request.completed_date.try(:strftime, '%m/%d/%Y') if dashboard_view %></td>
+   	 		<td class='text-right'><%= link_to('View', edit_facility_maintenance_request_path(@current_facility, request), class: 'btn btn-xs btn-default') %>
+   	 		</td>
+   	 	</tr>
+   	 	<tr id="maintenance_request-<%= request.id %>" class='visible-xs'>
+   	 		<td colspan='3'><strong>Location:</strong> <%= request.location %></td>
+   	 	</tr>
+   	 	<tr id="maintenance_request-<%= request.id %>" class='visible-xs'>
+   	 		<td colspan='3'><strong>Description:</strong><br><%= request.description %></td>
+   	 	</tr>
+   	 	<% unless dashboard_view %>
+	   	 	<tr id="maintenance_request-<%= request.id %>" class='visible-xs'>
+	   	 		<td colspan='3' class='thick-bottom-border text-center'>
+	   	 			<%= link_to facility_maintenance_request_path(@current_facility, request), method: :patch, remote: true, class: 'btn btn btn-default', data: { disable_with: "<i class='fa fa-check-square-o'></i> Saving...".html_safe } do %>
+	   	 				<i class='fa fa-square-o'></i> Complete
+	 	 				<% end %>
+	 	 			</td>
+	 	 		</tr>
+ 	 		<% end %>
+   	 	<!-- End Mobile View -->
 	  <% end %>
   </tbody>
 </table>

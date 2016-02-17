@@ -4,7 +4,7 @@ class MaintenanceRequest < ActiveRecord::Base
 	scope :incomplete, -> { where(completed: false).order(priority_order) }
 	# default_scope {order(priority_order)}
 
-	before_update :update_completed_date, if: -> { completed_changed? }
+	before_update :set_completed_date, if: -> { completed_changed? }
 
 	validates_presence_of :priority, :location, :facility, :description, :requester
 	validates :completed, inclusion: [true, false]
@@ -12,11 +12,11 @@ class MaintenanceRequest < ActiveRecord::Base
 	belongs_to :requester, class_name: User
 
 private
-	def update_completed_date
-		completed_date = if completed?
+	def set_completed_date
+		self.completed_date = if completed?
 		  completed_date.blank? ? Date.today : completed_date
 		else
-			''
+			nil
 		end
 	end
 end

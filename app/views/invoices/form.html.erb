@@ -42,7 +42,7 @@
         </div>
 
         <div class='col-sm-3 col-xs-12'>
-          <%= f.input :total_due, label: 'Total Amount', input_html: { value: @invoice.new_record? ? '' : '%.2f' % f.object.total_due, class: '' } %>
+          <%= f.input :total_due, label: 'Total Amount', input_html: { value: @invoice.new_record? ? '' : '%.2f' % f.object.total_due } %>
         </div>
       </div>
 

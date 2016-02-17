@@ -49,12 +49,14 @@ class InvoicesController < ApplicationController
 	end
 
 	def receive_payments
-		binding.pry
-		payments = params[:invoices].reject { |k, v| v["amount"].blank? }
-		invoices = @current_facility.invoices.where(id: payments.keys).includes(:residents)
+		payments = params[:invoices].reject { |k, v| v["amount"].to_f.zero? }
+		invoices = @current_facility.invoices.where(id: payments.keys).includes(:resident)
 		invoices.each do |invoice|
-			Payment.create(payments[invoice.id].merge(resident_id: invoice.resident.id))
+			Payment.create(payments["#{invoice.id}"].merge(resident_id: invoice.resident.id))
 		end
+
+		# Report.update(params[:report].keys, params[:report].values) # example of multiple update at once
+
 		# puts payments.keys
 		# payments.keys.each do |invoice_id|
 		# 	i = Invoice.find(invoice_id)

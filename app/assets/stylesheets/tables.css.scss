@@ -24,3 +24,7 @@ input.responsive {
 	@media(min-width: 768px) { width: 100px; }
 	@media(max-width: 767px) { width: 70px; }
 }
+
+.thick-bottom-border {
+	border-bottom: 5px solid black;
+}

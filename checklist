@@ -1,8 +1,6 @@
 MINIMUM VIABLE PRODUCT
 _	Owner should be able to...
 	x FACILITY
-		x create / edit
-		x add rooms or make them inactive
 		_ unassociate themselves from a facility
 	_ STAFF
 		_ add users with staff/admin roles
@@ -12,20 +10,9 @@ _	Owner should be able to...
 		_	remove users from facilities (except other Execs, or only Facility creator can do this?)
 =======================================================
 _	Owner / Admin should be able to...
-	_ PAYMENTS
-		x	see total payments upcoming
-		x	see total payments past due
-		x	create new payment
-		x	edit existing payment
-		x	delete payment
-		x	mark one payment as deposited
-		_	mark several payments as deposited
-		_	have payment reminders sent to resident POAs/Reps on a monthly basis?
-		_	have payment confirmations sent to resident POAs/Reps on a monthly basis?
+	x PAYMENTS
+
 	x	INVOICES
-		x Edit invoices w/ notes - single line item
-		x	Create new invoice
-		x	Delete invoice
 
 _	Admin / Owner / Staff should be able to
 	x	see all maintenance requests ordered by facility
@@ -43,6 +30,5 @@ Registrations overrides?
 ResidentApplications
 
 CURRENT PROBLEMS
-_	date pickers sucks
-_	look at mentorme to figure out how to display form dates to user correctly, and save in models correctly
+_	date pickers sucks -> look at mentorme to figure out how to display form dates to user correctly, and save in models correctly
 

@@ -11,7 +11,6 @@ class PaymentsController < ApplicationController
 
 	def create
 		@payment = Payment.new(payment_params)
-		binding.pry
 		# FIX: Security issue - a payment can be created for ANY resident at this point
 		if @payment.save
 			flash[:success] = 'Payment saved.'
