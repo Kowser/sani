@@ -1,7 +1,7 @@
 <div class="panel panel-gradient-green">
 	<div class="panel-heading">
 	  <div class="panel-title">Outstanding Invoices
-	  	<span class='pull-right'><%= link_to 'New Invoice', new_facility_invoice_path, class: 'btn btn-xs btn-default' %></span>
+	  	<%= link_to 'New Invoice', new_facility_invoice_path, class: 'btn btn-xs btn-default pull-right' %>
 	  </div>
 	</div>
 	<%= form_for :invoices, url: facility_receive_payments_path, method: :post do %>

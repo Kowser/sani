@@ -63,12 +63,5 @@
 	</div>
 </div>
 
-<div class="panel panel-gradient-brick">
-	<div class="panel-heading">
-	  <div class="panel-title">Maintenance Requests Completed (Last 7 days)
-		  <span class='pull-right'><%= link_to 'New Request', new_facility_maintenance_request_path, class: 'btn btn-xs btn-default' %></span>
-		</div>
-	</div>
-	<%= render 'maintenance_requests/maintenance_requests_index', dashboard_view: true %>
-</div>
+<%= render template: 'maintenance_requests/index', locals: {dashboard_view: true} %>
 

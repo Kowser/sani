@@ -1,7 +1,7 @@
 <div class="panel panel-gradient-green">
 	<div class="panel-heading">
 	  <div class="panel-title">Undeposited Payments
-	  	<span class='pull-right'><%= link_to 'New Payment', new_facility_payment_path, class: 'btn btn-xs btn-default' %></span>
+	  	<%= link_to 'New Payment', new_facility_payment_path, class: 'btn btn-xs btn-default pull-right' %>
 	  </div>
 	</div>
 	<%= form_for :deposits, url: facility_deposit_payments_path, method: :post do %>

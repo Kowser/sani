@@ -1,6 +1,7 @@
 class ResidentsController < ApplicationController
-	before_action -> { authorization(:staff) }
-	
+	before_action -> { authorization(:staff) }, only: [:index, :edit]
+	before_action -> { authorization(:admin) }, only: [:new, :create, :update]
+
 	def index
 		@residents = @current_facility.residents.includes(:unit)
 		#this should only be active residents only. Should we set that as default, or create a scope?

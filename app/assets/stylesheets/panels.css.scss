@@ -1,6 +1,9 @@
 .panel-title {
   font-weight: bold;
   color: white;
+  > a {
+  color: black
+  }
 }
 
 .panel-gradient-brick {
