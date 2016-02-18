@@ -5,13 +5,22 @@ end
 # =====================================================================================
 # USERS & FACILITIES
 # =====================================================================================
+# DEV OPS user
+create_user(
+	email: 'sys@example.com',
+	first_name: 'Michal',
+	last_name: 'Kaszubowski',
+	phone: '360-333-6789',
+	role: User.roles['devops']
+)
+
 # EXECUTIVE USER (Owner)
 user = create_user(
-	email: 'owner@example.com',
+	email: 'adam@peaksandvalleysnw.com',
 	first_name: 'Adam',
 	last_name: 'Reinke',
 	phone: '360-333-6789',
-	role: 'Executive'
+	role: User.roles['exec']
 )
 
 # PRIMARY FACILITY - 15/16 residents
@@ -58,57 +67,56 @@ create_user(
 	first_name: 'Steve',
 	last_name: 'Martini',
 	phone: '503-123-4567',
-	role: 'Executive'
+	role: User.roles['exec']
 )
 
 # ADMINISTRATOR USER (not a sys admin)
 create_user(
-	email: 'admin@example.com',
+	email: 'breanna@peaksandvalleysnw.com',
 	first_name: 'Breanna',
 	last_name: 'Matson',
 	phone: '503-345-6789',
-	role: 'Administrator'
+	role: User.roles['admin']
 )
 
 # MAINTENANCE USER
 create_user(
-	email: 'maintenance@example.com',
+	email: 'brian@peaksandvalleysnw.com',
 	first_name: 'Brian',
 	last_name: 'Carlson',
 	phone: '503-123-4567',
-	role: 'Staff'
+	role: User.roles['staff']
 )
 
 # GENERAL STAFF USER
+create_user(
+	email: 'staff@peaksandvalleysnw.com',
+	first_name: Faker::Name.first_name,
+	last_name: Faker::Name.last_name,
+	phone: '503-123-4567',
+	role: User.roles['staff']
+)
+
+facility.users << User.all #excludes Sharleen below
+
+# ADMINISTRATOR USER (not a sys admin)
+facility_2.users <<  create_user(
+	email: 'sharleen@peaksandvalleysnw.com',
+	first_name: 'Sharleen',
+	last_name: 'Moschella',
+	phone: '503-345-6789',
+	role: User.roles['admin']
+)
+
+facility_2.users << User.first #adds Michal Kaszubowski
+
+# unassigned USER for test adding to facility(ies)
 create_user(
 	email: 'staff@example.com',
 	first_name: Faker::Name.first_name,
 	last_name: Faker::Name.last_name,
 	phone: '503-123-4567',
-	role: 'Staff'
-)
-
-facility.users << User.all
-
-# ADMINISTRATOR USER (not a sys admin)
-create_user(
-	email: 'admin_2@example.com',
-	first_name: 'Sharleen',
-	last_name: 'Moschella',
-	phone: '503-345-6789',
-	role: 'Administrator'
-)
-
-facility_2.users << User.first #adds Adam Reinke
-facility_2.users << User.last #adds administrator
-
-# USER to be found and added to a facility
-create_user(
-	email: 'findme@example.com',
-	first_name: Faker::Name.first_name,
-	last_name: Faker::Name.last_name,
-	phone: '503-123-4567',
-	role: 'Staff'
+	role: User.roles['staff']
 )
 
 # =====================================================================================
