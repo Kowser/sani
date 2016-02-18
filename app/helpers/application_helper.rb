@@ -5,8 +5,4 @@ module ApplicationHelper
 	  end
 	  link_to 'Add Room', '#', id: 'add-unit', data: { id: "UNIT-#{99999}", fields: fields.gsub('\n', '') }, class: 'btn btn-default'
 	end
-
-	def access(permitted_role)
-		current_user[:role] >= User.roles[permitted_role]
-	end
 end

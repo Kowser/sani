@@ -1,4 +1,6 @@
 class FacilitiesUsersController < ApplicationController
+	before_action -> { authorization(:admin) }
+
 	def create
 		@add_staff = FacilitiesUser.new(facility: @current_facility, user_id: params[:user_id])
 		if @add_staff.save

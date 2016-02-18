@@ -1,4 +1,6 @@
 class MaintenanceRequestsController < ApplicationController
+	before_action -> { authorization(:staff) }
+	
 	def index
 		@maintenance_requests = @current_facility.maintenance_requests.incomplete
 	end

@@ -1,4 +1,6 @@
 class StaffController < ApplicationController
+	before_action -> { authorization(:admin) }
+	
 	def index
 		@staff = @current_facility.users.order('first_name ASC')
 	end

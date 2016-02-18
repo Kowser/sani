@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   # , :lockable
 
   # Rails 4.1+, allows roles & their corresponding methods .staff?, .admin?, user[:role] = #, etc...
+  # Permissions are granted at or above designated role
   # visit http://railsapps.github.io/rails-authorization.html for more information
   enum role: {staff: 1, admin: 3, exec: 5, devops: 7} # please do not define 0
 

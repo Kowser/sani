@@ -1,4 +1,6 @@
 class PaymentsController < ApplicationController
+	before_action -> { authorization(:admin) }
+
 	def index
 		@payments = @current_facility.payments.where(deposited: false).includes(:resident)
 		# @payments = @current_facility.payments.includes(:resident)

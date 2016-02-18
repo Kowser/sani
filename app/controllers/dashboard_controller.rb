@@ -1,4 +1,6 @@
 class DashboardController < ApplicationController
+	before_action -> { authorization(:admin) }
+	
 	def index
 		@maintenance_requests = @current_facility.maintenance_requests.completed
 			
@@ -12,10 +14,4 @@ class DashboardController < ApplicationController
 		@payments[:past_due_payments] = past_due_payments.inject(:+) || 0
 		@payments[:past_due_payments_count] = past_due_payments.count || 0
 	end
-
-	def billing
-		@residents = Resident.all
-  end
-
-  def preferences; end
 end

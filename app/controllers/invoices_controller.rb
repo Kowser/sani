@@ -1,4 +1,6 @@
 class InvoicesController < ApplicationController
+	before_action -> { authorization(:admin) }
+	
 	def index
 		@invoices = @current_facility.invoices.where("balance_due > 0")
 			.order('residents.first_name ASC', 'invoices.due_date ASC')

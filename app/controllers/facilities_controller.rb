@@ -1,4 +1,6 @@
 class FacilitiesController < ApplicationController
+	before_action -> { authorization(:exec) }
+
 	def index
 		@facilities = current_user.facilities
 		@show_facility_selector = false
@@ -39,7 +41,6 @@ class FacilitiesController < ApplicationController
 	end
 
 private
-
 	def facility_params
 		params.require(:facility).permit(Parameters::FACILITY_PARAMS)
 	end
