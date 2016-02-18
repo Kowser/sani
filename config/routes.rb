@@ -15,6 +15,13 @@ Rails.application.routes.draw do
       # get 'preferences'
     end
 
+    resources :staff
+    controller 'staff' do
+      post 'staff_create', action: 'create' #routing conflict requires this route!
+      post 'find_staff', action: 'find_staff'
+      post 'add_staff', action: 'add_staff'
+    end
+
     resources :invoices
       post 'receive_payments', to: 'invoices#receive_payments'
     resources :payments
@@ -22,12 +29,6 @@ Rails.application.routes.draw do
     resources :maintenance_requests
 
     resources :residents
-    resources :staff
-    # post 'staff_form', to: 'staff#create'
-    # patch 'staff_form/:id', to: 'staff#update'
-    # put 'staff_form/:id', to: 'staff#update'
-    post 'find_staff', to: 'staff#find_staff'
-    post 'add_staff', to: 'staff#add_staff'
   end
   
 end

@@ -7,30 +7,10 @@ class StaffController < ApplicationController
 		@staff = User.new
 	end
 
-	def find_staff
-		email = params[:email][:email]
-		if @staff = User.find_by(email: email)
-			render 'find_staff.js'
-		else
-			flash.now[:alert] = "User email #{email} doesn't appear to exist."
-			render 'shared/errors.js'
-		end
-	end
-
-	def add_staff
-		@staff = FacilitiesUsers.new(facility: @current_facility, user_id: params[:staff][:id])
-		if @staff.save
-			flash[:success] = "#{@staff.name} has been added to #{@current_facility.name} staff."
-		else
-			flash[:alert] = "#{@staff.errors.full_messages.join(', ')}"
-		end
-
-		redirect_to action: :new
-	end
-
 	def create
 	  @staff = User.new(staff_params)
 	  if @staff.save
+	  	@current_facility.users << @staff
 	    flash[:success] = 'Team Member added!'
 	 		redirect_to action: 'new'
 	  else
@@ -52,6 +32,28 @@ class StaffController < ApplicationController
 			flash[:alert] = "#{@staff.errors.full_messages.join(', ')}"
 			render 'form'
 		end
+	end
+
+	def find_staff
+		email = params[:staff][:email]
+		if @staff = User.find_by(email: email)
+			render 'find_staff.js'
+		else
+			flash.now[:alert] = "User email #{email} doesn't appear to exist."
+			render 'shared/errors.js'
+		end
+	end
+
+	def add_staff
+		user_params = params.require(:user).permit(:id, :name)
+		@add_staff = FacilitiesUsers.new(facility: @current_facility, user_id: user_params[:id])
+		if @add_staff.save
+			flash[:success] = "#{user_params[:name]} has been added to #{@current_facility.name} staff."
+		else
+			flash[:alert] = "#{@add_staff.errors.full_messages.join(', ')}"
+		end
+
+		redirect_to action: :new
 	end
 
 private

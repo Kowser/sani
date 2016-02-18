@@ -7,7 +7,7 @@ module Parameters
 
 	PAYMENT_PARAMS = :invoice_id, :amount, :receive_date, :resident_id, :method, :deposited, :deposit_date
 
-	STAFF_PARAMS = :first_name, :last_name, :role, :email, :phone
+	STAFF_PARAMS = :first_name, :last_name, :role, :email, :phone, :password, :password_confirmation
 
 	MAINTENANCE_REQUEST_PARAMS = :location, :description, :priority, :completed, :completed_date
 

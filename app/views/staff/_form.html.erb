@@ -1,9 +1,10 @@
+<% form_params = @staff.new_record? ? {url: facility_staff_create_path, method: :post} : {url: facility_staff_path, method: :patch} # this variable the result of routing collision for 'staff' %>
 <div class="panel panel-gradient-babyblue">
   <div class="panel-heading">
     <div class="panel-title"><%= @staff.new_record? ? 'Create New' : 'Edit' %> User</div>
   </div>
   <div class='panel-body'>
-    <%= semantic_form_for [@current_facility, @staff], url: facility_staff_form_path, method: :patch do |f| %>
+    <%= semantic_form_for [@current_facility, @staff], form_params do |f| %>
       <div class='row'>
         <div class='col-sm-6'>
           <%= f.input :first_name %>
@@ -12,7 +13,7 @@
           <%= f.input :last_name %>
         </div>
         <div class='col-sm-6'>
-          <%= f.input :email %>
+          <%= f.input :email, label: 'Login / Email' %>
         </div>
         <div class='col-sm-6'>
           <%= f.input :phone %>
