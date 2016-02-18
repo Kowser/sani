@@ -29,10 +29,9 @@ ActiveRecord::Schema.define(version: 20160130020233) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "facilities_users", id: false, force: :cascade do |t|
-    t.integer  "facility_id", null: false
-    t.integer  "user_id",     null: false
-    t.integer  "grantor_id"
+  create_table "facilities_users", force: :cascade do |t|
+    t.integer  "facility_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

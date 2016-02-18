@@ -3,9 +3,9 @@
     <div class="panel-title">Found Existing User</div>
   </div>
   <div class='panel-body'>
-    <%= semantic_form_for :user, url: facility_add_staff_path(@current_facility), method: :post do |f| %>
-      <%= f.input :id, as: :hidden, input_html: { value: @staff.id } %>
-      <%= f.input :name, as: :hidden, input_html: { value: @staff.name } %>
+    <%= semantic_form_for FacilitiesUser.new do |f| %>
+      <%= hidden_field_tag :user_id, @staff.id %>
+      <%= hidden_field_tag :name, @staff.name %>
       <table class="table table-condensed table-responsive">
         <tr>
           <th>Name</th>

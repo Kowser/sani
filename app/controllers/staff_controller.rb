@@ -44,18 +44,6 @@ class StaffController < ApplicationController
 		end
 	end
 
-	def add_staff
-		user_params = params.require(:user).permit(:id, :name)
-		@add_staff = FacilitiesUsers.new(facility: @current_facility, user_id: user_params[:id])
-		if @add_staff.save
-			flash[:success] = "#{user_params[:name]} has been added to #{@current_facility.name} staff."
-		else
-			flash[:alert] = "#{@add_staff.errors.full_messages.join(', ')}"
-		end
-
-		redirect_to action: :new
-	end
-
 private
 	def staff_params
 		params.require(:user).permit(Parameters::STAFF_PARAMS)

@@ -1,4 +1,4 @@
-class FacilitiesUsers < ActiveRecord::Base
+class FacilitiesUser < ActiveRecord::Base
   belongs_to :facility
   belongs_to :user
 

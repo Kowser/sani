@@ -29,14 +29,8 @@
           <%= f.input :deposit_date, as: :string, input_html: { class: 'datepicker' } %>
         </div>
       </div>
-      <div class='row'>
-        <div class='col-sm-3 col-xs-6'>
-          <%= f.submit 'Save Payment', class: 'btn btn-success' %>
-        </div>
-        <div class='col-sm-3 col-sm-offset-6 col-xs-6 text-right'>
-          <%= link_to 'Delete Payment', facility_payment_path(@current_facility, @payment), method: :delete, data: {confirm: 'Delete this invoice?'}, class: 'btn btn-danger' unless @payment.new_record? %>
-        </div>
-      </div>
+      <%= f.submit 'Save Payment', class: 'btn btn-success' %>
+      <%= link_to 'Delete Payment', facility_payment_path(@current_facility, @payment), method: :delete, data: {confirm: 'Delete this invoice?'}, class: 'btn btn-danger pull-right' unless @payment.new_record? %>
     <% end %>
   </div>
 </div>

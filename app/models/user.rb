@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
   def is_administrator?
   	role == 'Administrator'
   end
+
+  def is_staff?
+    role == 'Staff'
+  end
   
   def name
   	first_name + ' ' + last_name

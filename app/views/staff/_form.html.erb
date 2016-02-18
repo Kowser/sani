@@ -1,4 +1,4 @@
-<% form_params = @staff.new_record? ? {url: facility_staff_create_path, method: :post} : {url: facility_staff_path, method: :patch} # this variable the result of routing collision for 'staff' %>
+<% form_params = @staff.new_record? ? {url: facility_staff_create_path, method: :post} : {url: facility_staff_path, method: :patch} # this code is the result of routing collision for 'facility_staff_path' %>
 <div class="panel panel-gradient-babyblue">
   <div class="panel-heading">
     <div class="panel-title"><%= @staff.new_record? ? 'Create New' : 'Edit' %> User</div>
@@ -31,6 +31,7 @@
         <% end %>
       </div>
       <%= f.submit 'Save Staff', class: 'btn btn-success' %>
+      <%= link_to 'Remove Staff', facilities_user_path(@staff), method: :delete, data: {confirm: 'Remove this staff member?'}, class: 'btn btn-danger pull-right' unless @staff.new_record? || current_user.is_staff? %>
     <% end %>
   </div>
 </div>
