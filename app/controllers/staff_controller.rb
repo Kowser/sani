@@ -44,11 +44,18 @@ class StaffController < ApplicationController
 	end
 
 	def update
-
+		@staff = @current_facility.users.find(params[:id])
+		if @staff.update(staff_params)
+			flash[:success] = 'Staff member updated'
+			redirect_to action: :index
+		else
+			flash[:alert] = "#{@staff.errors.full_messages.join(', ')}"
+			render 'form'
+		end
 	end
 
 private
 	def staff_params
-		params.require(:staff).permit(Parameters::STAFF_PARAMS)
+		params.require(:user).permit(Parameters::STAFF_PARAMS)
 	end
 end

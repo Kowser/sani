@@ -3,7 +3,7 @@
     <div class="panel-title"><%= @staff.new_record? ? 'Create New' : 'Edit' %> User</div>
   </div>
   <div class='panel-body'>
-    <%= semantic_form_for [@current_facility, @staff], url: new_facility_staff_path, method: :post do |f| %>
+    <%= semantic_form_for [@current_facility, @staff], url: facility_staff_form_path, method: :patch do |f| %>
       <div class='row'>
         <div class='col-sm-6'>
           <%= f.input :first_name %>
