@@ -1,5 +1,5 @@
 class FacilitiesController < ApplicationController
-	before_action -> { authorization(:exec) }
+	before_action -> { authorization(:partner) }
 
 	def index
 		@facilities = current_user.facilities

@@ -11,20 +11,26 @@ _	ALL should be able to
 	x	mark maintenance request as Low / Med / High priority
 		_	w/ text notification to the maintenance person?
 
+_	FACILITIES
+	_ be able to delete (check if residents.any?) or inactivate (check if active resident) units. This may affect future billings? Will we bill by active units?
+
 _ AUTHORIZATION
 	x limit access to controllers for staff / admin / exec
 	x	limit access to residents view
 !	_	limit access via curl/etc... programs to upgrade user's own role level (ie: Admin -> Exec)
 	_ add staff permissions select collection needs fixing Exec vs Admin, none should see DevOps
 
+!	_	hide facilities/:id/ in routes. "shallow: true" works, but looses the facility_id:, can we create 'current_facility' through sessions[:facility_id] just like current_user, or will changing facility_id make this a problem?
 
 =======================================================
 FUTURE
 _	Users may need to have roles dependent on facility location
+_	Prevent Admins for adding more than 1 resident per unit
 
 CONTROLLERS
-Registrations overrides?
-ResidentApplications
+_ EmploymentApplications
+_ ResidentApplications
+_ Registrations overrides?
 
 CURRENT PROBLEMS
 _	date pickers sucks -> look at mentorme to figure out how to display form dates to user correctly, and save in models correctly

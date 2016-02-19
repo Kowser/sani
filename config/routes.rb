@@ -6,13 +6,10 @@ Rails.application.routes.draw do
     get 'login', to: 'devise/sessions#new'
   end
 
+# ALL PATHS NESTED UNDER FACILITIES - provides @current_facility id
   resources :facilities do
-  # FACILITIES NESTED PATHS
-    # controller 'dashboard' do
-    #   get 'dashboard', action: 'index'
-    # end
     controller 'staff' do
-      post 'create_staff', action: 'create' #resolves singular/plural staff routing conflict; standard path defaults to 'show'
+      post 'create_staff', action: 'create' #resolves singular/plural staff routing conflict; resources path defaults to 'show'
       post 'find_staff', action: 'find_staff'
       post 'add_staff', action: 'add_staff'
       post 'remove_staff/:id', action: 'remove_staff'
@@ -30,6 +27,4 @@ Rails.application.routes.draw do
     resources :residents
     resources :facilities_users, only: [:create, :destroy]
   end
-  # END FACILITIES NESTED PATH
-  
 end

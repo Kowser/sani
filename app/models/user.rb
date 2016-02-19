@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   # Rails 4.1+, allows roles & their corresponding methods .staff?, .admin?, user[:role] = #, etc...
   # Permissions are granted at or above designated role
   # visit http://railsapps.github.io/rails-authorization.html for more information
-  enum role: {staff: 1, admin: 3, exec: 5, devops: 7} # please do not define 0
+  enum role: {staff: 1, admin: 3, partner: 5, devops: 7} # please do not define 0
 
   validates_presence_of :email, :first_name, :last_name, :role
   has_and_belongs_to_many :facilities

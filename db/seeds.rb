@@ -23,7 +23,7 @@ user = create_user(
 	role: User.roles['exec']
 )
 
-# PRIMARY FACILITY - 15/16 residents
+# PRIMARY FACILITY - 15/16 residents, 1 unoccupied room
 facility = Facility.new(
 	name: 'All Comfort Residential Care',
 	address: '9347 SW 35th Ave',
@@ -33,16 +33,9 @@ facility = Facility.new(
 	phone: '503-987-1234',
 	fax: '503-123-7890',
 	owner_id: user.id
-)
+).units.build( number: 1, active: true).save
 
-facility.units.build(
-# UNOCCUPIED ROOM
-	number: 1,
-  occupancy: ['Shared', 'Private'].sample,
-  active: true
-).save
-
-# SECOND FACILITY - no residents
+# SECOND FACILITY - no residents, 1 unoccupied room
 facility_2 = Facility.new(
 	name: 'Hill House',
 	address: '1325 SW Gibbs St.',
@@ -52,14 +45,7 @@ facility_2 = Facility.new(
 	phone: '503.274.0000',
 	fax: '503.243.3427',
 	owner_id: user.id
-)
-
-facility_2.units.build(
-# UNOCCUPIED ROOM
-	number: 1,
-  occupancy: ['Shared', 'Private'].sample,
-  active: true
-).save
+).units.build( number: 1, active: true).save
 
 # EXECUTIVE USER (Owner) - Unassigned to any facility
 create_user(
@@ -139,13 +125,9 @@ end
 # =====================================================================================
 # RESIDENTS, INVOICES, PAYMENTS
 # =====================================================================================
-15.times do |i|
-	unit = Unit.create!(
-		facility_id: facility.id,
-		number: i + 2, # +2 because empty room is already 1
-	  occupancy: ['Shared', 'Private'].sample,
-	  active: true
-	)
+15.times do |i| 
+	#+2 because empty room 1 exists from above
+	unit = Unit.create!(facility_id: facility.id, number: i + 2,  active: true) 
 
 	resident = Resident.create!(
 		unit_id: unit.id,
