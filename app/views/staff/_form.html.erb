@@ -1,10 +1,12 @@
-<% form_params = @staff.new_record? ? {url: facility_create_staff_path, method: :post} : {url: facility_staff_path, method: :patch} # this code is the result of routing collision for 'facility_staff_path' %>
+<% form_params = @staff.new_record? ? {url: facility_create_staff_path, method: :post} : {url: facility_staff_path, method: :patch} # this code resolves routing 'facility_staff_path' directing to 'show' %>
+
 <div class="panel panel-gradient-babyblue">
   <div class="panel-heading">
     <div class="panel-title"><%= @staff.new_record? ? 'Create New' : 'Edit' %> User</div>
   </div>
   <div class='panel-body'>
     <%= semantic_form_for [@current_facility, @staff], form_params do |f| %>
+      <%= hidden_field_tag(:facility_id, @current_facility.id) %>
       <div class='row'>
         <div class='col-sm-6'>
           <%= f.input :first_name %>
@@ -31,7 +33,7 @@
         <% end %>
       </div>
       <%= f.submit 'Save Staff', class: 'btn btn-success' %>
-      <%= link_to 'Remove Staff', facilities_user_path(@staff), method: :delete, data: {confirm: 'Remove this staff member?'}, class: 'btn btn-danger pull-right' unless @staff.new_record? || current_user.is_staff? %>
+      <%= link_to 'Remove Staff', facility_facilities_user_path(@current_facility, @staff), method: :delete, data: {confirm: 'Remove this staff member?'}, class: 'btn btn-danger pull-right' unless @staff.new_record? %>
     <% end %>
   </div>
 </div>

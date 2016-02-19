@@ -3,7 +3,7 @@
     <div class="panel-title">Found Existing User</div>
   </div>
   <div class='panel-body'>
-    <%= semantic_form_for FacilitiesUser.new do |f| %>
+    <%= semantic_form_for [@current_facility, FacilitiesUser.new] do |f| %>
       <%= hidden_field_tag :user_id, @staff.id %>
       <%= hidden_field_tag :name, @staff.name %>
       <table class="table table-condensed table-responsive">
