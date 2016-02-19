@@ -10,25 +10,25 @@
         </div>
       </div>
       <div class='row'>
-        <h4 class='text-center'>Resident's Information</h4>
-        <div class='col-sm-6 col-lg-4 col-xs-12'>
+        <h4 class='text-center'>Resident Information</h4>
+        <div class='col-sm-6 col-lg-4'>
           <%= f.input :first_name %>
         </div>
-        <div class='col-sm-6 col-lg-4 col-xs-12'>
+        <div class='col-sm-6 col-lg-4'>
           <%= f.input :last_name %>
         </div>
-        <div class='col-sm-3 col-xs-6'>
+        <div class='col-sm-3 col-xs-5'>
           <%= f.input :move_in, as: :string, label: 'Move In Date', input_html: { class: 'datepicker' } %>
         </div>
-        <div class='col-sm-3 col-xs-6'>
-          <%= f.input :rent, placeholder: '1234.56' %>
-        </div>
-        <div class='col-sm-2 col-xs-6'>
+        <div class='col-sm-2 col-xs-3'>
           <%= f.input :unit, placeholder: '6', collection: @current_facility.units.map(&:number) %>
+        </div>
+        <div class='col-sm-3 col-xs-4'>
+          <%= f.input :rent, placeholder: '1234.56' if access(:admin) %>
         </div>
       </div>
       <div class='row'>
-        <h4 class='text-center'>Representative's Information</h4>
+        <h4 class='text-center'>Representative Information</h4>
         <div class='col-sm-6'>
           <%= f.input :contact_first_name %>
         </div>
@@ -52,19 +52,19 @@
         <div class='col-sm-3'>
           <%= f.input :city %>
         </div>
-        <div class='col-sm-2'>
+        <div class='col-sm-2 col-xs-5'>
           <%= f.input :state, as: :select, collection: Collections::STATE %>
         </div>
-        <div class='col-sm-2'>
+        <div class='col-sm-2 col-xs-7'>
           <%= f.input :zip %>
         </div>
       </div>
       <div class='row'>
           <div class='col-sm-12'>
-            <%= f.input :notes, label: 'Additional Information', hint: 'Please do not enter sensitive data (medical, financial, etc..).', input_html: { rows: 3 } %>
+            <%= f.input :notes, label: 'Additional Information', hint: 'Please do not enter sensitive data (medical, financial, etc..).', input_html: { rows: 3, disabled: !access(:admin) } %>
           </div>
         </div>
-      <%= f.submit 'Save Resident', class: 'btn btn-success' %>
+      <%= f.submit 'Save Resident', class: 'btn btn-success' if access(:admin) %>
     <% end %>
   </div>
 </div>

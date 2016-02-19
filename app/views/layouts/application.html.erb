@@ -15,7 +15,7 @@
         <%= hidden_field_tag(:facility_id, @current_facility.id) %>
         <%= semantic_form_for @current_facility do |f| %>
           <% f.input :id, as: :select, collection: current_user.facilities, label: false, include_blank: false %>
-        <% end if @show_facility_selector %>
+        <% end if @multiple_facilities %>
         <span id='bootstrap-flash'><%= bootstrap_flash %></span>
         <%= yield %>
         <%= debug(params) if Rails.env.development? %>

@@ -16,17 +16,17 @@ class ApplicationController < ActionController::Base
   end
 
 # BEFORE_ACTIONS
-  # loads facility & limits user access to their own facilities
+  # loads facility & limits user access to assigned facilities
   def select_facility
-  	@current_facility = current_user.facilities.find_by(id: params[:facility_id]) || current_user.facilities.first
+  	@current_facility ||= (current_user.facilities.find_by(id: params[:facility_id]) || current_user.facilities.first)
   end
 
-  # shows selective if user manages multiple facilities
+  # shows selector for users assigned to multiple facilities
   def multiple_facilities
-    @multiple_facilities = true if current_user.facilities.count > 1
+    @multiple_facilities = current_user.facilities.count > 1
   end
 
-  # limits access in controllers
+  # authorization for controllers
   def authorization(permitted_role)
     unless access(permitted_role)
       redirect_to after_sign_in_path_for(current_user)
@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
   end
 
 # HELPERS
-  # limits access in views; utilized by controllers & views
+  # authorization for views; utilized by controllers & views
   def access(permitted_role)
     current_user[:role] >= User.roles[permitted_role]
   end

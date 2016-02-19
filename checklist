@@ -1,28 +1,18 @@
 MINIMUM VIABLE PRODUCT
-_	Owner should be able to...
-	x FACILITY
-		_ unassociate themselves from a facility
-	_ STAFF
-		_ add users with staff/admin roles
-		x	assign users to facilities
-		_ archive users & disable priveleges
-		_ promote / demote users (except other Execs)
-		_	remove users from facilities (except other Execs, or only Facility creator can do this?)
+_	OWNER
+	_ unassociate themselves from a facility
+_ STAFF
+	_ add users with staff/admin roles
+	x	assign users to facilities
+	_ archive users & disable priveleges
+	_ promote / demote users (except other Execs)
+	_	remove users from facilities (except other Execs, or only Facility creator can do this?)
 =======================================================
-_	Owner / Admin should be able to...
-	x PAYMENTS
-
-	x	INVOICES
-
-_	Admin / Owner / Staff should be able to
-	x	see all maintenance requests ordered by facility
-	x	see only their respective facility maintenance issues
-	x	mark maintenance request as Low / High priority, or Emergency
+_	ALL should be able to
+	x	mark maintenance request as Low / Med / High priority
 		_	w/ a text notification to the maintenance person
-	x	mark maintenance request as completed
 
 FUTURE
-_	Users should have varying levels of access (Owner / Admin / Staff (Read or Write?))
 _	Users may need to have roles dependent on facility location
 
 CONTROLLERS
@@ -31,4 +21,5 @@ ResidentApplications
 
 CURRENT PROBLEMS
 _	date pickers sucks -> look at mentorme to figure out how to display form dates to user correctly, and save in models correctly
+_ maintenance (index) for mobile/desktop is duplicated; how can we clean this up?
 
