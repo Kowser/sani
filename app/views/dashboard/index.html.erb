@@ -1,65 +1,47 @@
-<div class='row'>
-	<div class='col-md-4'>
-
-		<div class="panel panel-gradient-green">
-			<div class="panel-heading">
-			  <div class="panel-title">Upcoming Payments</div>
-			</div>
-		  <div class="panel-body">
-		   	<h3><%= number_to_currency(@payments[:upcoming_payments]) %></h3>
-		   	<h6><%= @payments[:upcoming_payments_count] %> invoices unpaid in <%= Date.today.strftime('%B') %>.</h6>
-		   	<hr>
-		   	<h3><%= number_to_currency(@payments[:past_due_payments]) %></h3>
-		   	<h6><%= @payments[:past_due_payments_count] %> past due invoices.</h6>
-		  </div>
-		</div>
-
+<div class="panel panel-gradient-green">
+	<div class="panel-heading">
+	  <div class="panel-title"><%= 'Facility'.pluralize(@facilities.count) %> Overview</div>
 	</div>
-	<div class='col-md-8'>
+		<table class="table table-condensed table-striped table-hover table-responsive">
+			<thead>
+	  		<tr>
+		   		<th>Facility</th>
+		   		<th class='text-center'>Rents</th>
+		   		<th class='text-center'>Undeposited</th>
+		   		<th class='text-center'>Deposited</th>
+		   		<th class='text-center'>Upcoming</th>
+		   		<th class='text-center'>Units</th>
+		   		<th class='text-center'>Occupied</th>
+		   		<th class='text-center'>Vacant</th>
+		   		<th class='text-right'>View</th>
+		   	</tr>
+		  </thead>
+		  <tbody>
+	  		<% @facilities.each do |facility| %>
+	  	 	<tr>
+	  	 		<td><%= facility.name %></td>
+	  	 		<td class='text-center'><%= number_to_currency(a = facility.residents.rents) %></td>
+	  	 		<td class='text-center'><%= number_to_currency(b = facility.payments.undeposited) %></td>
+	  	 		<td class='text-center'><%= number_to_currency(c = facility.payments.deposited) %></td>
+	  	 		<td class='text-center'><%= number_to_currency(a - b - c) %></td>
+	  	 		<td class='text-center'><%= u = facility.units.count %></td>
+	  	 		<td class='text-center'><%= o = facility.units.occupied.count %></td>
+	  	 		<td class='text-center'><%= u - o %></td>
+	  	 		<td class='text-right'>
+	  	 			<%= link_to 'View', edit_facility_path(facility), class: 'btn btn-xs btn-default' %>
+	  	 		</td>
+	  	 	</tr>
+	  	 	<% end %>
+	  </tbody>
+	</table>
+</div>
 
-		<div class="panel panel-gradient-blue">
-			<div class="panel-heading">
-			  <div class="panel-title">New Resident Applications (EXAMPLE VIEW)</div>
-			</div>
-			
-			<table class="table table-condensed table-striped table-hover table-responsive">
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>Move-In Date</th>
-						<th>Phone</th>
-						<th class='col-tb-75'>View</th>
-					</tr>
-				</thead>
-			  <tbody>
-				   	<tr>
-				   		<td>Aurelie Terry PhD</td>
-				   		<td>03/06/2016</td>
-				   		<td>901-922-0182</td>
-				   		<td><span class='btn btn-xs btn-default'>View</span></td>
-				   	</tr>
-				   	<tr>
-				   		<td>Kaleb Spencer</td>
-				   		<td>02/14/2016</td>
-				   		<td>405-021-2177</td>
-				   		<td><span class='btn btn-xs btn-default'>View</span></td>
-				   	</tr>
-				   	<tr>
-				   		<td>Clemmie Littel</td>
-				   		<td>02/20/2016</td>
-				   		<td>881.454.7194</td>
-				   		<td><span class='btn btn-xs btn-default'>View</span></td>
-				   	</tr>
-				   	<tr>
-				   		<td>Emmanuelle Schneider II</td>
-				   		<td>02/20/2016</td>
-				   		<td>(408) 655-1306</td>
-				   		<td><span class='btn btn-xs btn-default'>View</span></td>
-				   	</tr>
-			  </tbody>
-			</table>
-		</div>
-
+<div class='row'>
+	<div class='col-md-6'>
+		<%= render template: 'employment_applications/index', locals: {dashboard_view: true} %>
+	</div>
+	<div class='col-md-6'>
+		<%= render template: 'resident_applications/index', locals: {dashboard_view: true} %>
 	</div>
 </div>
 

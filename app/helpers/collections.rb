@@ -16,16 +16,25 @@ module Collections
 		'Question',
 		'Other'
 	]
-
+	
+	roles = [['Staff', 'staff'], ['Administrator', 'admin'], ['Partner/Owner', 'partner']]
 	PERMISSION = {
-		'Administrator' => ['Staff', 'Administrator'],
-		'Executive' => ['Staff', 'Administrator', 'Executive']
+		3 => roles - [['Partner/Owner', 'partner']],
+		5 => roles,
+		7 => roles + [['Developer', 'devops']]
 	}
 
 	PRIORITY = {
 		'High' => 'danger',
 		'Medium' => 'warning',
 		'Low' => 'success'
+	}
+
+	FACILITIES = {
+		'allcomfort' => 'All Comfort Residential Care',
+		'barburvista' => 'Barbur Vista',
+		'hillhouse' => 'The Hill House',
+		'hillside' => 'Hillside Care Manor'
 	}
 
 	# converts true/false into Yes/No for human display

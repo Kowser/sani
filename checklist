@@ -1,4 +1,11 @@
 MINIMUM VIABLE PRODUCT
+_	Fix datepicker - date format
+x	fix staff permissions select collection needs fixing Exec vs Admin, none should see DevOps
+_	Employment applications
+_	Improve Dashboard look for facilities
+
+
+
 _ STAFF
 	_ add users with staff/admin roles
 	x	assign users to facilities
@@ -18,7 +25,7 @@ _ AUTHORIZATION
 	x limit access to controllers for staff / admin / exec
 	x	limit access to residents view
 !	_	limit access via curl/etc... programs to upgrade user's own role level (ie: Admin -> Exec)
-	_ add staff permissions select collection needs fixing Exec vs Admin, none should see DevOps
+
 
 !	_	hide facilities/:id/ in routes. "shallow: true" works, but looses the facility_id:, can we create 'current_facility' through sessions[:facility_id] just like current_user, or will changing facility_id make this a problem?
 
@@ -35,4 +42,3 @@ _ Registrations overrides?
 CURRENT PROBLEMS
 _	date pickers sucks -> look at mentorme to figure out how to display form dates to user correctly, and save in models correctly
 _ maintenance (index) for mobile/desktop is duplicated; how can we clean this up?
-

@@ -11,10 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160130020233) do
+ActiveRecord::Schema.define(version: 20160219220406) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "employment_applications", force: :cascade do |t|
+    t.integer  "facility_id"
+    t.text     "notes"
+    t.boolean  "over_18"
+    t.boolean  "any_shift"
+    t.string   "any_shift_text"
+    t.boolean  "overtime"
+    t.boolean  "eligible_us"
+    t.boolean  "accomodations"
+    t.text     "accomodations_text"
+    t.boolean  "convictions"
+    t.text     "convictions_text"
+    t.json     "skills"
+    t.string   "name"
+    t.string   "address"
+    t.string   "phone"
+    t.string   "email"
+    t.text     "other_information"
+    t.boolean  "certify"
+    t.string   "location"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
 
   create_table "facilities", force: :cascade do |t|
     t.string   "name"
@@ -127,7 +151,7 @@ ActiveRecord::Schema.define(version: 20160130020233) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.integer  "role"
+    t.integer  "role",                                null: false
     t.string   "first_name"
     t.string   "last_name"
     t.string   "phone"

@@ -1,5 +1,7 @@
 class Unit < ActiveRecord::Base
-	validates_presence_of :number, :occupancy, :facility
+	scope :occupied, -> { joins(:residents).where(residents: {active: true}) }
+
+	validates_presence_of :number, :facility
 	belongs_to :facility
 	has_many :residents
 

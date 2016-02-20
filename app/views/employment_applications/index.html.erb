@@ -1,0 +1,36 @@
+<% dashboard_view ||= false %>
+
+<div class="panel panel-gradient-green">
+	<div class="panel-heading">
+	  <div class="panel-title">New Employment Applications
+	  	<%= link_to 'New Application', new_facility_employment_application_path, class: 'btn btn-xs btn-default pull-right' %>
+	  </div>
+	</div>
+	<table class="table table-condensed table-striped table-hover table-responsive">
+		<thead>
+  		<tr>
+	   		<!-- <th class='text-center'><i class='fa fa-check-square-o'></i></th> -->
+	   		<th>Date</th>
+	   		<th>Name</th>
+	   		<% unless dashboard_view %>
+	   			<th>Email</th>
+	   			<th>Phone</th>
+	   		<% end %>
+	   		<th class='text-right'>View</th>
+	   	</tr>
+	  </thead>
+	  <tbody>
+	  		<% @employment_applications.each do |application| %>
+	  	 	<tr>
+	  	 		<td><%= application.created_at.strftime('%m/%d/%Y') %></td>
+	  	 		<td><%= application.name %></td>
+	  	 		<% unless dashboard_view %>
+		  	 		<td><%= application.email %></td>
+		  	 		<td><%= application.phone %></td>
+		  	 	<% end %>
+	  	 		<td class='text-right'><%= link_to 'View', edit_facility_employment_application_path(@current_facility, application), class: 'btn btn-xs btn-default' %></td>
+	  	 	</tr>
+	  	 	<% end %>
+	  </tbody>
+	</table>
+</div>

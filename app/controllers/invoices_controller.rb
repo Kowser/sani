@@ -1,5 +1,5 @@
 class InvoicesController < ApplicationController
-	before_action -> { authorization(:admin) }
+	before_action -> { authorization(:devops) }
 	
 	def index
 		@invoices = @current_facility.invoices.where("balance_due > 0")

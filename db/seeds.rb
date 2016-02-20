@@ -20,7 +20,7 @@ user = create_user(
 	first_name: 'Adam',
 	last_name: 'Reinke',
 	phone: '360-333-6789',
-	role: User.roles['exec']
+	role: User.roles['partner']
 )
 
 # PRIMARY FACILITY - 15/16 residents, 1 unoccupied room
@@ -33,7 +33,9 @@ facility = Facility.new(
 	phone: '503-987-1234',
 	fax: '503-123-7890',
 	owner_id: user.id
-).units.build( number: 1, active: true).save
+)
+facility.units.build( number: 1, active: true)
+facility.save!
 
 # SECOND FACILITY - no residents, 1 unoccupied room
 facility_2 = Facility.new(
@@ -45,7 +47,9 @@ facility_2 = Facility.new(
 	phone: '503.274.0000',
 	fax: '503.243.3427',
 	owner_id: user.id
-).units.build( number: 1, active: true).save
+)
+facility_2.units.build( number: 1, active: true)
+facility_2.save!
 
 # EXECUTIVE USER (Owner) - Unassigned to any facility
 create_user(
@@ -53,7 +57,7 @@ create_user(
 	first_name: 'Steve',
 	last_name: 'Martini',
 	phone: '503-123-4567',
-	role: User.roles['exec']
+	role: User.roles['partner']
 )
 
 # ADMINISTRATOR USER (not a sys admin)

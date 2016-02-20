@@ -12,4 +12,8 @@ module Parameters
 	MAINTENANCE_REQUEST_PARAMS = :location, :description, :priority, :completed, :completed_date
 
 	INVOICE_PARAMS = :number, :due_date, :item, :total_due, :notes, :resident_id
+
+	EMPLOYMENT_APPLICATIONS = :over_18, :any_shift, :any_shift_text, :overtime, :eligible_us, :accomodations, :accomodations_text,
+	  :convictions, :convictions_text, :skills, :name, :address, :phone, :email, :other_information, :certify,
+	  :resume, :location
 end

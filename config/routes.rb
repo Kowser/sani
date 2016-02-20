@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     post 'receive_payments', to: 'invoices#receive_payments'
     post 'deposit_payments',to: 'payments#deposit_payments'
 
-
+    resources :employment_applications, except: :destroy
     resources :invoices
     resources :payments
     resources :staff
