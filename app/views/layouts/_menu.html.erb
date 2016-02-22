@@ -1,8 +1,8 @@
 <div class='menu'>
 	<%= link_to 'Dashboard', facility_dashboard_path(@current_facility) if access(:admin) %>
 	<%#= link_to 'Invoices', facility_invoices_path(@current_facility) if access(:admin) %>
-	<%= link_to 'Payments', facility_payments_path(@current_facility) if access(:admin) %>
-	<%= link_to 'Deposits', facility_payments_path(@current_facility) if access(:admin) %>
+	<%= link_to 'Payments', facility_receive_payments_path(@current_facility) if access(:admin) %>
+	<%= link_to 'Deposits', facility_deposit_payments_path(@current_facility) if access(:admin) %>
 	<%= link_to 'Maintenance', facility_maintenance_requests_path(@current_facility) %>
 	<%= link_to 'Employment', facility_employment_applications_path(@current_facility) if access(:admin) %>
 	<%#= link_to 'Applications', facility_applications_path(@current_facility) %>

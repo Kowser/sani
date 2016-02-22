@@ -1,9 +1,12 @@
 class PaymentsController < ApplicationController
 	before_action -> { authorization(:admin) }
 
-	def index
+	def deposit_payments # combine under index later with params?
 		@payments = @current_facility.payments.where(deposited: false).includes(:resident)
-		# @payments = @current_facility.payments.includes(:resident)
+	end
+
+	def receive_payments # combine under index later with params?
+		@residents = @current_facility.residents.where(active: true).order_by_name
 	end
 
 	def new
@@ -23,6 +26,11 @@ class PaymentsController < ApplicationController
 		end
 	end
 
+	def create_many
+		@current_facility.residents.update(new_payment_params[:resident_ids].keys, new_payment_params[:resident_ids].values )
+		redirect_to action: 'receive_payments'
+	end
+
 	def edit
 		@payment = @current_facility.payments.find(params[:id])
 		render 'form'
@@ -39,6 +47,11 @@ class PaymentsController < ApplicationController
 		end
 	end
 
+	def update_many
+		@current_facility.payments.update(deposit_params[:payment_attributes].keys, deposit_params[:payment_attributes].values)
+		redirect_to action: 'deposit_payments'
+	end
+
 	def destroy
 		if payment = @current_facility.payments.find_by(id: params[:id])
 			payment.destroy
@@ -49,21 +62,16 @@ class PaymentsController < ApplicationController
 		redirect_to action: 'index'
 	end
 
-	def deposit_payments
-		deposit_ids = params[:deposits].select { |k, v| v['deposited'] == '1' }.keys
-		if deposit_ids.any?
-			@current_facility.payments.update(deposit_ids, params[:deposits].values)
-			flash[:success] = "Deposited #{ActionController::Base.helpers.pluralize(deposit_ids.count, 'payment')}."
-			# date = params[:date].blank? ? Date.today : params[:date] # move to model?
-			# @current_facility.payments.where(id: deposit_ids).update_all(deposited: true, deposit_date: date)
-		else
-			flash[:alert] = 'No payments selected.'
-		end
-		redirect_to action: 'index'
-	end
-
 private
 	def payment_params
 	  params.require(:payment).permit(Parameters::PAYMENT_PARAMS)
+	end
+
+	def deposit_params
+		params.require(:deposits).permit(deposit_fields: [:deposited])
+	end
+
+	def new_payment_params
+		params.require(:residents).permit(resident_ids: [payments_attributes: [:amount, :method, :receive_date]])
 	end
 end

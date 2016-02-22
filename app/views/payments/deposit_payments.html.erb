@@ -1,10 +1,8 @@
-<div class="panel panel-gradient-green">
+<div class="panel panel-gradient-purple">
 	<div class="panel-heading">
-	  <div class="panel-title">Undeposited Payments
-	  	<%= link_to 'New Payment', new_facility_payment_path, class: 'btn btn-xs btn-default pull-right' %>
-	  </div>
+	  <div class="panel-title">Undeposited Payments</div>
 	</div>
-	<%= form_for :deposits, url: facility_deposit_payments_path, method: :post do %>
+	<%= form_for :deposits, url: facility_deposit_payments_path(@current_facility), method: :post do %>
 		<table class="table table-condensed table-striped table-hover table-responsive">
 			<thead>
 	  		<tr>
@@ -19,7 +17,7 @@
 		  <tbody>
 				<% @payments.each do |payment| %>
 			    <tr>
-	    			<%= fields_for 'deposits[]', payment do |f| %>
+	    			<%= fields_for 'deposits[deposit_fields][]', payment do |f| %>
 		    			<td class='text-center'><%= f.check_box :deposited %></td>
 		    		<% end %>
 	    			<td><%= payment.resident.name %></td>

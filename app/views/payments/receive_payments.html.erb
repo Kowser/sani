@@ -1,0 +1,47 @@
+<div class="panel panel-gradient-purple">
+	<div class="panel-heading">
+	  <div class="panel-title">Receive Payments</div>
+	</div>
+	<%= form_for :residents, url: facility_receive_payments_path, method: :post do |f| %>
+		<table id='invoices' class="table table-condensed table-striped table-hover table-responsive">
+			<thead>
+	  		<tr>
+		   		<th>Resident</th>
+		   		<th>Unit</th>
+		   		<th>Rent</th>
+		   		<th class='text-center'>Payment</th>
+		   		<th class='text-center'>Paid with</th>
+		   		<th class='text-center'>Received on</th>
+		   	</tr>
+		   </thead>
+		   <tbody>
+				<% @residents.each do |resident| %>
+			    <tr>
+	    			<td><%= resident.name %></td>
+	    			<td><%= resident.unit.number %></td>
+	    			<td><%= rent = '%2.f' % resident.rent %></td>
+						<%= f.fields_for "resident_ids[#{resident.id}]", resident do |r| %>
+							<%= r.fields_for :payments, Payment.new do |p| %>
+				   		<td class='text-center'><%= p.number_field :amount, placeholder: rent, class: 'input responsive' %></td>
+				   		<td class='text-center'><%= p.select :method, Collections::PAYMENT_METHOD, class: 'payment-method' %></td>
+				   		<td class='text-center'><%= p.text_field :receive_date, placeholder: "#{Date.today.strftime('%m/%d/%Y')}", class: 'datepicker responsive' %></td>
+							<% end %>
+						<% end %>
+			  	</tr>
+		  	<% end %>
+		  </tbody>
+		</table>
+		<div class='panel-body'>
+			<div class='row'>
+				<div class='col-sm-9'>
+					<ul><strong>Reminder:</strong>
+						<li>Leaving the 'Received On' date blank will use today's date</li>
+					</ul>
+				</div>
+				<div class='col-sm-3'>
+					<%= submit_tag 'Submit Payments', class: 'btn btn-success pull-right' %>
+				</div>
+			</div>
+		</div>
+	<% end %>
+</div>

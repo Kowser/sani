@@ -16,8 +16,10 @@ Rails.application.routes.draw do
     end
 
     get 'dashboard', to: 'dashboard#index'
-    post 'receive_payments', to: 'invoices#receive_payments'
-    post 'deposit_payments',to: 'payments#deposit_payments'
+    get 'receive_payments', to: 'payments#receive_payments'
+    get 'deposit_payments', to: 'payments#deposit_payments'
+    post 'receive_payments', to: 'payments#create_many'
+    post 'deposit_payments', to: 'payments#update_many'
 
     resources :employment_applications, except: :destroy
     resources :invoices

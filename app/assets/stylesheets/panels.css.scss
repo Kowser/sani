@@ -7,15 +7,15 @@
 }
 
 .panel-gradient-brick {
-	border-color: #6B1D00;
+	border-color: #6B0000;
 	> .panel-heading {
-		background-color: #6B1D00;
-    background: -moz-linear-gradient(top,  #6B1D00 0%,  #AF370B 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#6B1D00), color-stop(100%, #AF370B));
-    background: -webkit-linear-gradient(top,  #6B1D00 0%, #AF370B 100%);
-    background: -o-linear-gradient(top,  #6B1D00 0%, #AF370B 100%);
-    background: -ms-linear-gradient(top,  #6B1D00 0%, #AF370B 100%);
-    background: linear-gradient(to bottom,  #6B1D00 0%, #AF370B 100%);
+		background-color: #6B0000;
+    background: -moz-linear-gradient(top,  #6B0000 0%,  #AF370B 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#6B0000), color-stop(100%, #AF370B));
+    background: -webkit-linear-gradient(top,  #6B0000 0%, #AF370B 100%);
+    background: -o-linear-gradient(top,  #6B0000 0%, #AF370B 100%);
+    background: -ms-linear-gradient(top,  #6B0000 0%, #AF370B 100%);
+    background: linear-gradient(to bottom,  #6B0000 0%, #AF370B 100%);
 	}
 }
 
@@ -30,6 +30,19 @@
     background: -ms-linear-gradient(top,  #032146 0%, #103D73 100%);
     background: linear-gradient(to bottom,  #032146 0%, #103D73 100%);
 	}
+}
+
+.panel-gradient-orange {
+  border-color: #912700;
+  > .panel-heading {
+    background-color: #912700;
+    background: -moz-linear-gradient(top,  #912700 0%,  #D4841C 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#912700), color-stop(100%, #D4841C));
+    background: -webkit-linear-gradient(top,  #912700 0%, #D4841C 100%);
+    background: -o-linear-gradient(top,  #912700 0%, #D4841C 100%);
+    background: -ms-linear-gradient(top,  #912700 0%, #D4841C 100%);
+    background: linear-gradient(to bottom,  #912700 0%, #D4841C 100%);
+  }
 }
 
 .panel-gradient-green {
@@ -57,3 +70,17 @@
     background: linear-gradient(to bottom,  #07666A 0%, #2C8589 100%);
   }
 }
+
+.panel-gradient-purple {
+  border-color: #543E9C;
+  > .panel-heading {
+    background-color: #543E9C;
+    background: -moz-linear-gradient(top,  #543E9C 0%,  #15054A 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#543E9C), color-stop(100%, #15054A));
+    background: -webkit-linear-gradient(top,  #543E9C 0%, #15054A 100%);
+    background: -o-linear-gradient(top,  #543E9C 0%, #15054A 100%);
+    background: -ms-linear-gradient(top,  #543E9C 0%, #15054A 100%);
+    background: linear-gradient(to bottom,  #543E9C 0%, #15054A 100%);
+  }
+}
+
