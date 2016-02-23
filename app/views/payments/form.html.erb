@@ -30,7 +30,7 @@
         </div>
       </div>
       <%= f.submit 'Save Payment', class: 'btn btn-success' %>
-      <%= link_to 'Delete Payment', facility_payment_path(@current_facility, @payment), method: :delete, data: {confirm: 'Delete this invoice?'}, class: 'btn btn-danger pull-right' unless @payment.new_record? %>
+      <%= link_to 'Delete Payment', facility_payment_path(@current_facility, @payment), method: :delete, data: {confirm: 'Delete this payment?'}, class: 'btn btn-danger pull-right' unless @payment.new_record? %>
     <% end %>
   </div>
 </div>

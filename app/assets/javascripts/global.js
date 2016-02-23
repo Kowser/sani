@@ -10,8 +10,12 @@ $(document).on('page:change', function() {
 	$('.datepicker').datepicker(calendar_options);
 
 	$('select#facility_id').change(function() {
-	  var org_id = window.location.toString().match(/facilities\/(\d+)/)[1]
-	  window.location = window.location.toString().replace("facilities/" + org_id, "facilities/" + $(this).val())
+	  var facility_id = window.location.toString().match(/facilities\/(\d+)/)[1]
+	  window.location = window.location.toString().replace("facilities/" + facility_id, "facilities/" + $(this).val())
+	});
+
+	$('select#search_deposited').change(function() {
+		$(this).closest('form').submit();
 	});
 
 	function addUnit() {

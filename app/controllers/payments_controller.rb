@@ -1,14 +1,15 @@
 class PaymentsController < ApplicationController
 	before_action -> { authorization(:admin) }
+	before_action :facility_selector?, only: [:deposit_payments, :receive_payments]
 
 	def deposit_payments # combine under index later with params?
-		@payments = @current_facility.payments.where(deposited: false).includes(:resident)
-		facility_selector?
+		@payments = @current_facility.payments.where(search_params).includes(:resident)
+		@default_selected = search_params.values.first
+		# binding.pry
 	end
 
 	def receive_payments # combine under index later with params?
 		@residents = @current_facility.residents.where(active: true).order_by_name
-		facility_selector?
 	end
 
 	def new
@@ -50,18 +51,18 @@ class PaymentsController < ApplicationController
 	end
 
 	def update_many
-		@current_facility.payments.update(deposit_params[:payment_attributes].keys, deposit_params[:payment_attributes].values)
-		redirect_to action: 'deposit_payments'
+		@current_facility.payments.update(deposit_params[:deposit_fields].keys, deposit_params[:deposit_fields].values)
+		redirect_to :back
 	end
 
 	def destroy
 		if payment = @current_facility.payments.find_by(id: params[:id])
 			payment.destroy
 			flash[:alert] = "Payment deleted."
+			redirect_to action: 'deposit_payments'
 		else
 			flash[:alert] = 'That payment doesn\'t appear to exist.'
 		end
-		redirect_to action: 'index'
 	end
 
 private
@@ -75,5 +76,9 @@ private
 
 	def new_payment_params
 		params.require(:residents).permit(resident_ids: [payments_attributes: [:amount, :method, :receive_date]])
+	end
+
+	def search_params
+	  params[:search] ? params.require(:search).permit(:deposited) : { deposited: false }
 	end
 end
