@@ -2,8 +2,13 @@
 
 <div class="panel panel-gradient-brick">
 	<div class="panel-heading">
-	  <div class="panel-title">Maintenance Requests
+	  <div class="panel-title text-center"><span class='pull-left'>Maintenance Requests <%#= dashboard_view ? 'Completed (Last 7 Days)' : '' %></span>
 	  	<%= link_to 'New Request', new_facility_maintenance_request_path, class: 'btn btn-xs btn-default pull-right' %>
+	  	<span class='pull-center'>
+			  <%= form_for :search, url: facility_maintenance_requests_path(@current_facility), method: :get do |search| %>
+			  	<%= search.select(:completed, options_for_select([['Completed', true], ['Incomplete', false]], @default_selected)) unless dashboard_view %>
+			  <% end %>
+			</span>
 	  </div>
 	</div>
 	<table class="table table-condensed table-striped table-hover table-responsive fixed">
@@ -15,6 +20,7 @@
 				<% if dashboard_view %>
 					<th class='col-tb-100 text-center'>Completed</th>
 				<% else %>
+					<th class='visible-xs'></th>
 					<th class='col-tb-75 text-right'>View</th>
 				<% end %>
 			</tr>

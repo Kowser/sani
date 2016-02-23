@@ -1,12 +1,15 @@
 .panel-title {
   font-weight: bold;
   color: white;
+  height: 22px;
   > a {
   color: black
   }
 }
 
 .panel-gradient-brick {
+  $start: #6B0000;
+  $end: #AF370B;
 	border-color: #6B0000;
 	> .panel-heading {
 		background-color: #6B0000;

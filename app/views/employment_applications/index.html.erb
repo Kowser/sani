@@ -3,7 +3,7 @@
 <div class="panel panel-gradient-orange">
 	<div class="panel-heading">
 	  <div class="panel-title">New Employment Applications
-	  	<%= link_to 'Temp Application Link', new_facility_employment_application_path, class: 'btn btn-xs btn-default pull-right' %>
+	  	<%= link_to 'Application Link', new_facility_employment_application_path, class: 'btn btn-xs btn-default pull-right' if current_user.devops? %>
 	  </div>
 	</div>
 	<table class="table table-condensed table-striped table-hover table-responsive">

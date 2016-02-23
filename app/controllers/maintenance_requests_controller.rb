@@ -2,7 +2,8 @@ class MaintenanceRequestsController < ApplicationController
 	before_action -> { authorization(:staff) }
 	
 	def index
-		@maintenance_requests = @current_facility.maintenance_requests.incomplete
+		@maintenance_requests = @current_facility.maintenance_requests.where(search_params)
+		@default_selected = search_params.values.first
 	end
 
 	def new
@@ -49,5 +50,9 @@ class MaintenanceRequestsController < ApplicationController
 private
 	def maintenance_request_params
 		params.require(:maintenance_request).permit([Parameters::MAINTENANCE_REQUEST_PARAMS])
+	end
+
+	def search_params
+	  params[:search] ? params.require(:search).permit(:completed) : { completed: false }
 	end
 end

@@ -28,7 +28,7 @@
 		    			<td class='text-center'><%= f.check_box :deposited %></td>
 		    		<% end %>
 	    			<td><%= payment.resident.name %></td>
-	    			<td class='text-center'><%= payment.receive_date %></td>
+	    			<td class='text-center'><%= payment.receive_date.strftime('%m/%d/%Y') %></td>
 	    			<td><%= payment.method %></td>
 	    			<td class='text-center'><%= '%.2f' % payment.amount %></td>
 	    			<td class='text-center'><%= link_to 'View', edit_facility_payment_path(@current_facility, payment), class: 'btn btn-xs btn-default' %></td>
