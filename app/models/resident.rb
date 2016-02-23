@@ -1,7 +1,7 @@
 class Resident < ActiveRecord::Base
 	scope :rents, -> { pluck(:rent).inject(:+) || 0 } #total monthly rents for dashboard
 	scope :order_by_name,-> { order('residents.first_name ASC', 'residents.last_name ASC')}
-	scope :order_by_unit,-> { order('residents.unit ASC')}
+	# scope :order_by_unit,-> { order('residents.unit ASC')}
 
 	belongs_to :unit
 	has_many :invoices

@@ -25,7 +25,7 @@ class FacilitiesController < ApplicationController
 	end
 
 	def edit
-		@facility = current_user.facilities.find(params[:id])
+		@facility = current_user.facilities.includes(:units, :residents).find(params[:id])
 		render 'form'
 	end
 

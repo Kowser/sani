@@ -34,9 +34,10 @@
       <table class="table-bordered table-condensed">
         <thead>
           <tr>
-            <th class='col-tb-50 text-center'>Unit</th>
+            <th class='col-tb-100 text-center'>Unit</th>
             <th class='col-tb-100 text-center'>Type</th>
             <th class='col-tb-75 text-center'>Active</th>
+            <th class='text-center'>Resident</th>
           </tr>
         </thead>
         <tbody>
@@ -44,7 +45,7 @@
             <%= render "units", u: u %>
           <% end %>
           <tr id='new-unit-link'>
-            <td colspan='3'><%= link_to_add_unit(f) %></td>
+            <td colspan='4'><%= link_to_add_unit(f) %></td>
           </tr>
         </tbody>
       </table>
