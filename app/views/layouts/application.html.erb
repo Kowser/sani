@@ -14,7 +14,7 @@
       <div class='content'>
         <%= semantic_form_for @current_facility do |f| %>
           <% f.input :id, as: :select, collection: current_user.facilities, label: false, include_blank: false %>
-        <% end if @multiple_facilities %>
+        <% end if @selector %>
         <span id='bootstrap-flash'><%= bootstrap_flash %></span>
         <%= yield %>
         <%= debug(params) if Rails.env.development? %>

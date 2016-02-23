@@ -3,10 +3,12 @@ class PaymentsController < ApplicationController
 
 	def deposit_payments # combine under index later with params?
 		@payments = @current_facility.payments.where(deposited: false).includes(:resident)
+		facility_selector?
 	end
 
 	def receive_payments # combine under index later with params?
 		@residents = @current_facility.residents.where(active: true).order_by_name
+		facility_selector?
 	end
 
 	def new

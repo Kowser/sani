@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!
   before_action :select_facility, if: :user_signed_in?
-  before_action :multiple_facilities, only: [:index], unless: :devise_controller?
+  before_action :facility_selector?, only: [:index], unless: :devise_controller?
 
   def after_sign_in_path_for(user)
   	select_facility # required here for @current_facility to be available
@@ -22,8 +22,8 @@ class ApplicationController < ActionController::Base
   end
 
   # shows selector for users assigned to multiple facilities
-  def multiple_facilities
-    @multiple_facilities = current_user.facilities.count > 1
+  def facility_selector?
+    @selector = current_user.facilities.count > 1
   end
 
   # authorization for controllers
