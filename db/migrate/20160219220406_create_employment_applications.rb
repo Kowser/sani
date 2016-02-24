@@ -1,7 +1,7 @@
 class CreateEmploymentApplications < ActiveRecord::Migration
   def change
     create_table :employment_applications do |t|
-    	t.references :facility
+      t.boolean :active, default: false
       t.text :notes
 
   		t.boolean :over_18

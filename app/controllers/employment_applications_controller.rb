@@ -1,10 +1,9 @@
 class EmploymentApplicationsController < ApplicationController
-	before_action -> { authorization(:admin) }
+	before_action -> { authorization(:admin) }, only: [:index, :show, :update]
+	before_action :authenticate_user!, except: [:new, :create]
+	layout 'employment', only: [:new, :create]
 
-	def index
-		@employment_applications = @current_facility.employment_applications
-	end
-
+	# APPLICANT ACTIONS
 	def new
 		@employment_application = EmploymentApplication.new
 		render 'form'
@@ -15,33 +14,38 @@ class EmploymentApplicationsController < ApplicationController
 		if @employment_application.save
 			# FormsMailer.submit_application_email(@employment_application).deliver_now
 			# send email to PV w/attachment
-			redirect_to action: 'index'
+			render 'thank_you'
 		else
-			flash[:alert] = 'Errors create'
+			flash[:alert] = 'Please fix the following errors'
 			render 'form'
 		end
 	end
 
-	def edit
-		@employment_application = @current_facility.employment_applications.find(params[:id])
-		render 'form'
+	# FACILITY ACTIONS
+	def index
+		@employment_applications = EmploymentApplication.all
+	end
+
+	def show
+		@employment_application = EmploymentApplication.find(params[:id])
 	end
 
 	def update
-		@employment_application = @current_facility.employment_applications.find(params[:id])
-		if @employment_application.save
-			# FormsMailer.submit_application_email(@employment_application).deliver_now
-			# send email to PV w/attachment
+		@employment_application = EmploymentApplication.find(params[:id])
+		if @employment_application.update(staff_employment_application_params)
 			redirect_to action: 'index'
 		else
-			flash[:alert] = 'Errors update'
+			flash[:alert] = 'Please fix the following errors'
 			render 'form'
 		end
 	end
-
+	
 private
-
 	def employment_application_params
-	  params.require(:employment_application).permit(Parameters::EMPLOYMENT_APPLICATIONS)
+	  params.require(:employment_application).permit(Parameters::EMPLOYMENT_APPLICATION_PARAMS)
+	end
+
+	def staff_employment_application_params
+		params.require(:employment_application).permit(Parameters::STAFF_EMPLOYMENT_APPLICATION_PARAMS)
 	end
 end

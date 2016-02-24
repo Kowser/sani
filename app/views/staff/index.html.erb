@@ -12,7 +12,7 @@
 				<th>Contact Phone</th>
 				<th>Permissions</th>
 				<th>Last Login</th>
-				<th class='text-center'>View</th>
+				<th class='text-right'>View&nbsp;</th>
 			</tr>
 		</thead>
 	  <tbody>
@@ -23,7 +23,7 @@
 	   		<td><%= staff.phone %></td>
 	   		<td><%= staff.role.capitalize %></td>
 	   		<td><%= staff.last_sign_in_at.try(:strftime, "%m/%d/%Y") %></td>
-	   		<td class='text-center'><%= link_to 'View', edit_facility_staff_path(@current_facility, staff), class: 'btn btn-xs btn-default' %></td>
+	   		<td class='text-right'><%= link_to 'View', edit_facility_staff_path(@current_facility, staff), class: 'btn btn-xs btn-default' %></td>
 	   	</tr>
 	   	<% end %>
 	  </tbody>

@@ -17,7 +17,7 @@
 		   		<th class='text-center'>Payment</th>
 		   		<th class='text-center'>Paid with</th>
 		   		<th class='text-center'>Received on</th>
-		   		<th class='text-center'>View</th>
+		   		<th class='text-right'>View&nbsp;</th>
 		   	</tr>
 		   </thead>
 		   <tbody>
@@ -31,10 +31,10 @@
 			   		<td class='hidden-xs hidden-sm'><%= (days = (Date.today - invoice.due_date).to_i) > 0 ? "Past Due (#{days})" : 'Current' %></td>
 						<%= fields_for "invoices[#{invoice.id}]", Payment.new do |p| %>
 				   		<td class='text-center'><%= p.number_field :amount, class: 'input responsive' %></td>
-				   		<td class='text-center'><%= p.select :method, Collections::PAYMENT_METHOD, class: 'payment-method' %></td>
+				   		<td class='text-center'><%= p.select :method, Collections::PAYMENT_METHODS, class: 'payment-method' %></td>
 				   		<td class='text-center'><%= p.text_field :receive_date, placeholder: "#{Date.today.strftime('%m/%d/%Y')}", class: 'datepicker responsive' %></td>
 						<% end %>
-						<td class='text-center'><%= link_to 'View', edit_facility_invoice_path(@current_facility, invoice), class: 'btn btn-xs btn-default' %></td>
+						<td class='text-right'><%= link_to 'View', edit_facility_invoice_path(@current_facility, invoice), class: 'btn btn-xs btn-default' %></td>
 			  	</tr>
 		  	<% end %>
 		  </tbody>

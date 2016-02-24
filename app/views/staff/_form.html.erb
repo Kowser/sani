@@ -21,7 +21,7 @@
           <%= f.input :phone %>
         </div>
         <div class='col-sm-12'>
-          <%= f.input :role, label: 'Permissions', as: :select, collection: Collections::PERMISSION[current_user[:role]], include_blank: false %>
+          <%= f.input :role, label: 'Permissions', as: :select, collection: Collections::PERMISSIONS[current_user[:role]], include_blank: false %>
         </div>
         <% if @staff.new_record? %>
           <div class='col-sm-6'>

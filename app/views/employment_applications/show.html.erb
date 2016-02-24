@@ -1,0 +1,74 @@
+<div class='row'>
+  <div class='col-md-8 col-md-offset-2'>
+    <%= semantic_form_for [@current_facility, @employment_application] do |f| %>
+      <div class="panel panel-orange">
+        <div class="panel-heading">
+          <div class="panel-title">Employment Application</div>
+        </div>
+        <table class="table table-condensed table-striped table-hover table-responsive">
+          <tbody>
+            <tr><th>Date Applied:</th><td colspan='2'><%= @employment_application.created_at.strftime('%m/%d/%Y') %></td></tr>
+            <tr><th>Name:</th><td colspan='2'><%= @employment_application.name %></td></tr>
+            <tr><th>Address:</th><td colspan='2'><%= @employment_application.address %></td></tr>
+            <tr><th>Phone:</th><td colspan='2'><%= @employment_application.phone %></td></tr>
+            <tr><th>Email:</th><td colspan='2'><%= @employment_application.email %></td></tr>
+            <tr><th>Preferred Location:</th><td colspan='2'><%= @employment_application.location %></td></tr>
+
+            <tr><th class='col-tb-150'></th><th></th><th class='col-tb-150'></th></tr>
+            <!-- BEGIN QUESTIONS -->
+            <tr>
+              <th colspan='2'>Are you at least 18 years old?</th>
+              <td class='text-center'><%= humanize_boolean(@employment_application.over_18) %></td>
+            </tr>
+            <tr>
+              <th colspan='2'>Are you willing to work any shift, including nights and weekends?</th>
+              <td class='text-center'><%= humanize_boolean(@employment_application.any_shift) %></td>
+            </tr>
+            <tr><th colspan='3'>If 'No', please state any limitations:</th></tr>
+            <tr><td colspan='3'><%= @employment_application.any_shift_text %></td></tr>
+            <tr>
+              <th colspan='2'>If applicable, are you available to work overtime?</th>
+              <td class='text-center'><%= humanize_boolean(@employment_application.overtime) %></td>
+            </tr>
+            <tr>
+              <th colspan='2'>Are you legally eligible for employment in the United States?</th>
+              <td class='text-center'><%= humanize_boolean(@employment_application.eligible_us) %></td>
+            </tr>
+            <tr><th colspan='2'>Are you able to perform the essential functions of the job position with or without reasonable accommodations?</th>
+              <td class='text-center'><%= humanize_boolean(@employment_application.accomodations) %></td>
+            </tr>
+            <tr><th colspan='3'>If 'No', what reasonable accommodation would you require?</th></tr>
+            <tr><td colspan='3'><%= @employment_application.accomodations_text %></td></tr>
+            <tr>
+              <th colspan='2'>Have you ever been convicted of any crime, including traffic violations?</th>
+              <td class='text-center'><%= humanize_boolean(@employment_application.convictions) %></td>
+            </tr>
+            <tr><th colspan='3'>If 'Yes', please describe:</th></tr>
+            <tr><td colspan='3'><%= @employment_application.convictions_text %></td></tr>
+            <tr><th colspan='3'>Check and list any skills which may be useful to the job you are seeking.</th></tr>
+            <tr><td colspan='3'><%= humanize_json(@employment_application.skills) %></td></tr>
+            <tr><th colspan='3'>Please tell us anything else about you that may be relevant to this position:</th></tr>
+            <tr><td colspan='3'><%= @employment_application.other_information %></td></tr>
+            <tr>
+              <th colspan='2'>I have carefully read the above certification and I understand and agree to its terms.*</th>
+              <td class='text-center'><%= humanize_boolean(@employment_application.certify) %></td>
+            </tr>
+            <tr>
+              <td colspan='3'>
+                <%= f.input :notes, label: 'Additional Notes', input_html: { rows: 4 } %>
+              </td>
+            </tr>
+            <tr>
+              <td><%= f.input :active, as: :select, collection: [['Active', true], ['Inactive', false]], label: false, include_blank: false %></td>
+              <td><!-- empty cell --></td>
+              <td><%= f.submit 'Update Application', class: 'btn btn-panel pull-right' %></td>
+            <%#= @employment_application.resume %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+
+  </div>
+</div>
+
+      

@@ -2,7 +2,7 @@
   <div class='col-md-6 col-md-offset-3'>
     <%= semantic_form_for [@current_facility, @employment_application], multipart: true do |f| %>
       <%= f.input :date, as: :string, input_html: { disabled: true, value: Time.now.strftime('%m/%d/%Y'), style: 'width:115px' } %>
-      <%= f.input :location, label: 'Location - Where are you applying at?', as: :select, collection: Collections::FACILITIES.invert %>
+      <%= f.input :location, label: 'Preferred location', as: :select, collection: Collections::FACILITIES, include_blank: false %>
       <%= f.input :name %>
       <%= f.input :address %>
       <%= f.input :phone %>
@@ -17,8 +17,7 @@
       <%= f.input :convictions, as: :radio, label: 'Have you ever been convicted of any crime, including traffic violations?' %>
       <%= f.input :convictions_text, as: :text, label: "If 'Yes', please describe:", input_html: { rows: 3 },
                   hint: 'The existence of a criminal record does not constitute an automatic bar to employment unless relevant to the type of employment.' %>
-      <%= f.input :skills, as: :check_boxes, label: 'Check and list any skills which may be useful to the job you are seeking.',
-                  collection: ['Providing assistance with ADLs', 'Medication Administration', 'Working with residents who have dementia', 'Cooking', 'Other'] %>
+      <%= f.input :skills, as: :check_boxes, label: 'Check and list any skills which may be useful to the job you are seeking.', collection: Collections::EMPLOYMENT_SKILLS %>
       <%= f.input :other_information, as: :text, label: 'Please tell us anything else about you that may be relevant to this position:', input_html: { rows: 4 } %>
 
       <%= f.input :resume, label: 'Please attach your resume (PDF only - max 1 MB)', as: :file, required: true %>

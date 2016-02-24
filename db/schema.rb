@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20160219220406) do
   enable_extension "plpgsql"
 
   create_table "employment_applications", force: :cascade do |t|
-    t.integer  "facility_id"
+    t.boolean  "active",             default: false
     t.text     "notes"
     t.boolean  "over_18"
     t.boolean  "any_shift"
@@ -36,8 +36,8 @@ ActiveRecord::Schema.define(version: 20160219220406) do
     t.text     "other_information"
     t.boolean  "certify"
     t.string   "location"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   create_table "facilities", force: :cascade do |t|

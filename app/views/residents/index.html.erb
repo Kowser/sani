@@ -12,7 +12,7 @@
 				<th class="hidden-xs">Contact Name</th>
 				<th>Contact Phone</th>
 				<th class="hidden-xs hidden-sm">Contact Email</th>
-				<th class='text-center'>View</th>
+				<th class='text-right'>View&nbsp;</th>
 			</tr>
 		</thead>
 	  <tbody>
@@ -23,7 +23,7 @@
 	   		<td class="hidden-xs"><%= resident.contact_name %></td>
 	   		<td><%= resident.phone %></td>
 	   		<td class="hidden-xs hidden-sm"><%= link_to resident.email %></td>
-	   		<td class='text-center'><%= link_to 'View', edit_facility_resident_path(@current_facility, resident), class: 'btn btn-xs btn-default' %></td>
+	   		<td class='text-right'><%= link_to 'View', edit_facility_resident_path(@current_facility, resident), class: 'btn btn-xs btn-default' %></td>
 	   	</tr>
 	   	<% end %>
 	  </tbody>

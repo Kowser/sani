@@ -6,6 +6,6 @@ class DashboardController < ApplicationController
 		@maintenance_requests = @current_facility.maintenance_requests.completed_this_week
 		
 		# update to show only NEW applications
-		@employment_applications = @current_facility.employment_applications
+		@employment_applications = EmploymentApplication.all
 	end
 end

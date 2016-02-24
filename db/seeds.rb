@@ -1,10 +1,10 @@
+# =====================================================================================
+# USERS & FACILITIES
+# =====================================================================================
 def create_user(params)
 	User.create!(params.merge(password: 'password', password_confirmation: 'password'))
 end
 
-# =====================================================================================
-# USERS & FACILITIES
-# =====================================================================================
 # DEV OPS user
 create_user(
 	email: 'sys@example.com',
@@ -117,7 +117,7 @@ create_user(
 		'downstairs stair well', 'elevator', 'office', 'Room 3', 'kitchen'].each do |location|
 		fac.maintenance_requests.create!(
 			location: location,
-			description: Faker::Lorem.sentences((2..6).to_a.sample).join(', '),
+			description: Faker::Lorem.sentences(rand(2..6)).join(', '),
 			priority: [3, 1, 1, 1, 2, 2].sample,
 			requester: fac.users.sample,
 			completed: completed = [true, false].sample,
@@ -186,6 +186,31 @@ end
 		amount: invoice.balance_due,
 		receive_date: Faker::Date.between(7.days.ago, Date.today),
 		ref_number: rand(1000..2000),
-		method: Collections::PAYMENT_METHOD.sample
+		method: Collections::PAYMENT_METHODS.sample
 	) if (1..10).to_a.sample < 9 # seeds 80% paid rate
+end
+
+# =====================================================================================
+# EMPLOYMENT APPLICATIONS
+# =====================================================================================
+5.times do
+	EmploymentApplication.create!(
+		over_18: [true, false].sample,
+		any_shift: result = [true, false].sample,
+		any_shift_text: result ? '' : Faker::Lorem.sentences(rand(2..6)).join(', '),
+		overtime: [true, false].sample,
+		eligible_us: [true, true, false].sample,
+		accomodations: result = [true, false].sample,
+		accomodations_text: result ? '' : Faker::Lorem.sentences(rand(2..6)).join(', '),
+		convictions: result = [true, false].sample,
+		convictions_text: !result ? '' : Faker::Lorem.sentences(rand(2..6)).join(', '),
+		skills: Collections::EMPLOYMENT_SKILLS.sample(rand(0..4)),
+		name: Faker::Name.name,
+		address: "{Faker::Address.street_address Faker::Address.city, Faker::Address.state Faker::Address.zip}",
+		phone: Faker::PhoneNumber.phone_number,
+		email: Faker::Internet.email,
+		other_information: [true, false].sample ? Faker::Lorem.sentences(rand(2..6)).join(', ') : '',
+		certify: true,
+		location: Collections::FACILITIES.sample
+	)
 end

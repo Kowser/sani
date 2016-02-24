@@ -23,7 +23,7 @@
 						<%= f.fields_for "resident_ids[#{resident.id}]", resident do |r| %>
 							<%= r.fields_for :payments, Payment.new do |p| %>
 				   		<td class='text-center'><%= p.number_field :amount, placeholder: rent, class: 'input responsive' %></td>
-				   		<td class='text-center'><%= p.select :method, Collections::PAYMENT_METHOD, class: 'payment-method' %></td>
+				   		<td class='text-center'><%= p.select :method, Collections::PAYMENT_METHODS, class: 'payment-method' %></td>
 				   		<td class='text-center'><%= p.text_field :receive_date, placeholder: "#{Date.today.strftime('%m/%d/%Y')}", class: 'datepicker responsive' %></td>
 							<% end %>
 						<% end %>
@@ -31,6 +31,7 @@
 		  	<% end %>
 		  </tbody>
 		</table>
+		
 		<div class='panel-body'>
 			<div class='row'>
 				<div class='col-sm-9'>

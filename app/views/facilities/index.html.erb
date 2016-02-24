@@ -14,8 +14,8 @@
 				<th>Zip</th>
 				<th>Phone</th>
 				<th>Fax</th>
-				<th>Rooms</th>
-				<th class='text-center'>View</th>
+				<th class='text-center'>Rooms</th>
+				<th class='text-right'>View&nbsp;</th>
 			</tr>
 		</thead>
 	  <tbody>
@@ -29,7 +29,7 @@
 		   		<td><%= facility.phone %></td>
 		   		<td><%= facility.fax %></td>
 		   		<td class='text-center'><%= facility.units.count %></td>
-		   		<td class='text-center'><%= link_to 'View', edit_facility_path(facility), class: 'btn btn-xs btn-default' %></td>
+		   		<td class='text-right'><%= link_to 'View', edit_facility_path(facility), class: 'btn btn-xs btn-default' %></td>
 		   	</tr>
 	   	<% end %>
 	  </tbody>

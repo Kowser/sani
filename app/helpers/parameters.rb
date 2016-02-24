@@ -13,7 +13,8 @@ module Parameters
 
 	INVOICE_PARAMS = :number, :due_date, :item, :total_due, :notes, :resident_id
 
-	EMPLOYMENT_APPLICATIONS = :over_18, :any_shift, :any_shift_text, :overtime, :eligible_us, :accomodations, :accomodations_text,
-	  :convictions, :convictions_text, :skills, :name, :address, :phone, :email, :other_information, :certify,
-	  :resume, :location
+	EMPLOYMENT_APPLICATION_PARAMS = :over_18, :any_shift, :any_shift_text, :overtime, :eligible_us, :accomodations, :accomodations_text,
+	  :convictions, :convictions_text, :name, :address, :phone, :email, :other_information, :certify,
+	  :resume, :location, { :skills => [] }
+	STAFF_EMPLOYMENT_APPLICATION_PARAMS = :notes, :active
 end

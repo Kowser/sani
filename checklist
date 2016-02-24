@@ -1,16 +1,10 @@
 MINIMUM VIABLE PRODUCT
-_	Fix datepicker - date format
-x	fix staff permissions select collection needs fixing Exec vs Admin, none should see DevOps
-_	Employment applications (View & Form)
-x	Improve Dashboard look for facilities
-_	Email feedback form
+_	Fix datepicker - date format display in field
+_	Email feedback form?
 _	User registration edit
 
 _ STAFF
 	_ add users with staff/admin roles
-	_ archive users & disable priveleges
-	_ promote / demote users (except other Execs)
-	_	remove users from facilities (except other Execs, or only Facility creator can do this?)
 !	_ handle removed staff that belongs to no facility?
 
 _ AUTHORIZATION
@@ -19,7 +13,7 @@ _ AUTHORIZATION
 =======================================================
 FUTURE
 _	Users may need to have roles dependent on facility location
-_	Prevent Admins from adding more than 1 resident per unit
+_	Prevent adding more than 1 resident per unit?
 
 CONTROLLERS
 _ ResidentApplications

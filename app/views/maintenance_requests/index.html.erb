@@ -2,7 +2,7 @@
 
 <div class="panel panel-red">
 	<div class="panel-heading">
-	  <div class="panel-title text-center"><span class='pull-left'>Maintenance Requests <%#= dashboard_view ? 'Completed (Last 7 Days)' : '' %></span>
+	  <div class="panel-title text-center"><span class='pull-left'>Maintenance Requests <%= dashboard_view ? '(Last 7 Days)' : '' %></span>
 	  	<%= link_to 'New Request', new_facility_maintenance_request_path, class: 'btn btn-xs btn-default pull-right' %>
 	  	<span class='pull-center'>
 			  <%= form_for :search, url: facility_maintenance_requests_path(@current_facility), method: :get do |search| %>
@@ -21,7 +21,7 @@
 					<th class='col-tb-100 text-center'>Completed</th>
 				<% else %>
 					<th class='visible-xs'></th>
-					<th class='col-tb-75 text-right'>View</th>
+					<th class='col-tb-75 text-right'>View&nbsp;</th>
 				<% end %>
 			</tr>
 		</thead>
@@ -29,7 +29,7 @@
 	  	<% @maintenance_requests.each do |request| %>
 	  	<!-- Mobile view -->
 	   		<tr id="maintenance_request-<%= request.id %>" class='visible-xs'>
-	   	 		<td><span class="label label-<%= Collections::PRIORITY[p = request.priority] %>"><%= p.capitalize %></span></td>
+	   	 		<td><span class="label label-<%= Collections::LABEL_PRIORITY[p = request.priority] %>"><%= p.capitalize %></span></td>
 	   	 		<td class='text-center'><%= request.completed_date.try(:strftime, '%m/%d/%Y') if dashboard_view %></td>
 	   	 		<td class='text-right'><%= link_to('View', edit_facility_maintenance_request_path(@current_facility, request), class: 'btn btn-xs btn-default') %>
 	   	 		</td>
@@ -54,7 +54,7 @@
 	  		<!-- Desktop view -->
 		  	<tr id="maintenance_request-<%= request.id %>" class='hidden-xs'>
 		   		<td>
-		   			<span class="label label-<%= Collections::PRIORITY[p = request.priority] %>"><%= p.capitalize %></span><br><br>
+		   			<span class="label label-<%= Collections::LABEL_PRIORITY[p = request.priority] %>"><%= p.capitalize %></span><br><br>
 		   			<% unless dashboard_view %>
 		   	 			<%= link_to facility_maintenance_request_path(@current_facility, request), method: :patch, remote: true, class: 'btn btn-xs btn-default pull-right', data: { disable_with: "<i class='fa fa-check-square-o'></i> Saving...".html_safe } do %>
 		   	 				<i class='fa fa-square-o'></i> Complete

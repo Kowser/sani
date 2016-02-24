@@ -13,9 +13,8 @@
  * "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
  *= require formtastic-bootstrap
  *= require_self
- *= require_tree
+ *= require_tree .
  */
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "font-awesome";

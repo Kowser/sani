@@ -1,12 +1,8 @@
-class EmploymentApplication < ActiveRecord::Base
-	belongs_to :facility
-	
+class EmploymentApplication < ActiveRecord::Base	
 	validates :name,
 						:address,
 						:phone,
 						:email, presence: { message: 'Did you forget something?' }
-
-	validates :facility, presence: {message: 'System error: Please contact developers via feedback.'}
 
 	validates_inclusion_of :over_18,
 						:any_shift,
@@ -15,8 +11,7 @@ class EmploymentApplication < ActiveRecord::Base
 						:accomodations,
 						:convictions, :in => [true, false], message: 'Please select Yes or No.'
 
-	validates	:certify, presence: { message: 'You need to check this box.' }
-	validates :location, presence: {message: 'Please select one.'}
+	validates_inclusion_of	:certify, :in => [true], message: 'You need to check this box.'
 
 	# has_attached_file :resume
 	# validates_attachment :resume, presence: { message: 'We really do want your resume.' },

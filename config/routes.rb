@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get 'login', to: 'devise/sessions#new'
   end
 
+  resources :employment_applications, only: [:new, :create, :edit, :update]
 # ALL PATHS NESTED UNDER FACILITIES - provides @current_facility id
   resources :facilities do
     controller 'staff' do
@@ -21,7 +22,7 @@ Rails.application.routes.draw do
     post 'receive_payments', to: 'payments#create_many'
     post 'deposit_payments', to: 'payments#update_many'
 
-    resources :employment_applications, except: :destroy
+    resources :employment_applications, only: [:index, :show, :update]
     resources :invoices
     resources :payments
     resources :staff

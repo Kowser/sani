@@ -1,5 +1,5 @@
 module Collections
-	STATE = [
+	STATES = [
 	  'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
 	  'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD',
 	  'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ',
@@ -8,35 +8,24 @@ module Collections
 	  'DC'
 	]
 
-	PAYMENT_METHOD = ['Check', 'Cash', 'Money Order', 'Cashier\'s Check', 'Other']
+	PAYMENT_METHODS = ['Check', 'Cash', 'Money Order', 'Cashier\'s Check', 'Other']
 	
-	INQUIRY_OPTION = [
+	INQUIRY_OPTIONS = [
 		'Maintenance Request',
 		'Resident Request',
 		'Question',
 		'Other'
 	]
+
+	EMPLOYMENT_SKILLS = ['Providing assistance with ADLs', 'Medication Administration', 'Working with residents who have dementia', 'Cooking', 'Other']
 	
-	roles = [['Staff', 'staff'], ['Administrator', 'admin'], ['Partner/Owner', 'partner']]
-	PERMISSION = {
-		3 => roles - [['Partner/Owner', 'partner']],
-		5 => roles,
-		7 => roles + [['Developer', 'devops']]
+	PERMISSIONS = {
+		3 => [['Staff', 'staff'], ['Administrator', 'admin']],
+		5 => [['Staff', 'staff'], ['Administrator', 'admin'], ['Partner/Owner', 'partner']],
 	}
 
-	PRIORITY = {
-		'high' => 'danger',
-		'medium' => 'warning',
-		'low' => 'success'
-	}
+	MAINTENANCE_PRIORITY = [ ['Low', 'low'], ['Medium', 'medium'], ['High', 'high'] ]
+	LABEL_PRIORITY = { 'high' => 'danger','medium' => 'warning','low' => 'success' }
 
-	FACILITIES = {
-		'allcomfort' => 'All Comfort Residential Care',
-		'barburvista' => 'Barbur Vista',
-		'hillhouse' => 'The Hill House',
-		'hillside' => 'Hillside Care Manor'
-	}
-
-	# converts true/false into Yes/No for human display
-	BOOLEAN_WORDS = { true => 'Yes',	false => 'No'	}
+	FACILITIES = ['Any', 'All Comfort Residential Care', 'Barbur Vista', 'The Hill House', 'Hillside Care Manor']
 end
