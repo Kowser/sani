@@ -25,9 +25,9 @@ module Collections
 	}
 
 	PRIORITY = {
-		'High' => 'danger',
-		'Medium' => 'warning',
-		'Low' => 'success'
+		'high' => 'danger',
+		'medium' => 'warning',
+		'low' => 'success'
 	}
 
 	FACILITIES = {

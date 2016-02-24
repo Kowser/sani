@@ -13,7 +13,6 @@ _ STAFF
 	_	remove users from facilities (except other Execs, or only Facility creator can do this?)
 !	_ handle removed staff that belongs to no facility?
 
-
 _ AUTHORIZATION
 !	_	limit access via curl/etc... programs to upgrade user's own role level (ie: Admin -> Exec)
 

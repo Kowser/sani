@@ -88,12 +88,12 @@ ActiveRecord::Schema.define(version: 20160219220406) do
 
   create_table "maintenance_requests", force: :cascade do |t|
     t.integer  "facility_id"
+    t.integer  "requester_id"
+    t.integer  "priority"
+    t.boolean  "completed",      default: false, null: false
+    t.date     "completed_date"
     t.string   "location"
     t.text     "description"
-    t.string   "priority"
-    t.boolean  "completed",      default: false
-    t.date     "completed_date"
-    t.integer  "requester_id"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
   end

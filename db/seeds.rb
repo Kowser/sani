@@ -118,7 +118,7 @@ create_user(
 		fac.maintenance_requests.create!(
 			location: location,
 			description: Faker::Lorem.sentences((2..6).to_a.sample).join(', '),
-			priority: ['High', 'Low', 'Low', 'Low', 'Medium', 'Medium'].sample,
+			priority: [3, 1, 1, 1, 2, 2].sample,
 			requester: fac.users.sample,
 			completed: completed = [true, false].sample,
 			completed_date: completed ? Faker::Date.between(7.days.ago, Date.today) : nil
