@@ -130,7 +130,7 @@ end
 # RESIDENTS, INVOICES, PAYMENTS
 # =====================================================================================
 15.times do |i| 
-	#+2 because empty room 1 exists from above
+	# +2 because empty room 1 exists from above
 	unit = Unit.create!(facility_id: facility.id, number: i + 2,  active: true) 
 
 	resident = Resident.create!(
@@ -149,45 +149,44 @@ end
 		rent: Faker::Number.between(35, 65) * 100
 	)
 
-	invoice = Invoice.create!(
-		resident_id: resident.id,
-		total_due: resident.rent,
-		balance_due: resident.rent,
-		number: "ACC-#{rand(1000..1999)}",
-		due_date: Date.today.at_beginning_of_month,
-		item: 'Monthly Rent & Residential Care Services',
-		notes: 'Example of notes'
-	)
+# 	invoice = Invoice.create!(
+# 		resident_id: resident.id,
+# 		total_due: resident.rent,
+# 		balance_due: resident.rent,
+# 		number: "ACC-#{rand(1000..1999)}",
+# 		due_date: Date.today.at_beginning_of_month,
+# 		item: 'Monthly Rent & Residential Care Services',
+# 		notes: 'Example of notes'
+# 	)
 
-	# PAST DUE invoice
-	Invoice.create!(
-		resident_id: resident.id,
-		total_due: resident.rent,
-		balance_due: resident.rent,
-		number: "ACC-#{rand(1000..1999)}",
-		due_date: (Date.today - 1.month).at_beginning_of_month,
-		item: 'Monthly Rent & Residential Care Services',
-		notes: 'Example of notes'
-	) if (1..10).to_a.sample < 3 # seeds 20% past due rate
+# 	# PAST DUE invoice
+# 	Invoice.create!(
+# 		resident_id: resident.id,
+# 		total_due: resident.rent,
+# 		balance_due: resident.rent,
+# 		number: "ACC-#{rand(1000..1999)}",
+# 		due_date: (Date.today - 1.month).at_beginning_of_month,
+# 		item: 'Monthly Rent & Residential Care Services',
+# 		notes: 'Example of notes'
+# 	) if rand(1..10) < 3 # seeds 20% past due rate
 
-	# NEXT MONTH's invoice
-	Invoice.create!(
-		resident_id: resident.id,
-		total_due: resident.rent,
-		balance_due: resident.rent,
-		number: "ACC-#{rand(1000..1999)}",
-		due_date: (Date.today + 1.month).at_beginning_of_month,
-		item: 'Monthly Rent & Residential Care Services',
-		notes: 'Example of notes'
-	) if [true, false].sample
+# 	# NEXT MONTH's invoice
+# 	Invoice.create!(
+# 		resident_id: resident.id,
+# 		total_due: resident.rent,
+# 		balance_due: resident.rent,
+# 		number: "ACC-#{rand(1000..1999)}",
+# 		due_date: (Date.today + 1.month).at_beginning_of_month,
+# 		item: 'Monthly Rent & Residential Care Services',
+# 		notes: 'Example of notes'
+# 	) if [true, false].sample
 
-	invoice.payments << Payment.create!(
+	Payment.create!(
 		resident_id: resident.id,
-		amount: invoice.balance_due,
+		amount: resident.rent,
 		receive_date: Faker::Date.between(7.days.ago, Date.today),
-		ref_number: rand(1000..2000),
 		method: Collections::PAYMENT_METHODS.sample
-	) if (1..10).to_a.sample < 9 # seeds 80% paid rate
+	) if rand(1..10) < 9 # seeds 80% paid rate
 end
 
 # =====================================================================================
@@ -195,22 +194,22 @@ end
 # =====================================================================================
 5.times do
 	EmploymentApplication.create!(
-		over_18: [true, false].sample,
-		any_shift: result = [true, false].sample,
-		any_shift_text: result ? '' : Faker::Lorem.sentences(rand(2..6)).join(', '),
+		over_18: true,
+		any_shift: temp = [true, false].sample,
+		any_shift_text: temp ? '' : Faker::Lorem.sentences(rand(2..6)).join(', '),
 		overtime: [true, false].sample,
 		eligible_us: [true, true, false].sample,
-		accomodations: result = [true, false].sample,
-		accomodations_text: result ? '' : Faker::Lorem.sentences(rand(2..6)).join(', '),
-		convictions: result = [true, false].sample,
-		convictions_text: !result ? '' : Faker::Lorem.sentences(rand(2..6)).join(', '),
+		accomodations: temp = [true, false].sample,
+		accomodations_text: temp ? '' : Faker::Lorem.sentences(rand(2..6)).join(', '),
+		convictions: temp = [true, false].sample,
+		convictions_text: !temp ? '' : Faker::Lorem.sentences(rand(2..6)).join(', '),
 		skills: Collections::EMPLOYMENT_SKILLS.sample(rand(0..4)),
 		name: Faker::Name.name,
-		address: "{Faker::Address.street_address Faker::Address.city, Faker::Address.state Faker::Address.zip}",
+		address: Faker::Address.street_address + ' ' + Faker::Address.city + ', ' + Faker::Address.state_abbr + ' ' + Faker::Address.zip,
 		phone: Faker::PhoneNumber.phone_number,
 		email: Faker::Internet.email,
 		other_information: [true, false].sample ? Faker::Lorem.sentences(rand(2..6)).join(', ') : '',
-		certify: true,
-		location: Collections::FACILITIES.sample
+		location: Collections::FACILITIES.sample,
+		certify: true
 	)
 end

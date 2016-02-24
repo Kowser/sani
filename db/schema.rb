@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20160219220406) do
   enable_extension "plpgsql"
 
   create_table "employment_applications", force: :cascade do |t|
-    t.boolean  "active",             default: false
+    t.boolean  "active",             default: true
     t.text     "notes"
     t.boolean  "over_18"
     t.boolean  "any_shift"
@@ -36,8 +36,8 @@ ActiveRecord::Schema.define(version: 20160219220406) do
     t.text     "other_information"
     t.boolean  "certify"
     t.string   "location"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
   create_table "facilities", force: :cascade do |t|
@@ -102,9 +102,7 @@ ActiveRecord::Schema.define(version: 20160219220406) do
     t.integer  "resident_id"
     t.decimal  "amount",       precision: 7, scale: 2
     t.date     "receive_date"
-    t.date     "deposit_date"
     t.boolean  "deposited",                            default: false
-    t.string   "ref_number"
     t.string   "method"
     t.datetime "created_at",                                           null: false
     t.datetime "updated_at",                                           null: false
