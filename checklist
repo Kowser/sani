@@ -4,24 +4,18 @@ x	fix staff permissions select collection needs fixing Exec vs Admin, none shoul
 _	Employment applications (View & Form)
 x	Improve Dashboard look for facilities
 _	Email feedback form
+_	User registration edit
 
 _ STAFF
 	_ add users with staff/admin roles
-	x	assign users to facilities
 	_ archive users & disable priveleges
 	_ promote / demote users (except other Execs)
 	_	remove users from facilities (except other Execs, or only Facility creator can do this?)
 !	_ handle removed staff that belongs to no facility?
 
-_	ALL should be able to
-	x	mark maintenance request as Low / Med / High priority
-		_	w/ text notification to the maintenance person?
 
 _ AUTHORIZATION
-	x limit access to controllers for staff / admin / exec
-	x	limit access to residents view
 !	_	limit access via curl/etc... programs to upgrade user's own role level (ie: Admin -> Exec)
-
 
 =======================================================
 FUTURE

@@ -1,4 +1,4 @@
-<div class="panel panel-gradient-babyblue">
+<div class="panel panel-babyblue">
   <div class="panel-heading">
     <div class="panel-title"><%= @maintenance_request.new_record? ? 'New' : 'Edit' %> Maintenance Request</div>
   </div>
@@ -32,7 +32,7 @@
         </div>
       <% end %>
       
-      <%= f.submit 'Save Request', class: 'btn btn-success' %>
+      <%= f.submit 'Save Request', class: 'btn btn-panel' %>
     <% end %>
   </div>
 </div>

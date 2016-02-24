@@ -1,4 +1,4 @@
-<div class="panel panel-gradient-babyblue">
+<div class="panel panel-babyblue">
   <div class="panel-heading">
     <div class="panel-title"><%= @payment.new_record? ? 'New' : 'Edit' %> Payment</div>
   </div>
@@ -29,7 +29,7 @@
           <%= f.input :deposit_date, as: :string, input_html: { class: 'datepicker' } %>
         </div>
       </div>
-      <%= f.submit 'Save Payment', class: 'btn btn-success' %>
+      <%= f.submit 'Save Payment', class: 'btn btn-panel' %>
       <%= link_to 'Delete Payment', facility_payment_path(@current_facility, @payment), method: :delete, data: {confirm: 'Delete this payment?'}, class: 'btn btn-danger pull-right' unless @payment.new_record? %>
     <% end %>
   </div>

@@ -18,6 +18,10 @@ $(document).on('page:change', function() {
 		$(this).closest('form').submit();
 	});
 
+	$('select#search_completed').change(function() {
+		$(this).closest('form').submit();
+	});
+
 	function addUnit() {
 	  $('#add-unit').click(function() {
 	    var id = Math.floor(Math.random() * (100000)) + 9999;

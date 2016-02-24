@@ -1,4 +1,4 @@
-<div class="panel panel-gradient-babyblue">
+<div class="panel panel-babyblue">
   <div class="panel-heading">
     <div class="panel-title"><%= @resident.new_record? ? 'New' : 'Edit' %> Resident</div>
   </div>
@@ -64,7 +64,7 @@
             <%= f.input :notes, label: 'Additional Information', hint: 'Please do not enter sensitive data (medical, financial, etc..).', input_html: { rows: 3, disabled: !access(:admin) } %>
           </div>
         </div>
-      <%= f.submit 'Save Resident', class: 'btn btn-success' if access(:admin) %>
+      <%= f.submit 'Save Resident', class: 'btn btn-panel' if access(:admin) %>
     <% end %>
   </div>
 </div>

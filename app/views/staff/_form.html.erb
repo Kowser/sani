@@ -1,6 +1,6 @@
 <% form_params = @staff.new_record? ? {url: facility_create_staff_path, method: :post} : {url: facility_staff_path, method: :patch} # this code resolves routing 'facility_staff_path' directing to 'show' %>
 
-<div class="panel panel-gradient-babyblue">
+<div class="panel panel-babyblue">
   <div class="panel-heading">
     <div class="panel-title"><%= @staff.new_record? ? 'Create New' : 'Edit' %> User</div>
   </div>
@@ -32,7 +32,7 @@
           </div>
         <% end %>
       </div>
-      <%= f.submit 'Save Staff', class: 'btn btn-success' %>
+      <%= f.submit 'Save Staff', class: 'btn btn-panel' %>
       <%= link_to 'Remove Staff', facility_facilities_user_path(@current_facility, @staff), method: :delete, data: {confirm: 'Remove this staff member?'}, class: 'btn btn-danger pull-right' unless @staff.new_record? %>
     <% end %>
   </div>

@@ -1,6 +1,6 @@
 <% dashboard_view ||= false %>
 
-<div class="panel panel-gradient-brick">
+<div class="panel panel-red">
 	<div class="panel-heading">
 	  <div class="panel-title text-center"><span class='pull-left'>Maintenance Requests <%#= dashboard_view ? 'Completed (Last 7 Days)' : '' %></span>
 	  	<%= link_to 'New Request', new_facility_maintenance_request_path, class: 'btn btn-xs btn-default pull-right' %>
@@ -58,7 +58,7 @@
 		   			<% unless dashboard_view %>
 		   	 			<%= link_to facility_maintenance_request_path(@current_facility, request), method: :patch, remote: true, class: 'btn btn-xs btn-default pull-right', data: { disable_with: "<i class='fa fa-check-square-o'></i> Saving...".html_safe } do %>
 		   	 				<i class='fa fa-square-o'></i> Complete
-		 	 				<% end %>
+		 	 				<% end unless request.completed %>
 			 	 		<% end %>
 		   		</td>
 		   		<td><%= request.location %></td>
