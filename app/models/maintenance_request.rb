@@ -1,8 +1,7 @@
 class MaintenanceRequest < ActiveRecord::Base
+	# enum priority: { low: 1, medium: 3, high: 5 }
 	priority_order = "CASE maintenance_requests.priority WHEN 'High' THEN 'a' WHEN 'Medium' THEN 'b' WHEN 'Low' THEN 'c' ELSE 'z' END ASC, id ASC"
-	scope :completed, -> { where(completed: true).where('completed_date >  ?', Date.today - 7.days).order('completed_date DESC') }
-	scope :incomplete, -> { where(completed: false).order(priority_order) }
-	# default_scope {order(priority_order)}
+	scope :completed_this_week, -> { where(completed: true).where('completed_date >  ?', Date.today - 7.days).order('completed_date DESC') }
 
 	before_update :set_completed_date, if: -> { completed_changed? }
 
