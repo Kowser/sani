@@ -25,9 +25,6 @@
         <div class='col-sm-3 col-sm-offset-7 col-xs-6'>
           <%= f.input :deposited %>
         </div>
-        <div class='col-sm-3 col-sm-offset-7 col-xs-6'>
-          <%= f.input :deposit_date, as: :string, input_html: { class: 'datepicker' } %>
-        </div>
       </div>
       <%= f.submit 'Save Payment', class: 'btn btn-panel' %>
       <%= link_to 'Delete Payment', facility_payment_path(@current_facility, @payment), method: :delete, data: {confirm: 'Delete this payment?'}, class: 'btn btn-danger pull-right' unless @payment.new_record? %>

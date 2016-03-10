@@ -43,7 +43,7 @@ class PaymentsController < ApplicationController
 		@payment = @current_facility.payments.find(params[:id])
 		if @payment.update(payment_params)
 			flash[:success] = 'Payment successfully updated.'
-			redirect_to action: 'index'
+			redirect_to action: 'deposit_payments'
 		else
 			flash[:alert] = 'Please fix the following errors.'
 			render 'form'
