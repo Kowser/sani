@@ -2,8 +2,12 @@ MINIMUM VIABLE PRODUCT
 _	Fix datepicker - date format display in field
 _	Email feedback form?
 _	User registration edit
+_	Login improved window
 
 _ STAFF
+	_	current system has security issues. Need way to isolate staff to particular business? 
+		_	user belongs to :company? 
+		_	facility has_and_belongs_to many :users?
 	_ add users with staff/admin roles
 !	_ handle removed staff that belongs to no facility?
 
