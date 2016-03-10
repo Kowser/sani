@@ -1,10 +1,10 @@
 <header>
   <div class='header-links'>
     <div class='landing'> 
-      <%= link_to 'Why Sani', '#'%> |
-      <%= link_to 'Pricing', '#'%> |
-      <%= link_to 'About Us', '#'%> |
-      <%= link_to 'Contact Us', '#'%> |
+      <%= link_to 'Why Sani', '#why-sani'%> |
+      <%= link_to 'Pricing', '#pricing'%> |
+      <%= link_to 'About Us', '#about-us'%> |
+      <%= link_to 'Contact Us', '#contact-us'%> |
       <%= link_to 'Sign Up', '#'%>
     </div>
   </div>
@@ -30,14 +30,12 @@
   <%= image_tag 'banner.jpg', alt: 'Banner Image', class: 'banner' %>
 </header>
 
-<section id="services">
+<section id="why-sani">
   <div class="landing">
-    <div class="row">
+    <div class="row text-center">
       <div class="col-lg-12 text-center">
         <h2 class="section-heading">High Tech. Low Cost.</h2>
       </div>
-    </div>
-    <div class="row text-center">
       <div class="col-md-4">
         <span class="fa-stack fa-4x">
           <i class="fa fa-circle fa-stack-2x text-primary"></i>
@@ -52,7 +50,7 @@
           <i class="fa fa-globe fa-stack-1x fa-inverse"></i>
         </span>
         <h4 class="service-heading">Work Anywhere</h4>
-        <p class="text-muted">Don't be chained to your office. Know all the intimate details whether you're at work or not.</p>
+        <p class="text-muted">Don't be chained to your office. Know all the intimate details whether you're at the office or not.</p>
       </div>
       <div class="col-md-4">
         <span class="fa-stack fa-4x">
@@ -60,51 +58,67 @@
           <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
         </span>
         <h4 class="service-heading">Security</h4>
-        <p class="text-muted">Know that your information is safe.</p>
+        <p class="text-muted">Know that your information is safe. We are the gate keepers and only you hold the key.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section id="contact">
+<section id="pricing">
+  <div class='landing'>
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-heading">Pricing information goes here!</h2>
+      </div>
+    </div>
+  </div>
+<section>
+
+<section id="about-us">
+  <div class='landing'>
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-heading">About Us information goes here!</h2>
+      </div>
+    </div>
+  </div>
+<section>
+
+<section id="contact-us">
   <div class="landing">
     <div class="row">
       <div class="col-lg-12 text-center">
-        <h2 class="section-heading">Contact Us - NOT FUNCTIONAL</h2>
+        <h2 class="section-heading">Contact Us - NEEDS EMAIL ACTION</h2>
         <h3 class="section-subheading text-muted">Time is valuable. You'll get a response right away.</h3>
       </div>
     </div>
     <div class="row">
       <div class="col-lg-12">
-        <form name="sentMessage" id="contactForm" novalidate="">
+        <%= semantic_form_for :contact, url: contacts_path, method: :post do |f| %>
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Name *" id="name" required="" data-validation-required-message="Please enter your name.">
-                <p class="help-block text-danger"></p>
+                <%= f.input :name, placeholder: 'Your Name', 'data-validation-required-message' => 'Please enter your name.', required: true, label: false, input_html: { class: 'form-control' } %>
               </div>
               <div class="form-group">
-                <input type="email" class="form-control" placeholder="Your Email *" id="email" required="" data-validation-required-message="Please enter your email address.">
-                <p class="help-block text-danger"></p>
+                <%= f.input :email, placeholder: 'Your Email', 'data-validation-required-message' => 'Please enter your email address.', required: true, label: false, input_html: { class: 'form-control' } %>
               </div>
               <div class="form-group">
-                <input type="tel" class="form-control" placeholder="Your Phone *" id="phone" required="" data-validation-required-message="Please enter your phone number.">
-                <p class="help-block text-danger"></p>
+                <%= f.input :phone, placeholder: 'Your Phone', 'data-validation-required-message' => 'Please enter your phone number.', required: true, label: false, input_html: { class: 'form-control' } %>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <textarea class="form-control" placeholder="Your Message *" id="message" required="" data-validation-required-message="Please enter a message."></textarea>
-                <p class="help-block text-danger"></p>
+                <%= f.input :message, as: :text, placeholder: 'Your Message', 'data-validation-required-message' => 'Please enter a message.', required: true, label: false, input_html: { class: 'form-control', rows: 6 } %>
               </div>
             </div>
             <div class="clearfix"></div>
             <div class="col-lg-12 text-center">
               <div id="success"></div>
-              <button type="submit" class="btn btn-primary">Send Message</button>
+              <%= f.submit 'Send Message', class: 'btn btn-primary'%>
             </div>
           </div>
-        </form>
+        <% end %>
       </div>
     </div>
   </div>

@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   end
 
   resources :employment_applications, only: [:new, :create, :edit, :update]
+  resources :contacts, only: [:create]
+
 # ALL PATHS NESTED UNDER FACILITIES - provides @current_facility id
   resources :facilities do
     controller 'staff' do
@@ -16,7 +18,7 @@ Rails.application.routes.draw do
       post 'remove_staff/:id', action: 'remove_staff'
     end
 
-    get 'dashboard', to: 'dashboard#index'
+    get 'dashboard',        to: 'dashboard#index'
     get 'receive_payments', to: 'payments#receive_payments'
     get 'deposit_payments', to: 'payments#deposit_payments'
     post 'receive_payments', to: 'payments#create_many'

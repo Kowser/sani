@@ -19,21 +19,18 @@
   height: 75px;
   padding: 5px 0;
   .sign-in-form {
-    position: relative;
-    left: auto;
-    right: 0;
-    top: 50%;
-    transform: translate(0, -50%);
+    padding: 15px;
   }
 }
 
 .header-links {
   text-align: right;
   padding: 5px 0;
-  font-size: 1.3em;
+  font-size: 1.1em;
   background-color: black;
   width: 100%;
   color: #fff;
+  @media(max-width: 767px) { font-size: 1em }
   a {
     color: #fff;
     text-decoration: none;
@@ -44,13 +41,29 @@
 img.logo { height: 65px; }
 img.banner { width: 100%; }
 
-section#contact {
+section #contact-us {
   color: white;
-  background-color:#222;
+  background-color:#333;
   background-image:url(/assets/contact-bg.png);
   background-position:center;
   background-repeat:no-repeat;
   padding: 25px;
+  width: 100%;
+}
+
+section#pricing {
+  background-color: #333;
+  background-image: image-url('noise.png');
+  background-repeat: repeat;
+  height: 200px;
+  color: #eee;
+  width: 100%;
+}
+
+section#about-us {
+  height: 200px;
+  color: #111;
+  width: 100%;
 }
 
 .navbar {
