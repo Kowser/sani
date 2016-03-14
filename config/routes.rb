@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
   devise_for :users
   devise_scope :user do
-    root to: 'devise/sessions#new'
+    # root to: 'devise/sessions#new'
     get 'logout', to: 'devise/sessions#destroy'
     get 'login', to: 'devise/sessions#new'
   end
   
+  root 'sani#home'
+
   # LANDING PAGE CONTROLLER
   controller 'sani' do
+    get 'home'
+    get 'sign_up'
     post 'contact_us'
   end 
 

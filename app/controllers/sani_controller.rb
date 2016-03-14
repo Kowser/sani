@@ -1,5 +1,8 @@
 class SaniController < ApplicationController
-	before_action :authenticate_user!, except: [:contact_us]
+	before_action :authenticate_user!, except: [:home, :sign_up, :contact_us]
+
+	def home;	end
+	def sign_up; end
 
 	def contact_us
 		flash[:success] = 'Message sent! We\'ll get back to you shortly.'
