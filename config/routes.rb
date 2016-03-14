@@ -5,9 +5,13 @@ Rails.application.routes.draw do
     get 'logout', to: 'devise/sessions#destroy'
     get 'login', to: 'devise/sessions#new'
   end
+  
+  # LANDING PAGE CONTROLLER
+  controller 'sani' do
+    post 'contact_us'
+  end 
 
   resources :employment_applications, only: [:new, :create, :edit, :update]
-  resources :contacts, only: [:create]
 
 # ALL PATHS NESTED UNDER FACILITIES - provides @current_facility id
   resources :facilities do

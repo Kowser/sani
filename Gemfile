@@ -19,7 +19,6 @@ gem 'font-awesome-sass'
 # gem 'will_paginate-bootstrap'
 
 group :development do
-  gem 'spring'
   gem 'xray-rails'
 end
 
@@ -27,4 +26,11 @@ group :development, :test do
   gem 'pry'
   gem 'pry-nav'
   gem 'faker'
+  gem 'spring'
+end
+
+group :test do
+  gem 'minitest-reporters'
+  gem 'mini_backtrace'
+  gem 'guard-minitest'
 end
