@@ -1,0 +1,10 @@
+<% content_for :content do %>
+	<%= render 'layouts/header.html' %>
+	<%= render 'layouts/sidebar.html' %>
+	<div class='content'>
+	  <%= render 'layouts/selector.html' if @selector %>
+	  <span id='bootstrap-flash'><%= bootstrap_flash %></span>
+	  <%= yield %>
+	</div>
+<% end %>
+<%= render template: "layouts/application" %>

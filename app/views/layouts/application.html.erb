@@ -1,36 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sani | <%= yield(:title) %></title>
+  <title><%= full_title(yield(:title)) %></title>
   <%= stylesheet_link_tag    'application', 'data-turbolinks-track' => true, media: 'all' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-  <![endif]-->
+  <%= render 'layouts/shim.html' %>
 </head>
 <body>
   <div class='container'>
-    <% if user_signed_in? %>
-      <!-- SIGNED IN TEMPLATE -->
-      <%= render 'layouts/header.html' %>
-    	<%= render 'layouts/sidebar.html' %>
-      <div class='content'>
-        <%= semantic_form_for @current_facility do |f| %>
-          <% f.input :id, as: :select, collection: current_user.facilities, label: false, include_blank: false %>
-        <% end if @selector %>
-        <span id='bootstrap-flash'><%= bootstrap_flash %></span>
-        <%= yield %>
-        <%= debug(params) if Rails.env.development? %>
-      </div>
-
-    <% else %>
-      <!-- LANDING PAGE -->
-      <%= yield %>
-      <%= debug(params) if Rails.env.development? %>
-    <% end %>
+    <%= yield(:content) %>
+    <%= debug(params) if Rails.env.development? %>
   </div>
 </body>
 </html>

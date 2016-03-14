@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Peaks and Valleys, LLC - Employment Application</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<% content_for :content do %>
   <div class='employment-container'>
   	<div class='employment-content'>
 	  	<%= image_tag 'logo.gif' %>
@@ -18,11 +10,10 @@
   		  <div class='panel-body'>
 			  	<span id='bootstrap-flash'><%= bootstrap_flash %></span>
 			  	<%= yield %>
-			  	<%= debug(params) if Rails.env.development? %>
 			  </div>
 			</div>
 
 	  </div>
   </div>
-</body>
-</html>
+<% end %>
+<%= render template: "layouts/application" %>
