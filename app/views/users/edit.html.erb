@@ -6,16 +6,18 @@
     <div class="panel-body">
       <div class='row'>
         <div class='col-sm-6'>
-          <h4>Edit Name / Login</h4>
+          <h4>Edit Account</h4>
           <div class='row'>
             <div class='col-sm-6'>
-              <%= f.input :first_name %>
+              <%= f.input :first_name, placeholder: 'First Name' %>
             </div>
             <div class='col-sm-6'>
-              <%= f.input :last_name %>
+              <%= f.input :last_name, placeholder: 'Last Name' %>
+            </div>
+            <div class='col-sm-12'>
+              <%= f.input :email, placeholder: 'Email Address', label: 'Email Address', hint: "Please enter the email address you'd like to use to sign in." %>
             </div>
           </div>
-          <%= f.input :email, placeholder: 'Your email', label: 'Login: A valid email', hint: "Please enter an email address you'd like to use to sign in." %>
         </div>
         <div class='col-sm-6'>
           <h4>Change Password <i>(leave blank to keep as-is)</i></h4>

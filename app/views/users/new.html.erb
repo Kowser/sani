@@ -1,16 +1,16 @@
-<% provide(:title, 'Create an Account') %>
+<% provide(:title, 'Create An Account') %>
 
 <% content_for(:heading) do %>
   <div class='pull-right'>
-    <h2>Create an Account</h2>
+    <h2>Create An Account</h2>
   </div>
 <% end %>
 
-<br><br><br><br>
+<br><br><br>
 <div class="landing">
-	<div class="panel panel-babyblue">
+	<div class="panel panel-green">
 	  <div class="panel-heading">
-	    <h4 class="panel-title">Edit Name / Login</h4>
+	    <h4 class="panel-title">Create An Account</h4>
 	  </div>
 	  <%= semantic_form_for @user do |f| %>
 	    <div class="panel-body">
@@ -23,7 +23,7 @@
             <%= f.input :last_name, placeholder: 'Last Name' %>
           </div>
           <div class='col-sm-12'>
-            <%= f.input :email, placeholder: 'Email Address', label: 'Login: A valid email', hint: "Please enter the email address you'd like to use to sign in." %>
+            <%= f.input :email, placeholder: 'Email Address', label: 'Email Address', hint: "Please enter the email address you'd like to use to sign in." %>
           </div>
           <div class='col-sm-6'>
             <%= f.input :password, input_html: { autocomplete: 'off' } %>
@@ -32,7 +32,7 @@
             <%= f.input :password_confirmation %>
           </div>
         </div>
-        
+		    <%= f.submit 'Create Account', class: 'btn btn-panel pull-right' %>
 	    </div>
 	  <% end %>
 	</div>

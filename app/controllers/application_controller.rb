@@ -2,20 +2,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   layout 'dashboard'
   # before_action :authenticate_user!
-  before_action :select_facility
   # , if: :user_signed_in?
   # before_action :facility_selector?, only: [:index], unless: :devise_controller?
   helper_method :access
   helper_method :current_user
-
-  def after_sign_in_path_for(user)
-  	select_facility # required here for @current_facility to be available
-    if access(:admin)
-      facility_dashboard_path(@current_facility)
-    else
-      facility_maintenance_requests_path(@current_facility)
-    end
-  end
+  before_action :select_facility
 
 # BEFORE_ACTIONS
   # loads facility & limits user access to assigned facilities
@@ -43,7 +34,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    User.first
+    User.last
   end
 
 end

@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   root 'landing#home'
+  get 'sign_up' => 'users#new'
 
 # LANDING PATHS
   controller 'landing' do
     get 'home'
-    get 'sign_up'
+    
     get 'pricing'
     post 'contact_us'
   end 

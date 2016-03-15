@@ -17,4 +17,6 @@ module Parameters
 	  :convictions, :convictions_text, :name, :address, :phone, :email, :other_information, :certify,
 	  :resume, :location, { :skills => [] }
 	STAFF_EMPLOYMENT_APPLICATION_PARAMS = :notes, :active
+
+	USER_PARAMS = :first_name, :last_name, :email, :password, :password_confirmation
 end
