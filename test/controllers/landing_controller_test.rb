@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SaniControllerTest < ActionController::TestCase
+class LandingControllerTest < ActionController::TestCase
   test 'should get home' do
     get :home, 'home'
     assert_response :success

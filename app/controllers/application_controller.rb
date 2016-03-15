@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   layout 'dashboard'
-  before_action :authenticate_user!
-  before_action :select_facility, if: :user_signed_in?
-  before_action :facility_selector?, only: [:index], unless: :devise_controller?
+  # before_action :authenticate_user!
+  # before_action :select_facility, if: :user_signed_in?
+  # before_action :facility_selector?, only: [:index], unless: :devise_controller?
   helper_method :access
 
   def after_sign_in_path_for(user)

@@ -1,23 +1,19 @@
 Rails.application.routes.draw do
-  devise_for :users
-  devise_scope :user do
-    # root to: 'devise/sessions#new'
-    get 'logout', to: 'devise/sessions#destroy'
-    get 'login', to: 'devise/sessions#new'
-  end
-  
-  root 'sani#home'
+  root 'landing#home'
 
-  # LANDING PAGE CONTROLLER
-  controller 'sani' do
+# LANDING PATHS
+  controller 'landing' do
     get 'home'
     get 'sign_up'
     post 'contact_us'
   end 
 
   resources :employment_applications, only: [:new, :create, :edit, :update]
+  resources :users, only: [:create]
 
-# ALL PATHS NESTED UNDER FACILITIES - provides @current_facility id
+# DASHBOARD PATHS
+
+  # ALL PATHS NESTED UNDER FACILITIES - provides @current_facility id
   resources :facilities do
     controller 'staff' do
       post 'create_staff', action: 'create' #resolves singular/plural staff routing conflict; resources path defaults to 'show'
@@ -26,11 +22,11 @@ Rails.application.routes.draw do
       post 'remove_staff/:id', action: 'remove_staff'
     end
 
-    get 'dashboard',        to: 'dashboard#index'
-    get 'receive_payments', to: 'payments#receive_payments'
-    get 'deposit_payments', to: 'payments#deposit_payments'
-    post 'receive_payments', to: 'payments#create_many'
-    post 'deposit_payments', to: 'payments#update_many'
+    get 'dashboard'         => 'dashboard#index'
+    get 'receive_payments'  => 'payments#receive_payments'
+    get 'deposit_payments'  => 'payments#deposit_payments'
+    post 'receive_payments' => 'payments#create_many'
+    post 'deposit_payments' => 'payments#update_many'
 
     resources :employment_applications, only: [:index, :show, :update]
     resources :invoices

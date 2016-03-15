@@ -34,7 +34,7 @@ module Sani
     config.active_record.raise_in_transactional_callbacks = true
 
     config.to_prepare do
-      Devise::SessionsController.skip_before_action :authenticate_user!
+      # Devise::SessionsController.skip_before_action :authenticate_user!
     end
   end
 end
