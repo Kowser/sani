@@ -2,9 +2,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   layout 'dashboard'
   # before_action :authenticate_user!
-  # before_action :select_facility, if: :user_signed_in?
+  before_action :select_facility
+  # , if: :user_signed_in?
   # before_action :facility_selector?, only: [:index], unless: :devise_controller?
   helper_method :access
+  helper_method :current_user
 
   def after_sign_in_path_for(user)
   	select_facility # required here for @current_facility to be available
@@ -39,4 +41,9 @@ class ApplicationController < ActionController::Base
   def access(role)
     current_user[:role] >= User.roles[role]
   end
+
+  def current_user
+    User.first
+  end
+
 end

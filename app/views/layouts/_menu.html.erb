@@ -12,5 +12,6 @@
 	<%= link_to 'Residents', facility_residents_path(@current_facility) %>
 	<%= link_to 'Staff', facility_staff_index_path(@current_facility) if access(:admin) %>
 	<hr class='divider'>
+  <%= link_to 'My Profile', edit_user_path(current_user) %>
   <%= link_to 'Sign Out', logout_path %>
 </div>

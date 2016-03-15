@@ -5,15 +5,19 @@ Rails.application.routes.draw do
   controller 'landing' do
     get 'home'
     get 'sign_up'
+    get 'pricing'
     post 'contact_us'
   end 
 
+  controller 'sessions' do
+    post 'logout', action: 'destroy'
+    post 'login', action: 'create'
+  end
+
   resources :employment_applications, only: [:new, :create, :edit, :update]
-  resources :users, only: [:create]
+  resources :users, only: [:create, :edit, :update]
 
-# DASHBOARD PATHS
-
-  # ALL PATHS NESTED UNDER FACILITIES - provides @current_facility id
+# DASHBOARD PATHS - all nested under facilities to provide facility:id
   resources :facilities do
     controller 'staff' do
       post 'create_staff', action: 'create' #resolves singular/plural staff routing conflict; resources path defaults to 'show'
