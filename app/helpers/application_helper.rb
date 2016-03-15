@@ -9,7 +9,7 @@ module ApplicationHelper
 	end
 
 	def humanize_json(fields)
-		fields.try(:delete_if, &:empty?).try(:join, '<br>').try(:html_safe) || 'None Selected'
+		fields.empty? ? 'None Selected' : fields.delete_if(&:empty?).join('<br>').try(:html_safe)
 	end
 
 	def link_to_add_unit(f)

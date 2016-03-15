@@ -1,16 +1,18 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are: :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
-  # , :lockable
+  before_save { self.email = email.downcase }
+  has_secure_password
+  enum role: { staff: 1, admin: 3, partner: 5, devops: 7 }
+  
+  validates :first_name,  presence: true, length: { maximum: 50 }
+  validates :last_name,  presence: true, length: { maximum: 50 }
+  validates :role, presence: { message: 'Error [Role], please contact system developer' }
+  validates :password, presence: true, length: { minimum: 6 }
+  validates :email, presence: true, length: { maximum: 255 }, uniqueness: { case_sensitive: false },
+    format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i }
 
-  # Rails 4.1+, allows roles & their corresponding methods .staff?, .admin?, user[:role] = #, etc...
-  # Permissions are granted at or above designated role
-  # visit http://railsapps.github.io/rails-authorization.html for more information
-  enum role: { staff: 1, admin: 3, partner: 5, devops: 7 } # please do not define 0
-  has_and_belongs_to_many :facilities
-  validates_presence_of :email, :first_name, :last_name, :role
+  # has_and_belongs_to_many :facilities
   
   def name
-  	first_name + ' ' + last_name
+  	"#{first_name last_name}"
   end
 end
