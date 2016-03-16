@@ -145,7 +145,7 @@ ActiveRecord::Schema.define(version: 20160219220406) do
     t.string   "phone"
     t.string   "email",           default: "", null: false
     t.string   "password_digest", default: "", null: false
-    t.string   "remember_digest", default: "", null: false
+    t.string   "remember_digest"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
   end

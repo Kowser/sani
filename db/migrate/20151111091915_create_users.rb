@@ -11,7 +11,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :password_digest,    null: false, default: ''
 
       # Remember Me
-      t.string :remember_digest,    null: false, default: ''
+      t.string :remember_digest
 
       # ## Recoverable
       # t.string   :reset_password_token
