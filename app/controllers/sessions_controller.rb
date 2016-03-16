@@ -3,11 +3,11 @@ class SessionsController < ApplicationController
 	layout 'landing'
 
 	def create
-		user = User.find_by(email: session_params[:email].downcase)
-		if user && user.authenticate(session_params[:password])
-			login(user)
-			remember(user)
-			redirect_to edit_user_path(user)
+		@user = User.find_by(email: session_params[:email].downcase)
+		if @user && @user.authenticate(session_params[:password])
+			login(@user)
+			session_params[:remember_me] == '1' ? remember(@user) : forget(@user)
+			redirect_to edit_user_path(@user)
 		else
 			flash[:alert] = 'Invalid email/password combination.'
 			redirect_to action: 'new'
@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
 
 private
 	def session_params
-		params.require(:session).permit(:email, :password)
+		params.require(:session).permit(:email, :password, :remember_me)
 	end
 end
 

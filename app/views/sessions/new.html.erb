@@ -18,6 +18,7 @@
           <%= semantic_form_for(:session, url: login_path) do |f| %>
             <%= f.input :email %>
             <%= f.input :password %>
+            <%= f.input :remember_me, as: :boolean, label: 'Remember Me', input_html: {class: 'checkbox inline'} %>
             <%= f.submit 'Sign In', class: 'btn btn-panel pull-right' %>
           <% end %>
         </div>

@@ -9,11 +9,18 @@
 	
 	<div class="landing">
 	  <div class='header'>
-	    <%= image_tag 'logo.gif', alt: 'Sani Logo Image', class: 'logo' %>
-	    <%= yield(:heading) %>
-    </div>
+	  	<!-- <div class='row'> -->
+  		<div class='col-sm-3'>
+		    <%= image_tag 'logo.gif', alt: 'Sani Logo Image', class: 'logo' %>
+		  </div>
+		  <div class='col-sm-9'>
+		    <%= yield(:heading) %>
+		  </div>
+	  </div>
+	  <!-- </div> -->
+	  <span id='bootstrap-flash'><%= bootstrap_flash %></span>
   </div>
-	<span id='bootstrap-flash'><%= bootstrap_flash %></span>
+	
 	<%= yield %>
 	<%= debug(params) if Rails.env.development? %>
 <% end %>

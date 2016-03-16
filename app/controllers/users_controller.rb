@@ -11,14 +11,13 @@ class UsersController < ApplicationController
     if @user.save
     	login(@user)
     	flash[:success] = "Welcome to Sani - Please fill in your company information."
-      redirect_to edit_user_path(@user)
+      redirect_to edit_user_path(current_user)
     else
       render 'new', layout: 'landing'
     end
   end
 
   def edit
-    @current_user = User.first
   end
 
 private

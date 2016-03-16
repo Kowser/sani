@@ -14,12 +14,14 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
   test 'valid signup information' do
     get sign_up_path
     assert_difference 'User.count', 1 do
-      post_via_redirect users_path, user: { first_name: 'Example', last_name: 'User',
+      post users_path, user: { first_name: 'Example', last_name: 'User',
         email: 'user@example.com', password: 'password', password_confirmation: 'password' }
     end
     assert is_logged_in?
-    # assert_redirected_to users_edit_path(current_user)
+    assert_redirected_to edit_user_path(assigns(:user))
+    follow_redirect!
     assert_select "a[href=?]", facilities_path
+    assert_select "a[href=?]", edit_user_path(current_user)
     assert_select "a[href=?]", logout_path
   end
 end

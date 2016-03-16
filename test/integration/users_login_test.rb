@@ -32,16 +32,29 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_redirected_to edit_user_path(@user)
     follow_redirect!
     assert_template 'users/edit'
-    assert_select "a[href=?]", sign_in_path, count: 0
+    assert_select "a[href=?]", sign_in_path,      count: 0
     assert_select "a[href=?]", logout_path
     assert_select "a[href=?]", facilities_path
+    assert_select "a[href=?]", edit_user_path(current_user)
     delete logout_path
     assert_not is_logged_in?
     assert_redirected_to root_url
     delete logout_path # Simulate a user clicking logout in a second window.
     follow_redirect!
     assert_select "a[href=?]", sign_up_path
-    assert_select "a[href=?]", logout_path,      count: 0
-    assert_select "a[href=?]", facilities_path(@user), count: 0
+    assert_select "a[href=?]", logout_path,       count: 0
+    assert_select "a[href=?]", facilities_path,   count: 0
+  end
+
+  test "login with remembering" do
+    log_in_as(@user, remember_me: '1')
+    assert_not_nil cookies['remember_token']
+    assert_equal cookies['remember_token'], assigns(:user).remember_token
+  end
+
+  test "login without remembering" do
+    log_in_as(@user, remember_me: '0')
+    assert_nil cookies['remember_token']
+    assert_equal cookies['remember_token'], assigns(:user).remember_token
   end
 end
