@@ -8,12 +8,12 @@
 
 <br><br><br>
 <div class="landing">
-	<div class="panel panel-green">
-	  <div class="panel-heading">
-	    <h4 class="panel-title">Create An Account</h4>
-	  </div>
-	  <%= semantic_form_for @user do |f| %>
-	    <div class="panel-body">
+  <div class="panel panel-green">
+    <div class="panel-heading">
+      <h4 class="panel-title">Create An Account</h4>
+    </div>
+    <%= semantic_form_for(@user) do |f| %>
+      <div class="panel-body">
         <h4>User Information</h4>
         <div class='row'>
           <div class='col-sm-6'>
@@ -32,8 +32,8 @@
             <%= f.input :password_confirmation %>
           </div>
         </div>
-		    <%= f.submit 'Create Account', class: 'btn btn-panel pull-right' %>
-	    </div>
-	  <% end %>
-	</div>
+        <%= f.submit 'Create Account', class: 'btn btn-panel pull-right' %>
+      </div>
+    <% end %>
+  </div>
 </div>

@@ -1,0 +1,30 @@
+Started
+
+
+
+Progress: |[0m[1000D[K[31mERROR[0m["test_login_with_valid_information", UsersLoginTest, 2016-03-15 06:24:58 -0700]
+ test_login_with_valid_information#UsersLoginTest (1458048298.15s)
+ActiveRecord::StatementInvalid:         ActiveRecord::StatementInvalid: PG::NotNullViolation: ERROR:  null value in column "role" violates not-null constraint
+        DETAIL:  Failing row contains (104799742, null, Michal, Kowser, null, michael@example.com, $2a$04$3UjyU557UsbsrvZjJOgiYuBlUC9ZnJ7qK4YbLWGWL66rSYe6SLkSa, 2016-03-16 08:24:34, 2016-03-16 08:24:34).
+        : INSERT INTO "users" ("first_name", "last_name", "email", "password_digest", "created_at", "updated_at", "id") VALUES ('Michal', 'Kowser', 'michael@example.com', '$2a$04$3UjyU557UsbsrvZjJOgiYuBlUC9ZnJ7qK4YbLWGWL66rSYe6SLkSa', '2016-03-16 08:24:34', '2016-03-16 08:24:34', 104799742)
+            
+
+[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[0m[1000D[K[31mERROR[0m["test_login_with_invalid_information_from_sign_in_page", UsersLoginTest, 2016-03-15 06:24:58 -0700]
+ test_login_with_invalid_information_from_sign_in_page#UsersLoginTest (1458048298.16s)
+ActiveRecord::StatementInvalid:         ActiveRecord::StatementInvalid: PG::NotNullViolation: ERROR:  null value in column "role" violates not-null constraint
+        DETAIL:  Failing row contains (104799742, null, Michal, Kowser, null, michael@example.com, $2a$04$/fc1AlOXiVFLHtaeEJojfehrW1uYcWmJQM6xT/VdgjfxCATH3UzLy, 2016-03-16 08:24:34, 2016-03-16 08:24:34).
+        : INSERT INTO "users" ("first_name", "last_name", "email", "password_digest", "created_at", "updated_at", "id") VALUES ('Michal', 'Kowser', 'michael@example.com', '$2a$04$/fc1AlOXiVFLHtaeEJojfehrW1uYcWmJQM6xT/VdgjfxCATH3UzLy', '2016-03-16 08:24:34', '2016-03-16 08:24:34', 104799742)
+            
+
+[0m[1000D[K[31mERROR[0m["test_login_with_invalid_information_from_home_page", UsersLoginTest, 2016-03-15 06:24:58 -0700]
+ test_login_with_invalid_information_from_home_page#UsersLoginTest (1458048298.17s)
+ActiveRecord::StatementInvalid:         ActiveRecord::StatementInvalid: PG::NotNullViolation: ERROR:  null value in column "role" violates not-null constraint
+        DETAIL:  Failing row contains (104799742, null, Michal, Kowser, null, michael@example.com, $2a$04$XbmmqiAS/o.ITg9gCSdqxuX7Lq7a9/Y7FASQAFbaRNuNINI0kMQ6i, 2016-03-16 08:24:34, 2016-03-16 08:24:34).
+        : INSERT INTO "users" ("first_name", "last_name", "email", "password_digest", "created_at", "updated_at", "id") VALUES ('Michal', 'Kowser', 'michael@example.com', '$2a$04$XbmmqiAS/o.ITg9gCSdqxuX7Lq7a9/Y7FASQAFbaRNuNINI0kMQ6i', '2016-03-16 08:24:34', '2016-03-16 08:24:34', 104799742)
+            
+
+[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m[32m=[0m|
+
+Finished in 0.04583s
+3 tests, 0 assertions, [31m0 failures, 3 errors, [0m[33m0 skips[0m
+]2;[Minitest results] 3 tests

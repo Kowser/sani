@@ -1,17 +1,16 @@
 module ApplicationHelper
 	# Returns the full title on a per-page basis.
-  def full_title(page_title = nil)
-    # 'Sani' + (page_title.empty? ? '' : "#{' | ' + page_title}")
-    ['Sani', page_title].delete_if(&:nil?).join(' | ')
+  def full_title(page_title = '')
+    'Sani' + (page_title.empty? ? '' : "#{' | ' + page_title}")
   end
 
   # Only displays links appropriate to the page.
   def landing_menu_links
   	[ link_to_unless_current('Home', root_path) {}, 
-  		link_to_if(current_page?(root_path),'Pricing', '#pricing') {},
-  		link_to_if(current_page?(root_path),'About Us', '#about-us') {},
+  		link_to_if(current_page?(root_path), 'Pricing', '#pricing') {},
+  		link_to_if(current_page?(root_path), 'About Us', '#about-us') {},
   		link_to_if(current_page?(root_path), 'Contact Us', '#contact-us') {},
-  		link_to_unless_current('Sign Up', sign_up_path) { link_to 'Sign In', root_path }
+  		link_to_if(current_page?(sign_in_path) || current_page?(root_path), 'Sign Up', sign_up_path ) { link_to 'Sign In', sign_in_path }
   	].delete_if(&:nil?).join(' | ').html_safe
   end
 

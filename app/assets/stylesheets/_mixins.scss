@@ -11,5 +11,5 @@
 
 @mixin panel-gradient($start, $end) {
   border-color: $start;
-  > .panel-heading, .btn-panel { @include gradients($start, $end) }
+  > .panel-heading, .btn-panel { @include gradients($start, $end); }
 }

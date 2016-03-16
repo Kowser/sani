@@ -1,20 +1,23 @@
 Rails.application.routes.draw do
   root 'landing#home'
-
-# LANDING PATHS
-  controller 'landing' do    
+  
+# LANDING PAGE PATHS
+  controller 'landing' do
     get 'pricing'
-    get 'sign_up'
     post 'contact_us'
   end 
 
   controller 'sessions' do
+    get 'sign_in', action: 'new'
     post 'login', action: 'create'
-    post 'logout', action: 'destroy'
+    delete 'logout',  action: 'destroy'
   end
 
   resources :employment_applications, only: [:new, :create, :edit, :update]
-  resources :users, only: [:create, :edit, :update]
+  resources :users, only: [:edit, :update]
+  resources :users, only: :create, path: '/sign_up' #keep same URL as Users#new => /users/new
+  get 'sign_up' => 'users#new'
+
 
 # DASHBOARD PATHS - all nested under facilities to provide facility:id
   resources :facilities do
