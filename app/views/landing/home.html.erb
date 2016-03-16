@@ -2,7 +2,7 @@
 
 <% content_for(:heading) do %>
   <div class='pull-right sign-in-form'>
-    <%= semantic_form_for(:resource, url: 'session_path', method: :post, html: { class: 'form-inline' }) do |f| %>
+    <%= semantic_form_for(:session, url: login_path, html: { class: 'form-inline' }) do |f| %>
       <div class="form-group">
         <%= f.input :email, label: false, placeholder: "Email", input_html: { class: 'form-control' } %>
       </div>
@@ -17,103 +17,7 @@
 <% end %>
 
 <%= image_tag 'banner.jpg', alt: 'Banner Image', class: 'banner' %>
-
-<section id="why-sani">
-  <div class="landing">
-    <div class="row text-center">
-      <div class="col-lg-12 text-center">
-        <h2 class="section-heading">High Tech. Low Cost.</h2>
-      </div>
-      <div class="col-md-4">
-        <span class="fa-stack fa-4x">
-          <i class="fa fa-circle fa-stack-2x text-primary"></i>
-          <i class="fa fa-line-chart fa-stack-1x fa-inverse"></i>
-        </span>
-        <h4 class="service-heading">Productivity</h4>
-        <p class="text-muted">Improve your productivity. Work faster, smarter, and stop fumbling around with paperwork.</p>
-      </div>
-      <div class="col-md-4">
-        <span class="fa-stack fa-4x">
-          <i class="fa fa-circle fa-stack-2x text-primary"></i>
-          <i class="fa fa-globe fa-stack-1x fa-inverse"></i>
-        </span>
-        <h4 class="service-heading">Work Anywhere</h4>
-        <p class="text-muted">Don't be chained to your office. Know all the intimate details whether you're at the office or not.</p>
-      </div>
-      <div class="col-md-4">
-        <span class="fa-stack fa-4x">
-          <i class="fa fa-circle fa-stack-2x text-primary"></i>
-          <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
-        </span>
-        <h4 class="service-heading">Security</h4>
-        <p class="text-muted">Know that your information is safe. We are the gate keepers and only you hold the key.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="pricing">
-  <div class='landing'>
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <h2 class="section-heading">Pricing information goes here!</h2>
-      </div>
-    </div>
-  </div>
-<section>
-
-<section id="about-us">
-  <div class='landing'>
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <h2 class="section-heading">About Us information goes here!</h2>
-      </div>
-    </div>
-  </div>
-<section>
-
-<section id="contact-us">
-  <div class="landing">
-    <div class="row">
-      <h2 class="section-heading text-center">Contact Us</h2>
-      <div class='col-xs-6 col-sm-4 col-sm-offset-2 col-md-offset-2'>
-        <h4>Headquarters</h4>
-        <p>Sani.io<br>14534 SW 82nd Ave<br>Tigard, OR 97224<br>503.560.0700<p>
-      </div>
-      <div class='col-xs-6 col-sm-4 col-sm-offset-2 col-md-offset-2'>
-        <h4>Email Us</h4>
-        <p><%= mail_to 'info@sani.io' %><br><%= mail_to 'support@sani.io' %><br><%= mail_to 'sales@sani.io' %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <h3 class="section-subheading text-muted text-center">Time is valuable. You'll get a response right away.</h3>
-        <%= semantic_form_for :contact, url: contact_us_path, method: :post do |f| %>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <%= f.input :name, placeholder: 'Your Name', 'data-validation-required-message' => 'Please enter your name.', required: true, label: false, input_html: { class: 'form-control' } %>
-              </div>
-              <div class="form-group">
-                <%= f.input :email, placeholder: 'Your Email', 'data-validation-required-message' => 'Please enter your email address.', required: true, label: false, input_html: { class: 'form-control' } %>
-              </div>
-              <div class="form-group">
-                <%= f.input :phone, placeholder: 'Your Phone', 'data-validation-required-message' => 'Please enter your phone number.', required: true, label: false, input_html: { class: 'form-control' } %>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <%= f.input :message, as: :text, placeholder: 'Your Message', 'data-validation-required-message' => 'Please enter a message.', required: true, label: false, input_html: { class: 'form-control', rows: 6 } %>
-              </div>
-            </div>
-            <div class="clearfix"></div>
-            <div class="col-lg-12 text-center">
-              <div id="success"></div>
-              <%= f.submit 'Send Message', class: 'btn btn-primary'%>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</section>
+<%= render 'why_sani' %>
+<%= render 'pricing' %>
+<%= render 'about_us' %>
+<%= render 'contact_us' %>

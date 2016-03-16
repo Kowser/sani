@@ -2,10 +2,7 @@
 	<header>
 	  <div class='header-links'>
 	    <div class='landing'>
-	      <%= link_to_unless_current('Home', root_path) {''} %> |
-	      <%= link_to_unless_current('Pricing', pricing_path) {''} %> |
-	      <%= link_to_if(current_page?(root_path), 'Contact Us', '#contact-us') {''} %> |
-	      <%= link_to 'Sign Up', sign_up_path %>
+	      <%= landing_menu_links %>
 	    </div>
 	  </div>
 	</header>

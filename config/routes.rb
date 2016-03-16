@@ -1,18 +1,16 @@
 Rails.application.routes.draw do
   root 'landing#home'
-  get 'sign_up' => 'users#new'
 
 # LANDING PATHS
-  controller 'landing' do
-    get 'home'
-    
+  controller 'landing' do    
     get 'pricing'
+    get 'sign_up'
     post 'contact_us'
   end 
 
   controller 'sessions' do
-    post 'logout', action: 'destroy'
     post 'login', action: 'create'
+    post 'logout', action: 'destroy'
   end
 
   resources :employment_applications, only: [:new, :create, :edit, :update]
