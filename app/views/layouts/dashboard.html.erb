@@ -1,8 +1,10 @@
 <% content_for :content do %>
-	<%= render 'layouts/header.html' %>
-	<%= render 'layouts/sidebar.html' %>
+	<%= render 'layouts/dashboard/header.html' %>
+	<div class='sidebar'>
+	  <%= render 'layouts/dashboard/menu' %> 
+	</div>
 	<div class='content'>
-	  <%= render 'layouts/selector.html' if @selector %>
+	  <%= render 'layouts/selector.html' if facility_selector? %>
 	  <span id='bootstrap-flash'><%= bootstrap_flash %></span>
 	  <%= yield %>
 	  <%= debug(params) if Rails.env.development? %>

@@ -1,0 +1,31 @@
+<div class="panel panel-green">
+	<div class="panel-heading">
+	  <div class="panel-title">Current Resident Roster
+	  	<%= link_to 'New Resident', new_facility_resident_path, class: 'btn btn-xs btn-default pull-right' if access(:admin) %>
+	  </div>
+	</div>
+	<table class="table table-condensed table-striped table-hover table-responsive">
+		<thead>
+			<tr>
+				<th>Room</th>
+				<th>Resident Name</th>
+				<th class="hidden-xs">Contact Name</th>
+				<th>Contact Phone</th>
+				<th class="hidden-xs hidden-sm">Contact Email</th>
+				<th class='text-right'>View&nbsp;</th>
+			</tr>
+		</thead>
+	  <tbody>
+	  	<% @residents.each do |resident| %>
+	   	<tr>
+	   		<td><%= resident.unit.number %></td>
+	   		<td><%= resident.name %></td>
+	   		<td class="hidden-xs"><%= resident.contact_name %></td>
+	   		<td><%= resident.phone %></td>
+	   		<td class="hidden-xs hidden-sm"><%= link_to resident.email %></td>
+	   		<td class='text-right'><%= link_to 'View', edit_facility_resident_path(current_facility, resident), class: 'btn btn-xs btn-default' %></td>
+	   	</tr>
+	   	<% end %>
+	  </tbody>
+	</table>
+</div>

@@ -1,0 +1,53 @@
+<div class="panel panel-purple">
+	<div class="panel-heading">
+	  <div class="panel-title">Deposits
+	  	<span class='pull-right'>
+			  <%= form_for :search, url: facility_deposit_payments_path(current_facility), method: :get do |search| %>
+			  	<%= search.select(:deposited, options_for_select([['Deposited', true], ['Undeposited', false]], @default_selected)) %> 
+			  <% end %>
+			</span>
+	  </div>
+	</div>
+
+	<%= form_for :deposits, url: facility_deposit_payments_path(current_facility), method: :post do %>
+		<table class="table table-condensed table-striped table-hover table-responsive">
+			<thead>
+	  		<tr>
+		   		<th class='text-center'><i class='fa fa-check-square-o'></i></th>
+		   		<th>Resident</th>
+		   		<th class='text-center'>Received on</th>
+		   		<th>Paid with</th>
+		   		<th class='text-center'>Amount</th>
+		   		<th class='text-center'>View&nbsp;</th>
+		   	</tr>
+		  </thead>
+		  <tbody>
+				<% @payments.each do |payment| %>
+			    <tr>
+	    			<%= fields_for 'deposits[deposit_fields][]', payment do |f| %>
+		    			<td class='text-center'><%= f.check_box :deposited %></td>
+		    		<% end %>
+	    			<td><%= payment.resident.name %></td>
+	    			<td class='text-center'><%= payment.receive_date.strftime('%m/%d/%Y') %></td>
+	    			<td><%= payment.method %></td>
+	    			<td class='text-center'><%= '%.2f' % payment.amount %></td>
+	    			<td class='text-center'><%= link_to 'View', edit_facility_payment_path(current_facility, payment), class: 'btn btn-xs btn-default' %></td>
+			  	</tr>
+		  	<% end %>
+		  </tbody>
+		</table>
+		<div class='panel-body'>
+			<div class='row'>
+				<div class='col-sm-9'>
+					<ul><strong>Reminder:</strong>
+						<li><i class='fa fa-check-square-o'></i> Deposited Payments</li>
+						<li><i class='fa fa-square-o'></i> Undeposited Payments</li>
+					</ul>
+				</div>
+				<div class='col-sm-3 text-right'>
+					<%= submit_tag 'Update', class: 'btn btn-panel' %>
+				</div>
+			</div>
+		</div>
+	<% end %>
+</div>

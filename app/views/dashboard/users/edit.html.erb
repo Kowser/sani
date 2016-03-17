@@ -1,0 +1,42 @@
+<% provide(:title, 'User Account') %>
+
+<div class="panel panel-babyblue">
+  <div class="panel-heading">
+    <h4 class="panel-title">User Account</h4>
+  </div>
+  <%= semantic_form_for(current_user) do |f| %>
+    <div class="panel-body">
+      <div class='row'>
+        <div class='col-sm-6'>
+          <h4>Edit Account</h4>
+          <div class='row'>
+            <div class='col-sm-6'>
+              <%= f.input :first_name, placeholder: 'First Name' %>
+            </div>
+            <div class='col-sm-6'>
+              <%= f.input :last_name, placeholder: 'Last Name' %>
+            </div>
+            <div class='col-sm-12'>
+              <%= f.input :email, placeholder: 'Email Address', label: 'Email Address', hint: "Please enter the email address you'd like to use to sign in." %>
+            </div>
+          </div>
+        </div>
+        <div class='col-sm-6'>
+          <h4>Change Password <i>(leave blank to keep as-is)</i></h4>
+          <%= f.input :password, label: 'New Password', input_html: { autocomplete: 'off' } %>
+          <%= f.input :password_confirmation, label: "New Password Confirmation" %>
+        </div>
+      </div>
+      <hr>
+      <div class='row'>
+        <div class='col-sm-6'>
+          <%= f.input :current_password, label: 'Enter current password to confirm changes' %>
+          <%= f.submit "Update", class: 'btn btn-panel'%>
+        </div>
+        <div class='col-sm-6'>
+          <br>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,37 @@
+<div class='row'>
+  <div class='col-md-6 col-md-offset-3'>
+    <%= semantic_form_for [current_facility, @employment_application], multipart: true do |f| %>
+      <%=
+        f.input :date, as: :string, input_html: { disabled: true, value: Time.now.strftime('%m/%d/%Y'), style: 'width:115px' }
+        f.input :location, label: 'Preferred location', as: :select, collection: Collections::FACILITIES, include_blank: false
+        f.input :name
+        f.input :address
+        f.input :phone
+        f.input :email
+        f.input :over_18, as: :radio, label: 'Are you at least 18 years old?'
+        f.input :any_shift, as: :radio, label: 'Are you willing to work any shift, including nights and weekends?'
+        f.input :any_shift_text, as: :string, label: "If 'No', please state any limitations:"
+        f.input :overtime, as: :radio, label: 'If applicable, are you available to work overtime?'
+        f.input :eligible_us, as: :radio, label: 'Are you legally eligible for employment in the United States?'
+        f.input :accomodations, as: :radio, label: 'Are you able to perform the essential functions of the job position with or without reasonable accommodations?'
+        f.input :accomodations_text, as: :text, label: "If 'No', what reasonable accommodation would you require?", input_html: { rows: 3 }
+        f.input :convictions, as: :radio, label: 'Have you ever been convicted of any crime, including traffic violations?'
+        f.input :convictions_text, as: :text, label: "If 'Yes', please describe:", input_html: { rows: 3 },
+          hint: 'The existence of a criminal record does not constitute an automatic bar to employment unless relevant to the type of employment.'
+        f.input :skills, as: :check_boxes, label: 'Check and list any skills which may be useful to the job you are seeking.', collection: Collections::EMPLOYMENT_SKILLS
+        f.input :other_information, as: :text, label: 'Please tell us anything else about you that may be relevant to this position:', input_html: { rows: 4 }
+
+        f.input :resume, label: 'Please attach your resume (PDF only - max 1 MB)', as: :file, required: true
+      %>
+      <hr>
+      <p>I certify that the information provided on this application is truthful and accurate. I understand that providing false or misleading information will be the basis for rejection of my application, or if employment commences, immediate termination.</p>
+      <p>I authorize All Comfort Residential Care to contact former employers and educational organizations regarding my employment and education. I authorize my former employers and educational organizations to fully and freely communicate information regarding my previous employment, attendance, and grades. I authorize those persons designated as references to fully and freely communicate information regarding my previous employment and educations.</p>
+      <p>If an employment relationship is created, I understand that unless I am offered a specific written contract of employment signed on behalf of the organization by its Administrator, the employment relationship will be “at-will.” In other words, the relationship will be entirely voluntary in nature, and either I or my employer will be able to terminate the employment relationship at any time and without cause. With appropriate notice, I will have the full and complete discretion to end the employment relationship when I choose and for reasons of my choice. Similarly, my employer will have the right. Moreover, no agent, representative, or employee of All Comfort Residential Care, except in specific written contract of employment signed on behalf of the organization by its Administrator, has the power to alter or vary the voluntary nature of the employment relationship.</p>
+      <hr>
+      <%= 
+        f.input :certify, as: :boolean, label: 'I have carefully read the above certification and I understand and agree to its terms.'
+        f.submit 'Submit', class: 'btn btn-panel'
+      %>
+    <% end %>
+  </div>
+</div>

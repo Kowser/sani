@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class UsersControllerTest < ActionController::TestCase
+class Landing::UsersControllerTest < ActionController::TestCase
 	test 'should get sign_up' do
 	  get :new
 	  assert_response :success

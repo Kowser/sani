@@ -1,0 +1,56 @@
+<div class="panel panel-green">
+	<div class="panel-heading">
+	  <div class="panel-title">Outstanding Invoices
+	  	<%= link_to 'New Invoice', new_facility_invoice_path, class: 'btn btn-xs btn-default pull-right' %>
+	  </div>
+	</div>
+	<%= form_for :invoices, url: facility_receive_payments_path, method: :post do %>
+		<table id='invoices' class="table table-condensed table-striped table-hover table-responsive">
+			<thead>
+	  		<tr>
+		   		<th>Resident</th>
+		   		<th class='col-tb-50 hidden-xs hidden-sm'>Unit</th>
+		   		<th class='hidden-xs hidden-sm'>Invoice&nbsp;#</th>
+		   		<th class='col-tb-100'>Due Date</th>
+		   		<th class='col-tb-75'>Balance</th>
+		   		<th class='col-tb-100 hidden-xs hidden-sm'>Status</th>
+		   		<th class='text-center'>Payment</th>
+		   		<th class='text-center'>Paid with</th>
+		   		<th class='text-center'>Received on</th>
+		   		<th class='text-right'>View&nbsp;</th>
+		   	</tr>
+		   </thead>
+		   <tbody>
+				<% @invoices.each do |invoice| %>
+			    <tr>
+	    			<td><%= invoice.resident.name %></td>
+	    			<td class='hidden-xs hidden-sm'><%= invoice.resident.unit.number %></td>
+	    			<td class='hidden-xs hidden-sm'><%= invoice.number %></td>
+	    			<td><%= invoice.due_date.strftime('%m/%d/%Y') %></td>
+			   		<td><%= '%.2f' % invoice.balance_due %></td>
+			   		<td class='hidden-xs hidden-sm'><%= (days = (Date.today - invoice.due_date).to_i) > 0 ? "Past Due (#{days})" : 'Current' %></td>
+						<%= fields_for "invoices[#{invoice.id}]", Payment.new do |p| %>
+				   		<td class='text-center'><%= p.number_field :amount, class: 'input responsive' %></td>
+				   		<td class='text-center'><%= p.select :method, Collections::PAYMENT_METHODS, class: 'payment-method' %></td>
+				   		<td class='text-center'><%= p.text_field :receive_date, placeholder: "#{Date.today.strftime('%m/%d/%Y')}", class: 'datepicker responsive' %></td>
+						<% end %>
+						<td class='text-right'><%= link_to 'View', edit_facility_invoice_path(current_facility, invoice), class: 'btn btn-xs btn-default' %></td>
+			  	</tr>
+		  	<% end %>
+		  </tbody>
+		</table>
+		<div class='panel-body'>
+			<div class='row'>
+				<div class='col-sm-9'>
+					<ul><strong>Reminders</strong>
+						<li>Leaving the 'Received On' date blank will use today's date</li>
+						<li>If you need to split a payment between multiple invoices, please go <%= link_to 'here', new_facility_payment_path %>.</li>
+					</ul>
+				</div>
+				<div class='col-sm-3'>
+					<%= submit_tag 'Submit Payments', class: 'btn btn-panel pull-right' %>
+				</div>
+			</div>
+		</div>
+	<% end %>
+</div>
