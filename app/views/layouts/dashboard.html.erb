@@ -4,7 +4,7 @@
 	  <%= render 'layouts/dashboard/menu' %> 
 	</div>
 	<div class='content'>
-	  <%= render 'layouts/selector.html' if facility_selector? %>
+	  <%= render 'layouts/dashboard/selector.html' if facility_selector? %>
 	  <span id='bootstrap-flash'><%= bootstrap_flash %></span>
 	  <%= yield %>
 	  <%= debug(params) if Rails.env.development? %>

@@ -24,7 +24,7 @@
           <%= f.input :unit, placeholder: '6', collection: current_facility.units %>
         </div>
         <div class='col-sm-3 col-xs-4'>
-          <%= f.input :rent, placeholder: '1234.56' if access(:admin) %>
+          <%= f.input :rent, placeholder: '1234.56' if authorized?(:admin) %>
         </div>
       </div>
       <div class='row'>
@@ -61,10 +61,10 @@
       </div>
       <div class='row'>
           <div class='col-sm-12'>
-            <%= f.input :notes, label: 'Additional Information', hint: 'Please do not enter sensitive data (medical, financial, etc..).', input_html: { rows: 3, disabled: !access(:admin) } %>
+            <%= f.input :notes, label: 'Additional Information', hint: 'Please do not enter sensitive data (medical, financial, etc..).', input_html: { rows: 3, disabled: !authorized?(:admin) } %>
           </div>
         </div>
-      <%= f.submit 'Save Resident', class: 'btn btn-panel' if access(:admin) %>
+      <%= f.submit 'Save Resident', class: 'btn btn-panel' if authorized?(:admin) %>
     <% end %>
   </div>
 </div>

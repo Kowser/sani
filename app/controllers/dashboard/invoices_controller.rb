@@ -1,5 +1,5 @@
 class Dashboard::InvoicesController < DashboardController
-	before_action -> { authorization(:devops) }
+	before_action -> { authorize_user(:devops) }
 	
 	def index
 		@invoices = current_facility.invoices.where("balance_due > 0")

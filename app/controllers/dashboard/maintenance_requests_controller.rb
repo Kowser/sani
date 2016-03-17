@@ -1,5 +1,5 @@
 class Dashboard::MaintenanceRequestsController < DashboardController
-	before_action -> { authorization(:staff) }
+	before_action -> { authorize_user(:staff) }
 	
 	def index
 		@maintenance_requests = current_facility.maintenance_requests.where(search_params)

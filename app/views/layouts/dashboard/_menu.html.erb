@@ -1,21 +1,21 @@
 <div class='menu'>
 	<% if current_facility %>
-		<%= link_to 'Dashboard', dashboard_path(current_facility) if access(:admin) %>
-		<%#= link_to 'Invoices', facility_invoices_path(current_facility) if access(:admin) %>
-		<%= link_to 'Payments', facility_receive_payments_path(current_facility) if access(:admin) %>
-		<%= link_to 'Deposits', facility_deposit_payments_path(current_facility) if access(:admin) %>
+		<%= link_to 'Dashboard', dashboard_path(current_facility) if authorized?(:admin) %>
+		<%#= link_to 'Invoices', facility_invoices_path(current_facility) if authorized?(:admin) %>
+		<%= link_to 'Payments', facility_receive_payments_path(current_facility) if authorized?(:admin) %>
+		<%= link_to 'Deposits', facility_deposit_payments_path(current_facility) if authorized?(:admin) %>
 		<%= link_to 'Maintenance', facility_maintenance_requests_path(current_facility) %>
-		<%= link_to 'Employment', facility_employment_applications_path(current_facility) if access(:admin) %>
+		<%= link_to 'Employment', facility_employment_applications_path(current_facility) if authorized?(:admin) %>
 		<%#= link_to 'Applications', facility_applications_path(current_facility) %>
 		<%#= link_to 'Preferences', facility_preferences_path(current_facility) %>
 		<%#= link_to 'Settings', facility_settings_path(current_facility) %>
-		<%= link_to 'Facilities', facilities_path(facility_id: current_facility.id) if access(:partner) %>
+		<%= link_to 'Facilities', facilities_path(facility_id: current_facility.id) if authorized?(:partner) %>
 		<%= link_to 'Residents', facility_residents_path(current_facility) %>
-		<%= link_to 'Staff', facility_staff_index_path(current_facility) if access(:admin) %>
+		<%= link_to 'Staff', facility_staff_index_path(current_facility) if authorized?(:admin) %>
 	<% else %>
-		<%= link_to 'Add Facility', facilities_path if access(:partner) %>
+		<%= link_to 'Add Facility', facilities_path if authorized?(:partner) %>
 	<% end %>
 	<hr class='divider'>
-  <%= link_to 'My Account', edit_user_path(current_user) %>
+  <%#= link_to 'My Account', edit_user_path(current_user) %>
   <%= link_to 'Sign Out', logout_path, method: :delete %>
 </div>

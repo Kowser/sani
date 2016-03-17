@@ -1,4 +1,4 @@
-module FlashHelper
+module BootstrapFlashHelper
   ALERT_TYPES = [:danger, :info, :success, :warning] unless const_defined?(:ALERT_TYPES)
 
   def bootstrap_flash

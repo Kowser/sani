@@ -1,5 +1,5 @@
 class Dashboard::FacilitiesController < DashboardController
-	before_action -> { authorization(:partner) }
+	before_action -> { authorize_user(:partner) }
 
 	def index
 		@facilities = current_user.facilities

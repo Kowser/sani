@@ -1,6 +1,6 @@
 class Dashboard::ResidentsController < DashboardController
-	before_action -> { authorization(:staff) }, only: [:index, :edit]
-	before_action -> { authorization(:admin) }, only: [:new, :create, :update]
+	before_action -> { authorize_user(:staff) }, only: [:index, :edit]
+	before_action -> { authorize_user(:admin) }, only: [:new, :create, :update]
 
 	def index
 		@residents = current_facility.residents.includes(:unit)

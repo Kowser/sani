@@ -8,7 +8,7 @@ class Landing::SessionsController < LandingController
 		if @user && @user.authenticate(session_params[:password])
 			login(@user)
 			session_params[:remember_me] == '1' ? remember(@user) : forget(@user)
-			redirect_to edit_user_path(@user)
+			redirect_to sign_in_dashboard_path
 		else
 			flash[:alert] = 'Invalid email/password combination.'
 			redirect_to action: 'new'

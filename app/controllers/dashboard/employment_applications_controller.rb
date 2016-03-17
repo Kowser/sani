@@ -1,5 +1,5 @@
 class Dashboard::EmploymentApplicationsController < DashboardController
-	before_action -> { authorization(:admin) }, only: [:index, :show, :update]
+	before_action -> { authorize_user(:admin) }, only: [:index, :show, :update]
 	# before_action :authenticate_user!, except: [:new, :create]
 
 	# APPLICANT ACTIONS

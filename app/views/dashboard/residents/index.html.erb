@@ -1,7 +1,7 @@
 <div class="panel panel-green">
 	<div class="panel-heading">
 	  <div class="panel-title">Current Resident Roster
-	  	<%= link_to 'New Resident', new_facility_resident_path, class: 'btn btn-xs btn-default pull-right' if access(:admin) %>
+	  	<%= link_to 'New Resident', new_facility_resident_path, class: 'btn btn-xs btn-default pull-right' if authorized?(:admin) %>
 	  </div>
 	</div>
 	<table class="table table-condensed table-striped table-hover table-responsive">

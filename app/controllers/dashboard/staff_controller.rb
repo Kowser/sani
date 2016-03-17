@@ -1,5 +1,5 @@
 class Dashboard::StaffController < DashboardController
-	before_action -> { authorization(:admin) }
+	before_action -> { authorize_user(:admin) }
 	
 	def index
 		@staff = current_facility.users.order('first_name ASC')

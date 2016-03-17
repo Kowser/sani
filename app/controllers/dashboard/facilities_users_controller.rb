@@ -1,5 +1,5 @@
 class FacilitiesUsersController < DashboardController
-	before_action -> { authorization(:admin) }
+	before_action -> { authorize_user(:admin) }
 
 	def create
 		add_staff = FacilitiesUser.new(facility: current_facility, user_id: params[:user_id])

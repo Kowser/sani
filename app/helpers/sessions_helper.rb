@@ -52,7 +52,8 @@ module SessionsHelper
 
   # Returns a facility corresponding to the facility_id, or defaults to the first user's facility, if available.
   def current_facility
-    current_facility ||= (current_user.facilities.find_by(id: params[:facility_id]) || current_user.facilities.first)
+    false
+    # current_facility ||= (current_user.facilities.find_by(id: params[:facility_id]) || current_user.facilities.first)
   end
 
   # Returns true if the user is logged in, false otherwise.
@@ -61,7 +62,8 @@ module SessionsHelper
   end
 
   # Determines if user's role is greater than or equal to the requested 'role'
-  def access(role)
-    current_user[:role] >= User.roles[role]
+  def authorized?(role)
+    true
+    # current_user[:role] >= User.roles[role]
   end
 end
