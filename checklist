@@ -4,7 +4,8 @@ _	Email feedback form?
 _	User registration edit
 _	add period to Save in banner image
 _	add drop down menu for user's name (profile, logout, settings, etc..)
-_	change remember me to being only 30 days
+x	change remember me to being only 30 days
+_	verify user password for user updates
 
 _ STAFF
 	_	current system has security issues. Need way to isolate staff to particular business? 

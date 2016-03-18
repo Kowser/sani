@@ -1,6 +1,6 @@
 class Dashboard::PaymentsController < DashboardController
 	before_action -> { authorize_user(:admin) }
-	before_action :facility_selector?, only: [:deposit_payments, :receive_payments]
+	before_action :facility_selector, only: [:deposit_payments, :receive_payments]
 
 	def deposit_payments # combine under index later with params?
 		@payments = current_facility.payments.where(search_params).includes(:resident)

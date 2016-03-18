@@ -4,7 +4,7 @@ class Dashboard::ResidentsController < DashboardController
 
 	def index
 		@residents = current_facility.residents.includes(:unit)
-		#this should only be active residents only. Should we set that as default, or create a scope?
+		#this should only be active residents only. Default or create a scope?
 	end
 
 	def new

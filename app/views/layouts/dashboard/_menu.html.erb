@@ -16,6 +16,6 @@
 		<%= link_to 'Add Facility', facilities_path if authorized?(:partner) %>
 	<% end %>
 	<hr class='divider'>
-  <%#= link_to 'My Account', edit_user_path(current_user) %>
+  <%= link_to 'My Account', my_account_path %>
   <%= link_to 'Sign Out', logout_path, method: :delete %>
 </div>

@@ -4,9 +4,10 @@ class ApplicationController < ActionController::Base
   
 private
   def sign_in_dashboard_path
-    if authorized?(:admin)
-    	edit_user_path(current_user)
-    	# dashboard_path(current_facility)
+    if authorized?(:admin) && current_facility
+    	dashboard_path(current_facility)
+    elsif authorized?(:admin)
+    	my_account_path
   	else
   		facility_maintenance_request_path(current_facility)
   	end

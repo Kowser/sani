@@ -7,8 +7,8 @@ class Landing::UsersController < LandingController
     @user = User.new(user_params.merge(role: User.roles['partner']))
     if @user.save
     	login(@user)
-    	flash[:success] = "Welcome to Sani - Please fill in your company information."
-      redirect_to edit_user_path(current_user)
+    	flash[:success] = "Welcome to Sani! - Please fill in your company information."
+      redirect_to my_account_path
     else
       render 'new'
     end

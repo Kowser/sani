@@ -1,4 +1,4 @@
-class FacilitiesUsersController < DashboardController
+class Dashboard::FacilitiesUsersController < DashboardController
 	before_action -> { authorize_user(:admin) }
 
 	def create

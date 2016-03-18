@@ -1,4 +1,5 @@
 class Dashboard::FacilitiesController < DashboardController
+	skip_before_action :facility_selector, only: :index
 	before_action -> { authorize_user(:partner) }
 
 	def index
@@ -25,8 +26,12 @@ class Dashboard::FacilitiesController < DashboardController
 	end
 
 	def edit
-		@facility = current_user.facilities.includes(:units, :residents).find(params[:id])
-		render 'form'
+		if @facility = current_user.facilities.includes(:units, :residents).find_by(id: params[:id])
+			render 'form'
+		else
+			flash[:alert] = 'That facility does not exist'
+			redirect_to action: 'index'
+		end
 	end
 
 	def update

@@ -18,10 +18,10 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
         email: 'user@example.com', password: 'password', password_confirmation: 'password' }
     end
     assert is_logged_in?
-    assert_redirected_to edit_user_path(assigns(:user))
+    assert_redirected_to my_account_path
     follow_redirect!
     assert_select "a[href=?]", facilities_path
-    assert_select "a[href=?]", edit_user_path(current_user)
+    assert_select "a[href=?]", my_account_path
     assert_select "a[href=?]", logout_path
   end
 end

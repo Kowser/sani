@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
-	# before_action :facility_selector, only: [:index]
-	# before_action :authenticated_user!
+	before_action :authenticate_user
+	before_action :facility_selector, only: [:index]
 	layout 'dashboard'
 	
 	# Dashboard landing page
@@ -13,10 +13,20 @@ class DashboardController < ApplicationController
 	end
 
 private
+	# Confirms a signed-in user.
+  def authenticate_user
+    unless logged_in?
+    	store_location
+      flash[:danger] = 'You must sign in first.'
+      redirect_to sign_in_path
+    end
+  end
+
+  # Confirms an authorized user.
 	def authorize_user(role)
 	  unless authorized?(role)
-	    redirect_to after_sign_in_path_for(current_user)
 	    flash[:alert] = 'Your are not authorized.'
+	    redirect_to after_sign_in_path_for(current_user)
 	  end
 	end
 end

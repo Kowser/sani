@@ -22,7 +22,8 @@ Rails.application.routes.draw do
 # DASHBOARD PATHS - all nested under facilities to provide :facility_id
   get 'facilities/:facility_id/dashboard', to: 'dashboard#index', as: 'dashboard'
   scope module: 'dashboard' do
-    resources :users, only: [:edit, :update], path: '/my_account'
+    resources :users, only: :update, path: '/my_account'
+    get 'my_account' => 'users#edit'
     resources :facilities do
       get 'receive_payments'  => 'payments#receive_payments'
       get 'deposit_payments'  => 'payments#deposit_payments'

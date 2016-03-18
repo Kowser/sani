@@ -6,23 +6,26 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   end
 
   test "unsuccessful edit" do
-  	
-    get edit_user_path(@user)
+  	log_in_as(@user)
+    get my_account_path
     assert_template 'users/edit'
-    patch user_path(@user), user: { name:  "", email: "foo@invalid", password: "foo", password_confirmation: "bar" }
+    patch user_path(@user), user: { first_name: '', last_name: '', email: "foo@invalid", password: "foo", password_confirmation: "bar" }
     assert_template 'users/edit'
   end
 
   test "successful edit" do
-    get edit_user_path(@user)
+  	log_in_as(@user)
+    get my_account_path
     assert_template 'users/edit'
-    name  = "Foo Bar"
+    first_name  = 'John'
+    last_name = 'Henry'
     email = "foo@bar.com"
-    patch user_path(@user), user: { name:  name, email: email, password: "", password_confirmation: "" }
+    patch user_path(@user), user: { first_name: first_name, last_name: last_name, email: email, password: "", password_confirmation: "" }
     assert_not flash.empty?
-    assert_redirected_to @user
+    assert_redirected_to my_account_path
     @user.reload
-    assert_equal name,  @user.name
+    assert_equal first_name,  @user.first_name
+    assert_equal last_name,  @user.last_name
     assert_equal email, @user.email
   end
 end

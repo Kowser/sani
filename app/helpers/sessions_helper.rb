@@ -12,7 +12,7 @@ module SessionsHelper
     @current_user = nil
   end
 
-  # Remembers a user in a persistent session.
+  # Remembers a user for a 30 day session.
   def remember(user)
     user.remember
     cookies.signed[:user_id] = { value: user.id, expires: 30.days.from_now.utc }
@@ -28,12 +28,23 @@ module SessionsHelper
 
   # Returns true for users associated with multiple facilities, false otherwise.
   def facility_selector
-    @selector ||= current_user.facilities.count > 1
+    @selector ||= current_user.facilities.count > 1 if current_user
   end
 
   # Returns true if facility selector is set & true, false otherwise.
   def facility_selector?
     @selector.present?
+  end
+
+  # Redirects to stored location (or to the default).
+  def redirect_back_or(default)
+    redirect_to(session[:forwarding_url] || default)
+    session.delete(:forwarding_url)
+  end
+
+  # Stores the URL trying to be accessed.
+  def store_location
+    session[:forwarding_url] = request.url if request.get?
   end
 
 # VIEW / CONTROLLER HELPER METHODS ----------------------------------
@@ -52,8 +63,7 @@ module SessionsHelper
 
   # Returns a facility corresponding to the facility_id, or defaults to the first user's facility, if available.
   def current_facility
-    false
-    # current_facility ||= (current_user.facilities.find_by(id: params[:facility_id]) || current_user.facilities.first)
+    current_facility ||= (current_user.facilities.find_by(id: params[:facility_id]) || current_user.facilities.first)
   end
 
   # Returns true if the user is logged in, false otherwise.
@@ -61,9 +71,8 @@ module SessionsHelper
     current_user.present?
   end
 
-  # Determines if user's role is greater than or equal to the requested 'role'
+  # Determines if user's role is greater than or equal to the given role.
   def authorized?(role)
-    true
-    # current_user[:role] >= User.roles[role]
+    current_user[:role] >= User.roles[role]
   end
 end

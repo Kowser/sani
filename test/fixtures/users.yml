@@ -1,6 +1,13 @@
 michal:
   first_name: Michal
   last_name: Kowser
-  email: michael@example.com
+  email: michal@example.com
+  password_digest: <%= User.digest('password') %>
+  role: 5
+
+archer:
+  first_name: Captain
+  last_name: Archer
+  email: archer@enterprise.gov
   password_digest: <%= User.digest('password') %>
   role: 5

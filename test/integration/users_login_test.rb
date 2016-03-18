@@ -5,56 +5,54 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     @user = users(:michal)
   end
 
-  test "login with invalid information from home page" do
-    get root_path
-    assert_template 'landing/home'
-    post_via_redirect login_path, session: { email: "", password: "" }
-    assert_template 'sessions/new'
-    assert_not flash.empty?
-    get root_path
-    assert flash.empty?
-  end
-
-   test "login with invalid information from sign in page" do
+   test 'login with invalid information from sign in page' do
     get sign_in_path
     assert_template 'sessions/new'
-    post_via_redirect login_path, session: { email: "", password: "" }
+    post_via_redirect login_path, session: { email: '', password: '' }
     assert_template 'sessions/new'
     assert_not flash.empty?
     get root_path
     assert flash.empty?
   end
 
-  test "login with valid information followed by logout" do
+  test 'login with valid information followed by logout' do
     get sign_in_path
     post login_path, session: { email: @user.email, password: 'password' }
     assert is_logged_in?
-    assert_redirected_to edit_user_path(@user)
+    assert_redirected_to my_account_path
     follow_redirect!
     assert_template 'users/edit'
-    assert_select "a[href=?]", sign_in_path,      count: 0
-    assert_select "a[href=?]", logout_path
-    assert_select "a[href=?]", facilities_path
-    assert_select "a[href=?]", edit_user_path(current_user)
+    assert_select 'a[href=?]', sign_in_path,      count: 0
+    assert_select 'a[href=?]', logout_path
+    assert_select 'a[href=?]', facilities_path
+    assert_select 'a[href=?]', my_account_path
     delete logout_path
     assert_not is_logged_in?
     assert_redirected_to root_url
     delete logout_path # Simulate a user clicking logout in a second window.
     follow_redirect!
-    assert_select "a[href=?]", sign_up_path
-    assert_select "a[href=?]", logout_path,       count: 0
-    assert_select "a[href=?]", facilities_path,   count: 0
+    assert_select 'a[href=?]', sign_up_path
+    assert_select 'a[href=?]', logout_path,       count: 0
+    assert_select 'a[href=?]', facilities_path,   count: 0
   end
 
-  test "login with remembering" do
+  test 'login with remembering' do
     log_in_as(@user, remember_me: '1')
     assert_not_nil cookies['remember_token']
     assert_equal cookies['remember_token'], assigns(:user).remember_token
   end
 
-  test "login without remembering" do
+  test 'login without remembering' do
     log_in_as(@user, remember_me: '0')
     assert_nil cookies['remember_token']
     assert_equal cookies['remember_token'], assigns(:user).remember_token
+  end
+
+  test 'login with friendly forwarding' do
+    get facilities_path
+    follow_redirect!
+    assert_template 'sessions/new'
+    log_in_as(@user)
+    assert_redirected_to facilities_path
   end
 end
