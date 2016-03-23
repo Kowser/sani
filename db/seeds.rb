@@ -25,7 +25,7 @@ user = create_user(
 
 # PRIMARY FACILITY - 15/16 residents, 1 unoccupied room
 facility = Facility.new(
-	name: 'All Comfort Residential Care',
+	name: 'My Residential Care Center',
 	address: '9347 SW 35th Ave',
 	city: 'Portland',
 	state: 'OR',
@@ -39,7 +39,7 @@ facility.save!
 
 # SECOND FACILITY - no residents, 1 unoccupied room
 facility_2 = Facility.new(
-	name: 'Hill House',
+	name: 'MountainView Care Facility',
 	address: '1325 SW Gibbs St.',
 	city: 'Portland',
 	state: 'OR',
@@ -125,70 +125,70 @@ create_user(
 		)
 	end
 end
-
 # =====================================================================================
 # RESIDENTS, INVOICES, PAYMENTS
 # =====================================================================================
-15.times do |i| 
-	# +2 because empty room 1 exists from above
-	unit = Unit.create!(facility_id: facility.id, number: i + 2,  active: true) 
+[facility, facility_2].each do |fac|
+	(13..19).to_a.sample.times do |i| 
+		# +2 because empty room 1 exists from above
+		unit = Unit.create!(facility_id: fac.id, number: i + 2,  active: true) 
 
-	resident = Resident.create!(
-		unit_id: unit.id,
-		first_name: Faker::Name.first_name,
-		last_name: Faker::Name.last_name,
-		contact_first_name: Faker::Name.first_name,
-		contact_last_name: Faker::Name.last_name,
-		phone: Faker::PhoneNumber.cell_phone,
-		email: Faker::Internet.free_email,
-		address: Faker::Address.street_address,
-		city: Faker::Address.city,
-		state: Faker::Address.state_abbr,
-		zip: Faker::Address.zip_code,
-		move_in: Faker::Date.between(365.days.ago, Date.today),
-		rent: Faker::Number.between(35, 65) * 100
-	)
+		resident = Resident.create!(
+			unit_id: unit.id,
+			first_name: Faker::Name.first_name,
+			last_name: Faker::Name.last_name,
+			contact_first_name: Faker::Name.first_name,
+			contact_last_name: Faker::Name.last_name,
+			phone: Faker::PhoneNumber.cell_phone,
+			email: Faker::Internet.free_email,
+			address: Faker::Address.street_address,
+			city: Faker::Address.city,
+			state: Faker::Address.state_abbr,
+			zip: Faker::Address.zip_code,
+			move_in: Faker::Date.between(365.days.ago, Date.today),
+			rent: Faker::Number.between(35, 65) * 100
+		)
 
-# 	invoice = Invoice.create!(
-# 		resident_id: resident.id,
-# 		total_due: resident.rent,
-# 		balance_due: resident.rent,
-# 		number: "ACC-#{rand(1000..1999)}",
-# 		due_date: Date.today.at_beginning_of_month,
-# 		item: 'Monthly Rent & Residential Care Services',
-# 		notes: 'Example of notes'
-# 	)
+	# 	invoice = Invoice.create!(
+	# 		resident_id: resident.id,
+	# 		total_due: resident.rent,
+	# 		balance_due: resident.rent,
+	# 		number: "ACC-#{rand(1000..1999)}",
+	# 		due_date: Date.today.at_beginning_of_month,
+	# 		item: 'Monthly Rent & Residential Care Services',
+	# 		notes: 'Example of notes'
+	# 	)
 
-# 	# PAST DUE invoice
-# 	Invoice.create!(
-# 		resident_id: resident.id,
-# 		total_due: resident.rent,
-# 		balance_due: resident.rent,
-# 		number: "ACC-#{rand(1000..1999)}",
-# 		due_date: (Date.today - 1.month).at_beginning_of_month,
-# 		item: 'Monthly Rent & Residential Care Services',
-# 		notes: 'Example of notes'
-# 	) if rand(1..10) < 3 # seeds 20% past due rate
+	# 	# PAST DUE invoice
+	# 	Invoice.create!(
+	# 		resident_id: resident.id,
+	# 		total_due: resident.rent,
+	# 		balance_due: resident.rent,
+	# 		number: "ACC-#{rand(1000..1999)}",
+	# 		due_date: (Date.today - 1.month).at_beginning_of_month,
+	# 		item: 'Monthly Rent & Residential Care Services',
+	# 		notes: 'Example of notes'
+	# 	) if rand(1..10) < 3 # seeds 20% past due rate
 
-# 	# NEXT MONTH's invoice
-# 	Invoice.create!(
-# 		resident_id: resident.id,
-# 		total_due: resident.rent,
-# 		balance_due: resident.rent,
-# 		number: "ACC-#{rand(1000..1999)}",
-# 		due_date: (Date.today + 1.month).at_beginning_of_month,
-# 		item: 'Monthly Rent & Residential Care Services',
-# 		notes: 'Example of notes'
-# 	) if [true, false].sample
+	# 	# NEXT MONTH's invoice
+	# 	Invoice.create!(
+	# 		resident_id: resident.id,
+	# 		total_due: resident.rent,
+	# 		balance_due: resident.rent,
+	# 		number: "ACC-#{rand(1000..1999)}",
+	# 		due_date: (Date.today + 1.month).at_beginning_of_month,
+	# 		item: 'Monthly Rent & Residential Care Services',
+	# 		notes: 'Example of notes'
+	# 	) if [true, false].sample
 
-	Payment.create!(
-		resident_id: resident.id,
-		amount: resident.rent,
-		receive_date: Faker::Date.between(7.days.ago, Date.today),
-		method: Collections::PAYMENT_METHODS.sample
-	) if rand(1..10) < 9 # seeds 80% paid rate
+		Payment.create!(
+			resident_id: resident.id,
+			amount: resident.rent,
+			receive_date: Faker::Date.between(7.days.ago, Date.today),
+			method: Collections::PAYMENT_METHODS.sample
+		) if rand(1..10) < 9 # seeds 80% paid rate
+	end
 end
-
 # =====================================================================================
 # EMPLOYMENT APPLICATIONS
 # =====================================================================================
