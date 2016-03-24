@@ -15,8 +15,9 @@ Rails.application.routes.draw do
     end
 
     resources :employment_applications, only: [:new, :create, :edit, :update]
-    resources :users, only: :create, path: '/sign_up' #keeps same URL when users#create fails
+    resources :users, only: :create, path: '/sign_up' #keeps same URL when users#create returns errors
     get 'sign_up' => 'users#new'
+    get 'account_activation/:token', to: 'users#activation', as: 'account_activation'
   end
 
 # DASHBOARD PATHS - all nested under facilities to provide :facility_id

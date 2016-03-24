@@ -4,6 +4,8 @@ michal:
   email: michal@example.com
   password_digest: <%= User.digest('password') %>
   role: 5
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
 archer:
   first_name: Captain
@@ -11,3 +13,5 @@ archer:
   email: archer@enterprise.gov
   password_digest: <%= User.digest('password') %>
   role: 5
+  activated: true
+  activated_at: <%= Time.zone.now %>
