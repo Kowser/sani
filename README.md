@@ -7,4 +7,4 @@ Sani is a responsive design application designed to ease many small mom-and-pop 
 
 Owners / Administrators have the ability to view multiple facilities, add staff, send out invoices, receive payments, and track some basic metrics in the dashboard view.
 
-Sani is a private project built by Michal Kaszubowski.
+Sani is a project built by Michal Kaszubowski.
