@@ -1,15 +1,8 @@
 <% content_for :content do %>
-	<header>
-	  <div class='header-links'>
-	    <div class='landing'>
-	      <%= landing_menu_links %>
-	    </div>
-	  </div>
-	</header>
+	<%= render 'layouts/landing/header' %> 
 	
 	<div class="landing">
-	  <div class='header'>
-	  	<!-- <div class='row'> -->
+	  <div class='header-logo'>
   		<div class='col-sm-3'>
 		    <%= image_tag 'logo.gif', alt: 'Sani Logo Image', class: 'logo' %>
 		  </div>
@@ -17,7 +10,6 @@
 		    <%= yield(:heading) %>
 		  </div>
 	  </div>
-	  <!-- </div> -->
 	  <span id='bootstrap-flash'><%= bootstrap_flash %></span>
   </div>
 	
