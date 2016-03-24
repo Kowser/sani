@@ -34,12 +34,10 @@
   }
 }
 
-.about-us{
-  font-size: 1.2em;
-}
-
 img.logo { height: 65px; }
 img.banner { width: 100%; }
+
+section { p { font-size: 1.2em; } }
 
 section#contact-us {
   color: white;
@@ -61,10 +59,9 @@ section#pricing {
 }
 
 section#about-us {
-  /*min-height: 200px;*/
   color: #111;
-  /*width: 100%;*/
 }
+
 
 .navbar {
   margin: 0;
