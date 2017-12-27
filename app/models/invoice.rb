@@ -10,6 +10,6 @@ class Invoice < ActiveRecord::Base
 
 private
 	def set_balance_due
-		self.balance_due = self.total_due
+		self.role = role || 1
 	end
 end

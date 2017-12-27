@@ -5,7 +5,6 @@ class Dashboard::PaymentsController < DashboardController
 	def deposit_payments # combine under index later with params?
 		@payments = current_facility.payments.where(search_params).includes(:resident)
 		@default_selected = search_params.values.first
-		# binding.pry
 	end
 
 	def receive_payments # combine under index later with params?

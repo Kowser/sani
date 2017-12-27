@@ -5,7 +5,7 @@
 	  <div class="panel-title">Employment Applications
 	  	<span class='pull-right'>
 			  <%= form_for :search, url: facility_employment_applications_path(current_facility), method: :get do |search| %>
-			  	<%= search.select(:active, options_for_select([['Active', true], ['Inactive', false]], @default_selected)) unless dashboard_view %> 
+			  	<%= search.select(:active, options_for_select([['Active', true], ['Inactive', false]], @default_selected)) unless dashboard_view %>
 			  <% end %>
 			</span>
 	  </div>
